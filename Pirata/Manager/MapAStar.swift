@@ -1,0 +1,115 @@
+//
+//  MapAStar.swift
+//  Pirata
+//
+//  Created by Virgilius Santos on 07/09/2018.
+//  Copyright © 2018 Virgilius Santos. All rights reserved.
+//
+
+import Foundation
+
+extension Map {
+    func calcRoute(from: Slot, to: Slot, excludeRole: Bool = true, completion: @escaping ([Slot])->()) {
+        
+        let distance = calcDistance(from: from.index, to: to.index)
+        if distance == 1 {
+            completion([from,to])
+            return
+        }
+        
+        DispatchQueue(label: "calculate").async {
+            
+            var route = [DataNode]()
+            var open: [DataNode] = []
+            var close: [Slot] = []
+            
+            let first = DataNode(slot: from)
+            open.append(first)
+            
+            while !open.isEmpty {
+                let current = open.removeFirst()
+                close.append(current.slot)
+                
+                let vizinhos = self.getVizinhos(current.slot.index, excludeRole: excludeRole)
+                
+                vizinhos.forEach { (slot) in
+                    
+                    let valid = close.contains(slot)
+                    
+                    if valid { return }
+                    
+                    var distance = self.calcDistance(from: from.index, to: slot.index)
+                    distance += self.calcDistance(from: slot.index, to: to.index)
+                    
+                    let data = DataNode(slot: slot, distance: distance, parent: current)
+                    open.append(data)
+                    
+                }
+                open.sort(by: { (dt1, dt2) -> Bool in
+                    return dt1.distance < dt2.distance
+                })
+                
+                route.append(current)
+                if current.slot == to {
+                    break
+                }
+                
+            }
+            
+            var way = [Slot]()
+            var current: DataNode? = route.first(where: {$0.slot == to})
+                
+            while ( current != nil ) {
+                way.insert(current!.slot, at: 0)
+                current = current?.parent
+            }
+         
+            completion(way)
+        }
+    }
+    
+    private func getVizinhos(_ current: Index, excludeRole: Bool) -> [Slot] {
+        var vizinhos = [Slot]()
+        if current.row - 1 >= 0 {
+            updateVizinhos(vizinhos: &vizinhos,
+                           col: current.col,
+                           row: current.row-1,
+                           excludeRole: excludeRole)
+        }
+        if current.row + 1 < matriz[current.col].count {
+            updateVizinhos(vizinhos: &vizinhos,
+                           col: current.col,
+                           row: current.row+1,
+                           excludeRole: excludeRole)
+        }
+        if current.col - 1 >= 0 {
+                updateVizinhos(vizinhos: &vizinhos,
+                               col: current.col-1,
+                               row: current.row,
+                               excludeRole: excludeRole)
+        }
+        if current.col + 1 < matriz.count {
+                updateVizinhos(vizinhos: &vizinhos,
+                               col: current.col+1,
+                               row: current.row,
+                               excludeRole: excludeRole)
+        }
+        return vizinhos
+    }
+    
+    private func updateVizinhos(vizinhos: inout [Slot], col: Int, row: Int, excludeRole: Bool) {
+        if matriz[col][row].type != .muro
+            && (matriz[col][row].type != .buraco || excludeRole) {
+            vizinhos.append(matriz[col][row])
+        }
+    }
+    
+    func calcDistance(from: Index, to: Index) -> Int {
+        let colSignal = from.col <= to.col ? 1 : -1
+        let rowSignal = from.row <= to.row ? 1 : -1
+        let colAux = (to.col - from.col) * colSignal
+        let rowAux = (to.row - from.row) * rowSignal
+        let soma = colAux + rowAux
+        return soma
+    }
+}
