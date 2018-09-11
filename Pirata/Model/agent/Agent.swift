@@ -173,12 +173,12 @@ class Agent {
                 }
                 to = route[last]
             }
-            switchEvent(.goToSlot(to, false))//getRoute(toBag: to, excludeRole: false)
+            switchEvent(.goToSlot(to, false))
             return
         }
         
         if from.index.col != to.index.col, from.index.row != to.index.row {
-            switchEvent(.goToSlot(to, false))//getRoute(toBag: to, excludeRole: false)
+            switchEvent(.goToSlot(to, false))
             return
         }
         

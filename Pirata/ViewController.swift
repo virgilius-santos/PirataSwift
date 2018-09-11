@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         print("\(#function)\n -\(agentSlot)\n")
     }
     
-    let speed: Double = mock ? 0.5 : 0.08
+    let speed: Double = mock ? 0.5 : 0.8
     func moveAnimation(to: Slot, completion: @escaping()->()) {
         let destinationView = slotView(to)
         UIView.animate(withDuration: speed, animations: {
@@ -132,7 +132,7 @@ class ViewController: UIViewController {
     func flip(_ view: UIView) {
         let transitionOptions: UIViewAnimationOptions = [.repeat, .transitionFlipFromRight, .showHideTransitionViews]
         
-        UIView.transition(with: view, duration: 2, options: transitionOptions, animations: {
+        UIView.transition(with: view, duration: speed*2, options: transitionOptions, animations: {
             view.isHidden = false
         }) { (check) in
             view.isHidden = false
