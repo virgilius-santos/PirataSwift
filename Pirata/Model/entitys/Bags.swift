@@ -24,8 +24,8 @@ struct Bags {
     
     mutating func makePackage() {
         var padrao = self.defaultValue
-        for i in 1 ... 3 {
-            let novoValor = Int(arc4random_uniform(UInt32(padrao/(4-i))))
+        for i in 1 ... (qtd-1) {
+            let novoValor = Int(arc4random_uniform(UInt32(padrao/(qtd-i))))
             data.append(Bag(valor: novoValor))
             padrao -= novoValor
         }

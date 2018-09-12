@@ -11,17 +11,19 @@ import Foundation
 class Genetic {
     private var carga: [Bag]
     private var total: Int { return carga.reduce(0, {$0+$1.valor})}
+    private var cheasts: Int
     
     private var populate: [[Int]]
     private var intermediate: [[Int]]
     
     private var generation: Int
     
-    init(carga: [Bag]) {
+    init(carga: [Bag], cheasts: Int) {
         self.carga = carga
+        self.cheasts = cheasts
         
         let line = [Int](repeating: -2, count: carga.count+1)
-        let qtd = 4*60 + 1
+        let qtd = cheasts*30 + 1
         self.populate = [[Int]](repeating: line, count: qtd)
         self.intermediate = [[Int]](repeating: line, count: qtd)
         self.generation = 0
@@ -55,7 +57,7 @@ class Genetic {
         }
     }
     
-    var limit = 200
+    var limit = 100
     var count = 0
     private func rePopulateIfNeed() -> Bool {
         if populate[0][populate[0].count-1] == 0 {  return false }
@@ -76,52 +78,34 @@ class Genetic {
             }
             populate[member][gene] = value
         }
-        
     }
     
     private func decodificar() -> [[Bag]] {
-        var v1: [Bag] = []
-        var v2: [Bag] = []
-        var v3: [Bag] = []
-        var v4: [Bag] = []
+        var decode: [[Bag]] = [[Bag]](repeating: [], count: cheasts)
         let values = populate[0]
         for i in 0 ..< values.count-1 {
-            if values[i] == 0 {
-                v1.append(carga[i])
-            } else if values[i] == 1 {
-                v2.append(carga[i])
-            } else if values[i] == 2 {
-                v3.append(carga[i])
-            } else if values[i] == 3 {
-                v4.append(carga[i])
-            }
+            decode[values[i]].append(carga[i])
         }
-//        print("generation:\(generation)\ncount:\(count)")
-//        print(" - \(v1) - \(v2) - \(v3) - \(v4) - \(values[values.count-1])\n")
-        return [v1,v2,v3,v4]
+        return decode
     }
     
     private func gerar() {
         var linha = 0
-        let qtd = (populate.count / 4)
+        let qtd = (populate.count / cheasts)
         for i in 0 ..< qtd {
             let last = populate[i].count-1
             
-            let f = [tornetizar(),tornetizar(),tornetizar(),tornetizar()]
+            let f: [Int] = [Int](repeating: tornetizar(), count: cheasts)
             
             linha += 1
             for j in 0 ..< last {
-                let f0 = f[j%4]
-                let f1 = f[(j+1)%4]
-                let f2 = f[(j+2)%4]
-                let f3 = f[(j+3)%4]
-                intermediate[linha+0][j] = populate[f0][j]
-                intermediate[linha+1][j] = populate[f1][j]
-                intermediate[linha+2][j] = populate[f2][j]
-                intermediate[linha+3][j] = populate[f3][j]
+                for k in 0 ..< cheasts {
+                    let f = f[(j+k)%cheasts]
+                    intermediate[linha+k][j] = populate[f][j]
+                }
             }
-            
-            linha += 3
+
+            linha += (cheasts-1)
             
         }
         
@@ -150,26 +134,18 @@ class Genetic {
     private func aptidar() {
         for i in 0 ..< populate.count {
             let last = populate[i].count-1
-            var v1: Int = 0
-            var v2: Int = 0
-            var v3: Int = 0
-            var v4: Int = 0
+            var v: [Int] = [Int](repeating: 0, count: cheasts)
             populate[i][last] = 0
             for j in 0 ..< last {
-                if populate[i][j] == 0 {
-                    v1 += carga[j].valor
-                } else if populate[i][j] == 1 {
-                    v2 += carga[j].valor
-                } else if populate[i][j] == 2 {
-                    v3 += carga[j].valor
-                } else if populate[i][j] == 3 {
-                    v4 += carga[j].valor
+                for k in 0 ..< cheasts {
+                    if populate[i][j] == k {
+                        v[k] += carga[j].valor
+                    }
                 }
             }
-            populate[i][last] += abs(v1-(total/4))
-            populate[i][last] += abs(v2-(total/4))
-            populate[i][last] += abs(v3-(total/4))
-            populate[i][last] += abs(v4-(total/4))
+            for k in 0 ..< cheasts {
+                populate[i][last] += abs(v[k]-(total/cheasts))
+            }
         }
     }
     
@@ -177,7 +153,7 @@ class Genetic {
         for i in start ..< populate.count {
             let last = populate[i].count-1
             for j in 0 ..< last {
-                populate[i][j] = Int(arc4random_uniform(4))
+                populate[i][j] = Int(arc4random_uniform(UInt32(cheasts)))
             }
             populate[i][last] = 0
         }

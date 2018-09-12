@@ -32,7 +32,7 @@ extension Map {
         print("\(#function) - completo")
     }
     
-    var mockCheast: [Int] { return [9,8,7,6]}
+    var mockCheast: [Int] { return [9,8,7,6,5,4,3,2]}
     /// cria os baus na arena
     func makeCheast() {
         var aux = 0
@@ -109,8 +109,8 @@ extension Map {
     
     
     func mockHole(_ data: [Slot], aux: Int) -> Int {
-        let mockCol = [5,5,5,5,5]
-        let mockRow = [6,7,9,8,5]
+        let mockCol = [5,5,4,5,5]
+        let mockRow = [4,6,9,8,0]
         let index = data.index(where: { (slot) -> Bool in
             return (slot.index.col == mockCol[aux] && slot.index.row == mockRow[aux])
         }) ?? 0

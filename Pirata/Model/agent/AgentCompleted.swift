@@ -11,7 +11,7 @@ import Foundation
 var lastCheastVisited = 0
 extension Agent {
     func completedAction() {
-        let genetic = Genetic(carga: bags)
+        let genetic = Genetic(carga: bags, cheasts: map.mapSettings.cheastNumbers)
         startflip()
         genetic.start { (distributedBags) in
             self.stopflip {

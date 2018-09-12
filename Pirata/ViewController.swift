@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         print("\(#function)\n -\(agentSlot)\n")
     }
     
-    let speed: Double = mock ? 0.5 : 0.3
+    let speed: Double = mock ? 0.1 : 0.1
     func moveAnimation(to: Slot, completion: @escaping()->()) {
         let destinationView = slotView(to)
         UIView.animate(withDuration: speed, animations: {
