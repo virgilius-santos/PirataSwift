@@ -28,7 +28,7 @@ extension Agent {
             return
         }
         
-        for index in 0 ..< self.cheasts.count {
+        for index in 0 ..< distributedBags.count {
             if cheasts[index].isCompleted { continue }
             
             if cheasts[index].slot == self.location {
@@ -58,31 +58,10 @@ extension Agent {
         }
         
         if let (route, index) = data {
-            
-        }
-//        let slot = dataNode.first(where: {($0.slot.type == .porta || $0.slot.type == .bau)})?.slot
-        
-//        if let slot = slot, let (route, index) = data {
-//            let d1 = self.map.calcDistance(from: self.location.index, to: slot.index)
-//            let d2 = self.map.calcDistance(from: self.location.index, to: route[index].index)
-//            if d1+1 < d2 {
-//                self.switchEvent(.goToSlot(slot))
-//            } else {
-//                self.switchEvent(.goToRoute((route, index)))
-//            }
-//            return
-//        }
-        
-        if let (route, index) = data {
             self.switchEvent(.goToRoute((route, index)))
             return
         }
-        
-//        if let slot = slot {
-//            self.switchEvent(.goToSlot(slot,true))
-//            return
-//        }
-//
+
         self.switchEvent(.randomBags(dataNode))
     }
     

@@ -25,10 +25,10 @@
 		18CF72F721455856002A1340 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72F621455856002A1340 /* EventType.swift */; };
 		18CF72F92145A77E002A1340 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72F82145A77E002A1340 /* Slot.swift */; };
 		18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72FA2145A796002A1340 /* MapSettings.swift */; };
-		18CF72FD2145EE60002A1340 /* RandomAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72FC2145EE60002A1340 /* RandomAgent.swift */; };
+		18CF72FD2145EE60002A1340 /* AgentRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72FC2145EE60002A1340 /* AgentRandom.swift */; };
 		18CF72FF2146098F002A1340 /* AgentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72FE2146098F002A1340 /* AgentDelegate.swift */; };
 		18CF730121460DBC002A1340 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF730021460DBC002A1340 /* Util.swift */; };
-		18CF730321461345002A1340 /* CompleteAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF730221461345002A1340 /* CompleteAction.swift */; };
+		18CF730321461345002A1340 /* AgentCompleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF730221461345002A1340 /* AgentCompleted.swift */; };
 		18CF7305214614AE002A1340 /* Genetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF7304214614AE002A1340 /* Genetic.swift */; };
 		18CF7307214694CF002A1340 /* Cheast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF7306214694CF002A1340 /* Cheast.swift */; };
 		18D3A4AC2142854A004A1BB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3A4AB2142854A004A1BB0 /* AppDelegate.swift */; };
@@ -57,10 +57,10 @@
 		18CF72F621455856002A1340 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		18CF72F82145A77E002A1340 /* Slot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		18CF72FA2145A796002A1340 /* MapSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettings.swift; sourceTree = "<group>"; };
-		18CF72FC2145EE60002A1340 /* RandomAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAgent.swift; sourceTree = "<group>"; };
+		18CF72FC2145EE60002A1340 /* AgentRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentRandom.swift; sourceTree = "<group>"; };
 		18CF72FE2146098F002A1340 /* AgentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentDelegate.swift; sourceTree = "<group>"; };
 		18CF730021460DBC002A1340 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		18CF730221461345002A1340 /* CompleteAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteAction.swift; sourceTree = "<group>"; };
+		18CF730221461345002A1340 /* AgentCompleted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentCompleted.swift; sourceTree = "<group>"; };
 		18CF7304214614AE002A1340 /* Genetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genetic.swift; sourceTree = "<group>"; };
 		18CF7306214694CF002A1340 /* Cheast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cheast.swift; sourceTree = "<group>"; };
 		18D3A4A82142854A004A1BB0 /* Pirata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pirata.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,8 +155,8 @@
 			children = (
 				18CF72FE2146098F002A1340 /* AgentDelegate.swift */,
 				18CF72F4214455B3002A1340 /* Agent.swift */,
-				18CF72FC2145EE60002A1340 /* RandomAgent.swift */,
-				18CF730221461345002A1340 /* CompleteAction.swift */,
+				18CF72FC2145EE60002A1340 /* AgentRandom.swift */,
+				18CF730221461345002A1340 /* AgentCompleted.swift */,
 				18CF730021460DBC002A1340 /* Util.swift */,
 				18CF7304214614AE002A1340 /* Genetic.swift */,
 			);
@@ -264,7 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18CF72FD2145EE60002A1340 /* RandomAgent.swift in Sources */,
+				18CF72FD2145EE60002A1340 /* AgentRandom.swift in Sources */,
 				18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */,
 				18CF72EE21445309002A1340 /* Position.swift in Sources */,
 				18CF72FF2146098F002A1340 /* AgentDelegate.swift in Sources */,
@@ -279,7 +279,7 @@
 				18CF72E621434E20002A1340 /* DataNode.swift in Sources */,
 				18CF72DD21433EDE002A1340 /* MapUtil.swift in Sources */,
 				18CF72DB21433E49002A1340 /* MapConstructor.swift in Sources */,
-				18CF730321461345002A1340 /* CompleteAction.swift in Sources */,
+				18CF730321461345002A1340 /* AgentCompleted.swift in Sources */,
 				18CF7307214694CF002A1340 /* Cheast.swift in Sources */,
 				18CF72E42143494B002A1340 /* MapAStar.swift in Sources */,
 				18CF72F721455856002A1340 /* EventType.swift in Sources */,

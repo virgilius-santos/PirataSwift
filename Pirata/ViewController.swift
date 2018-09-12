@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private lazy var map = Map(square: 10)
+    private lazy var map = Map(square: 12)
     private var agent: Agent!
     private var agentImageView: UIImageView!
     
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         print("\(#function)\n -\(agentSlot)\n")
     }
     
-    let speed: Double = mock ? 0.5 : 0.8
+    let speed: Double = mock ? 0.5 : 0.3
     func moveAnimation(to: Slot, completion: @escaping()->()) {
         let destinationView = slotView(to)
         UIView.animate(withDuration: speed, animations: {

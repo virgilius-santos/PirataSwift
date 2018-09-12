@@ -128,8 +128,17 @@ extension Map {
             let pos = mock ? mockHole(emptyIndex,aux: aux) : Int(arc4random_uniform(UInt32(emptyIndex.count)))
             let slot = emptyIndex.remove(at: pos)
             let index = slot.index
+            
             // verifica se gerou beco sem saida
             if matriz[index.col][index.row].type != .Empty || !checkMatriz(emptyIndex) {
+                emptyIndex.append(slot)
+                continue
+            }
+            
+            if (index.col+1<matriz.count && matriz[index.col+1][index.row].type == .buraco)
+                || (index.col-1>=0 && matriz[index.col-1][index.row].type == .buraco)
+                || (index.row+1<matriz.count && matriz[index.col][index.row+1].type == .buraco)
+                || (index.row-1>=0 && matriz[index.col][index.row-1].type == .buraco) {
                 emptyIndex.append(slot)
                 continue
             }
