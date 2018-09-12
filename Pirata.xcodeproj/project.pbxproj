@@ -31,6 +31,8 @@
 		18CF730321461345002A1340 /* AgentCompleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF730221461345002A1340 /* AgentCompleted.swift */; };
 		18CF7305214614AE002A1340 /* Genetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF7304214614AE002A1340 /* Genetic.swift */; };
 		18CF7307214694CF002A1340 /* Cheast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF7306214694CF002A1340 /* Cheast.swift */; };
+		18CF730D2148B89E002A1340 /* AgentProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF730C2148B89E002A1340 /* AgentProcess.swift */; };
+		18CF730F2148B976002A1340 /* AgentMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF730E2148B976002A1340 /* AgentMovement.swift */; };
 		18D3A4AC2142854A004A1BB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3A4AB2142854A004A1BB0 /* AppDelegate.swift */; };
 		18D3A4AE2142854A004A1BB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3A4AD2142854A004A1BB0 /* ViewController.swift */; };
 		18D3A4B12142854A004A1BB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4AF2142854A004A1BB0 /* Main.storyboard */; };
@@ -63,6 +65,8 @@
 		18CF730221461345002A1340 /* AgentCompleted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentCompleted.swift; sourceTree = "<group>"; };
 		18CF7304214614AE002A1340 /* Genetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genetic.swift; sourceTree = "<group>"; };
 		18CF7306214694CF002A1340 /* Cheast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cheast.swift; sourceTree = "<group>"; };
+		18CF730C2148B89E002A1340 /* AgentProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentProcess.swift; sourceTree = "<group>"; };
+		18CF730E2148B976002A1340 /* AgentMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentMovement.swift; sourceTree = "<group>"; };
 		18D3A4A82142854A004A1BB0 /* Pirata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pirata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D3A4AB2142854A004A1BB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D3A4AD2142854A004A1BB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -155,8 +159,10 @@
 			children = (
 				18CF72FE2146098F002A1340 /* AgentDelegate.swift */,
 				18CF72F4214455B3002A1340 /* Agent.swift */,
+				18CF730E2148B976002A1340 /* AgentMovement.swift */,
 				18CF72FC2145EE60002A1340 /* AgentRandom.swift */,
 				18CF730221461345002A1340 /* AgentCompleted.swift */,
+				18CF730C2148B89E002A1340 /* AgentProcess.swift */,
 				18CF730021460DBC002A1340 /* Util.swift */,
 				18CF7304214614AE002A1340 /* Genetic.swift */,
 			);
@@ -267,6 +273,7 @@
 				18CF72FD2145EE60002A1340 /* AgentRandom.swift in Sources */,
 				18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */,
 				18CF72EE21445309002A1340 /* Position.swift in Sources */,
+				18CF730F2148B976002A1340 /* AgentMovement.swift in Sources */,
 				18CF72FF2146098F002A1340 /* AgentDelegate.swift in Sources */,
 				18CF72F92145A77E002A1340 /* Slot.swift in Sources */,
 				18CF72EC21444364002A1340 /* MapRegion.swift in Sources */,
@@ -287,6 +294,7 @@
 				18CF72D52142D686002A1340 /* Direction.swift in Sources */,
 				18CF72E021433FA3002A1340 /* ImageType.swift in Sources */,
 				18CF72F02144532E002A1340 /* Bags.swift in Sources */,
+				18CF730D2148B89E002A1340 /* AgentProcess.swift in Sources */,
 				18D3A4AC2142854A004A1BB0 /* AppDelegate.swift in Sources */,
 				18CF7305214614AE002A1340 /* Genetic.swift in Sources */,
 			);

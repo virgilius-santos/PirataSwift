@@ -51,19 +51,5 @@ extension Agent {
         
     }
     
-    func processRegionLookingCheastAndDoor(dataNode: [DataNode], _ data: ([Slot], Int)?) {
-        if door != nil, cheasts.count == map.mapSettings.cheastNumbers {
-            switchEvent(.distributedBags)
-            return
-        }
-        
-        if let (route, index) = data {
-            self.switchEvent(.goToRoute((route, index)))
-            return
-        }
-
-        self.switchEvent(.randomBags(dataNode))
-    }
-    
     
 }
