@@ -54,17 +54,4 @@ extension Agent {
         }
     }
     
-    func processMove(to: Slot, next: Int, route: [Slot]) {
-        self.location = to
-        if to.type == .saco {
-            self.switchEvent(.colectBag)
-        } else if next+1 < route.count {
-            switchEvent(.traveling((route, next)))
-        } else if isCompleted {
-            switchEvent(.distributedBags)
-        } else {
-            switchEvent(.start)
-        }
-    }
-    
 }

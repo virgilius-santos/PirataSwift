@@ -23,7 +23,7 @@ class Genetic {
         self.cheasts = cheasts
         
         let line = [Int](repeating: -2, count: carga.count+1)
-        let qtd = cheasts*30 + 1
+        let qtd = cheasts*80 + 1
         self.populate = [[Int]](repeating: line, count: qtd)
         self.intermediate = [[Int]](repeating: line, count: qtd)
         self.generation = 0
@@ -57,13 +57,13 @@ class Genetic {
         }
     }
     
-    var limit = 100
-    var count = 0
+    var limit = 50
+    var count = 5
     private func rePopulateIfNeed() -> Bool {
         if populate[0][populate[0].count-1] == 0 {  return false }
         if count == limit { return false }
         count += 1
-        popular(start: count%10)
+        popular(start: count%20)
         return true
     }
     
