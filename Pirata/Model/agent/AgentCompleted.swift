@@ -47,6 +47,7 @@ extension Agent {
             return
         }
         
+        moveOut()
         print("Completed -\(self.distributedBags.map({$0.reduce(0, {$0+$1.valor})}))\n")
         
     }

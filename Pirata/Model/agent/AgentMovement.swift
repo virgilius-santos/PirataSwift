@@ -54,4 +54,20 @@ extension Agent {
         }
     }
     
+    func moveOut() {
+        let bagValues = distributedBags.map { (bags) -> Int in
+            return bags.map({$0.valor}).reduce(0,+)
+        }
+        
+        let bagCompare = bagValues.reduce(true, {$0 && ($1 == bagValues[0])})
+        
+        if bagCompare {
+            let direction: Direction = (map.sideWallPosition == .left || map.sideWallPosition == .right)
+                ? .vertical : .horizontal
+            let value: Float = (map.sideWallPosition == .left || map.sideWallPosition == .up)
+                ? -40 : 40
+            goOut(direction: direction, value: value)
+        }
+    }
+    
 }

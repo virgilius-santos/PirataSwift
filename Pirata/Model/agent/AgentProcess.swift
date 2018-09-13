@@ -40,7 +40,7 @@ extension Agent {
         if let slot = bagSlot, let (route, index) = data {
             let d1 = map.calcDistance(from: location.index, to: slot.index)
             let d2 = map.calcDistance(from: location.index, to: route[index].index)
-            if d1+1 < d2 || route[index].type != .saco, slot.index != route[index].index {
+            if d1+3 < d2 || route[index].type != .saco, slot.index != route[index].index {
                 switchEvent(.goToSlot(slot, true))
             } else {
                 switchEvent(.goToRoute((route, index)))
@@ -62,13 +62,14 @@ extension Agent {
     }
     
     func processRegionLookingCheastAndDoor(dataNode: [DataNode], _ data: ([Slot], Int)?) {
-        if door != nil, cheasts.count == map.mapSettings.cheastNumbers {
-            switchEvent(.distributedBags)
-            return
-        }
         
         if let (route, index) = data {
             self.switchEvent(.goToRoute((route, index)))
+            return
+        }
+        
+        if door != nil, cheasts.count == map.mapSettings.cheastNumbers {
+            switchEvent(.distributedBags)
             return
         }
         

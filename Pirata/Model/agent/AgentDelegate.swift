@@ -14,6 +14,7 @@ protocol AgentDelegate {
     func update(coins: Int, general: Int)
     func startflip()
     func stopflip(completion: @escaping()->())
+    func goOut(direction: Direction, value: Float)
 }
 
 extension Agent {
@@ -46,6 +47,12 @@ extension Agent {
     func stopflip(completion: @escaping()->()) {
         DispatchQueue.main.async {
             self.delegate?.stopflip(completion:completion)
+        }
+    }
+    
+    func goOut(direction: Direction, value: Float) {
+        DispatchQueue.main.async {
+            self.delegate?.goOut(direction: direction, value: value)
         }
     }
 }

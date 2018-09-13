@@ -138,6 +138,17 @@ class ViewController: UIViewController {
             view.isHidden = false
         }
     }
+    
+    func goOut(_ view: UIView, direction: Direction, value: CGFloat) {
+        UIView.animate(withDuration: speed, animations: {
+            if direction == .vertical {
+                view.center.x += value
+            } else {
+                view.center.y += value
+            }
+            
+        })
+    }
 }
 
 extension ViewController: MapDelegate {
@@ -178,5 +189,9 @@ extension ViewController: AgentDelegate {
     func stopflip(completion: @escaping()->()) {
         agentImageView.layer.removeAllAnimations()
         completion()
+    }
+    
+    func goOut(direction: Direction, value: Float) {
+        goOut(agentImageView, direction: direction, value: CGFloat(value))
     }
 }
