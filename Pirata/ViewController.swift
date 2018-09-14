@@ -149,6 +149,18 @@ class ViewController: UIViewController {
             
         })
     }
+    
+    func growUp(_ view: SlotView) {
+        UIView.animate(withDuration: speed*2, animations: {
+            view.imageView.frame.size.height *= 1.2
+            view.imageView.frame.size.width *= 1.2
+        }) { (check) in
+            UIView.animate(withDuration: self.speed*2, animations: {
+                view.imageView.frame.size.height *= 0.8
+                view.imageView.frame.size.width *= 0.8
+            })
+        }
+    }
 }
 
 extension ViewController: MapDelegate {
@@ -193,5 +205,10 @@ extension ViewController: AgentDelegate {
     
     func goOut(direction: Direction, value: Float) {
         goOut(agentImageView, direction: direction, value: CGFloat(value))
+    }
+    
+    func growUp(_ slot: Slot) {
+        let destinationView = slotView(slot)
+        growUp(destinationView)
     }
 }

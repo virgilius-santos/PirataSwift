@@ -15,6 +15,7 @@ protocol AgentDelegate {
     func startflip()
     func stopflip(completion: @escaping()->())
     func goOut(direction: Direction, value: Float)
+    func growUp(_ slot: Slot)
 }
 
 extension Agent {
@@ -53,6 +54,12 @@ extension Agent {
     func goOut(direction: Direction, value: Float) {
         DispatchQueue.main.async {
             self.delegate?.goOut(direction: direction, value: value)
+        }
+    }
+    
+    func growUp(_ slot: Slot) {
+        DispatchQueue.main.async {
+            self.delegate?.growUp(slot)
         }
     }
 }

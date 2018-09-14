@@ -35,6 +35,7 @@ extension Agent {
                 let bags = distributedBags[index]
                 cheasts[index].add(bags)
                 distributedBagsInCheasts()
+                growUp(self.location)
             } else {
                 let slot = cheasts[index].slot
                 getRoute(toBag: slot)
