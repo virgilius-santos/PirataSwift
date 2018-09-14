@@ -101,7 +101,7 @@ extension Agent {
     }
     
     func updateDirection(_ position: Position) {
-        direction = (arc4random_uniform(100) < 10)
+        direction = (arc4random_uniform(100) < 20)
             ? Position(rawValue: Int(arc4random_uniform(4)))!
             : position
     }
