@@ -36,26 +36,18 @@ extension Agent {
     
     func processRegionLookingBags(dataNode: [DataNode], _ data: ([Slot], Int)?) {
         
-        
-//        if let slot = bagSlot, let (route, index) = data {
-//            let d1 = map.calcDistance(from: location.index, to: slot.index)
-//            let d2 = map.calcDistance(from: location.index, to: route[index].index)
-//            if d1+3 < d2 || route[index].type != .saco, slot.index != route[index].index {
-//                switchEvent(.goToSlot(slot, true))
-//            } else {
-//                switchEvent(.goToRoute((route, index)))
-//            }
-//            return
-//        }
-        
-        if let (route, index) = data {
+        if let (route, index) = data, route[index].type == .saco {
             switchEvent(.goToRoute((route, index)))
             return
         }
         
-        let bagSlot = dataNode.first(where: {$0.slot.type == .saco})?.slot
-        if let slot = bagSlot {
+        if let slot = dataNode.first(where: {$0.slot.type == .saco})?.slot {
             switchEvent(.goToSlot(slot, true))
+            return
+        }
+        
+        if let (route, index) = data {
+            switchEvent(.goToRoute((route, index)))
             return
         }
         
@@ -64,13 +56,13 @@ extension Agent {
     
     func processRegionLookingCheastAndDoor(dataNode: [DataNode], _ data: ([Slot], Int)?) {
         
-        if let (route, index) = data {
-            self.switchEvent(.goToRoute((route, index)))
+        if door != nil, cheasts.count == map.mapSettings.cheastNumbers {
+            switchEvent(.distributedBags)
             return
         }
         
-        if door != nil, cheasts.count == map.mapSettings.cheastNumbers {
-            switchEvent(.distributedBags)
+        if let (route, index) = data {
+            self.switchEvent(.goToRoute((route, index)))
             return
         }
         
