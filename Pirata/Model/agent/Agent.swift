@@ -40,7 +40,7 @@ class Agent {
     
     init(map: Map, startLocation location: Slot) {
         self.map = map
-        self.location = mock ? Slot(index: Index(col: 4, row: 9)) : location
+        self.location = mock ? Slot(index: Index(col: 6, row: 9)) : location
         self.location.set(type: .pirate)
         self.bags = []
         self.cheasts = []

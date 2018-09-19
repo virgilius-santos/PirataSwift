@@ -15,63 +15,89 @@ class Genetic {
     
     private var populate: [[Int]]
     private var intermediate: [[Int]]
+    private var aptidoes: [Float]
+    private var aptIntermediate: [Float]
     
     private var generation: Int
+    private var elite = 10
     
     init(carga: [Bag], cheasts: Int) {
         self.carga = carga
         self.cheasts = cheasts
         
-        let line = [Int](repeating: -2, count: carga.count+1)
-        let qtd = cheasts*80 + 1
+        let line = [Int](repeating: 0, count: carga.count)
+        let qtd = cheasts*10 + elite
+        
         self.populate = [[Int]](repeating: line, count: qtd)
         self.intermediate = [[Int]](repeating: line, count: qtd)
+        self.aptidoes = [Float](repeating: 0.0, count: qtd)
+        self.aptIntermediate = [Float](repeating: 0.0, count: qtd)
+        
         self.generation = 0
     }
     
     func start(completion:@escaping([[Bag]])->()) {
         DispatchQueue(label: "genetic").async {
+            
             self.popular()
             
-            repeat {
-                self.processar()
-            } while self.rePopulateIfNeed()
+            self.aptidar()
+            self.generation = 0
             
-            let values = self.decodificar()
+            var index: Int? = nil
+            repeat {
+                self.generation += 1
+                
+                let limit = self.elitizar(set: self.elite)
+                
+                self.gerar(start: limit)
+                
+                self.mutar()
+                
+                self.aptidar()
+                
+                index = self.checkElite()
+                
+            } while (index == nil && self.generation < 30 )
+            
+            if index == nil, self.rePopulateIfNeed() {
+                self.start(completion: completion)
+                return
+            }
+            
+            let values = self.decodificar(index: index ?? 0)
+            
             completion(values)
         }
     }
     
-    func processar() {
-        for i in 0 ... 20 {
-            self.generation = i
-            
-            aptidar()
-            
-            elitizar()
-            
-            gerar()
-            
-            mutar()
-            
-        }
+    func checkElite() -> Int? {
+        return aptidoes.index(where: {$0 == 0})
     }
     
-    var limit = 50
-    var count = 5
+    var limit = 10; var count = 5
     private func rePopulateIfNeed() -> Bool {
-        if populate[0][populate[0].count-1] == 0 {  return false }
         if count == limit { return false }
         count += 1
-        popular(start: count%20)
+        popular(start: 5)
         return true
+    }
+    
+    private func decodificar(index: Int) -> [[Bag]] {
+        var decode: [[Bag]] = [[Bag]](repeating: [], count: cheasts)
+        
+        let values = populate[index]
+        for i in 0 ..< values.count {
+            decode[values[i]].append(carga[i])
+        }
+        return decode
     }
     
     private func mutar() {
         let fator = Int(arc4random_uniform(100))
         let member = Int(arc4random_uniform(UInt32(populate.count)))
         let gene = Int(arc4random_uniform(UInt32(populate[member].count)))
-        if (fator < 5 ) {
+        if (fator < 95 ) {
             var value = populate[member][gene]
             while value == populate[member][gene] {
                 value = Int(arc4random_uniform(3))
@@ -80,82 +106,69 @@ class Genetic {
         }
     }
     
-    private func decodificar() -> [[Bag]] {
-        var decode: [[Bag]] = [[Bag]](repeating: [], count: cheasts)
-        let values = populate[0]
-        for i in 0 ..< values.count-1 {
-            decode[values[i]].append(carga[i])
-        }
-        return decode
-    }
-    
-    private func gerar() {
-        var linha = 0
-        let qtd = (populate.count / cheasts)
-        for i in 0 ..< qtd {
-            let last = populate[i].count-1
+    private func gerar(start: Int) {
+        
+        let f: [Int] = [Int](repeating: tornetizar(), count: cheasts)
+        var firstIndex = -1
+        
+        for linha in start ..< intermediate.count {
             
-            let f: [Int] = [Int](repeating: tornetizar(), count: cheasts)
+            firstIndex = (firstIndex + 1) % cheasts
             
-            linha += 1
-            for j in 0 ..< last {
-                for k in 0 ..< cheasts {
-                    let f = f[(j+k)%cheasts]
-                    intermediate[linha+k][j] = populate[f][j]
+            stride(from: 0, to: intermediate[linha].count, by: cheasts).forEach { i in
+                
+                for j in i ..< i+cheasts {
+                    let index = f[(firstIndex + j) % cheasts]
+                    intermediate[linha][i ..< i+cheasts] = populate[index][i ..< i+cheasts]
                 }
             }
-
-            linha += (cheasts-1)
-            
         }
         
         populate = intermediate
     }
     
     private func tornetizar() -> Int {
-        let primeiro = Int(arc4random_uniform(UInt32(populate.count / 2)))
-        let segundo = Int(arc4random_uniform(UInt32(populate.count / 2))) + populate.count / 2 - 1
-        let v1 = populate[primeiro][populate[primeiro].count-1]
-        let v2 = populate[segundo][populate[segundo].count-1]
+        let primeiro = Int(arc4random_uniform(UInt32(aptidoes.count)))
+        let segundo = Int(arc4random_uniform(UInt32(aptidoes.count)))
+        let v1 = aptidoes[primeiro]
+        let v2 = aptidoes[segundo]
         return (v1 < v2) ? primeiro : segundo
     }
     
-    private func elitizar() {
-        var indexMenor = 0
-        for i in 0 ..< populate.count {
-            let last = populate[i].count-1
-            if (populate[i][last] < populate[indexMenor][last]) {
-                indexMenor = i;
-            }
+    private func elitizar(set: Int) -> Int {
+        var sorted = Set(aptidoes).map({$0}).sorted()
+        let limit = sorted.count < set ? sorted.count : set
+        for i in 0 ..< limit {
+            let sd = sorted[i]
+            let index = aptidoes.index(of: sd)!
+            intermediate[i] = populate[index]
+            aptIntermediate[i] = aptidoes[index]
         }
-        intermediate[0] = populate[indexMenor]
+        return limit
     }
     
     private func aptidar() {
         for i in 0 ..< populate.count {
-            let last = populate[i].count-1
             var v: [Int] = [Int](repeating: 0, count: cheasts)
-            populate[i][last] = 0
-            for j in 0 ..< last {
+            for j in 0 ..< populate[i].count {
                 for k in 0 ..< cheasts {
                     if populate[i][j] == k {
                         v[k] += carga[j].valor
                     }
                 }
             }
-            for k in 0 ..< cheasts {
-                populate[i][last] += abs(v[k]-(total/cheasts))
-            }
+            
+            let mean: Float = Float(v.reduce(0, +)) / Float(v.count)
+            let sd: Float = (v.reduce(0.0, {$0 + sqrt(pow((Float($1)-mean),2)/Float(v.count))}))
+            aptidoes[i] = sd
         }
     }
     
     private func popular(start: Int = 0) {
         for i in start ..< populate.count {
-            let last = populate[i].count-1
-            for j in 0 ..< last {
+            for j in 0 ..< populate[i].count {
                 populate[i][j] = Int(arc4random_uniform(UInt32(cheasts)))
             }
-            populate[i][last] = 0
         }
     }
     
