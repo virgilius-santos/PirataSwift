@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185580AA2151DBE000473BE6 /* MocksExtension.swift */; };
 		18A8806121429D8500B2E027 /* SlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8806021429D8500B2E027 /* SlotView.xib */; };
 		18A8806421429E2200B2E027 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8806321429E2200B2E027 /* SlotView.swift */; };
 		18CF72D32142B312002A1340 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72D22142B312002A1340 /* Map.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		185580AA2151DBE000473BE6 /* MocksExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksExtension.swift; sourceTree = "<group>"; };
 		18A8806021429D8500B2E027 /* SlotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlotView.xib; sourceTree = "<group>"; };
 		18A8806321429E2200B2E027 /* SlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
 		18CF72D22142B312002A1340 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				18CF72E32143494B002A1340 /* MapAStar.swift */,
 				18CF72EB21444364002A1340 /* MapRegion.swift */,
 				18CF72FA2145A796002A1340 /* MapSettings.swift */,
+				185580AA2151DBE000473BE6 /* MocksExtension.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				18CF72E42143494B002A1340 /* MapAStar.swift in Sources */,
 				18CF72F721455856002A1340 /* EventType.swift in Sources */,
 				18CF72D32142B312002A1340 /* Map.swift in Sources */,
+				185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */,
 				18CF72D52142D686002A1340 /* Direction.swift in Sources */,
 				18CF72E021433FA3002A1340 /* ImageType.swift in Sources */,
 				18CF72F02144532E002A1340 /* Bags.swift in Sources */,
