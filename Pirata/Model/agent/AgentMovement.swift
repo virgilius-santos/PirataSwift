@@ -62,6 +62,7 @@ extension Agent {
         let bagCompare = bagValues.reduce(true, {$0 && ($1 == bagValues[0])})
         
         if bagCompare {
+            self.updateValues(true)
             let direction: Direction = (map.sideWallPosition == .left || map.sideWallPosition == .right)
                 ? .vertical : .horizontal
             let value: Float = (map.sideWallPosition == .left || map.sideWallPosition == .up)

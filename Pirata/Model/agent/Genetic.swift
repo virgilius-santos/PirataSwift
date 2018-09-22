@@ -102,11 +102,17 @@ class Genetic {
     }
     
     private func tornetizar() -> Int {
-        let primeiro = Int(arc4random_uniform(UInt32(aptidoes.count)))
-        let segundo = Int(arc4random_uniform(UInt32(aptidoes.count)))
-        let v1 = aptidoes[primeiro]
-        let v2 = aptidoes[segundo]
-        return (v1 < v2) ? primeiro : segundo
+        var pais: [Int] = []
+        for _ in 0 ..< baus {
+            pais.append(Int(arc4random_uniform(UInt32(aptidoes.count))))
+        }
+        let melhor = pais
+            .map({(index:$0,value:aptidoes[$0])})
+            .sorted(by: {$0.value < $1.value})
+            .first!
+            .index
+
+        return melhor
     }
     
     private func gerar() {

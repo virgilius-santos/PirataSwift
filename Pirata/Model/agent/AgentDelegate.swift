@@ -34,10 +34,10 @@ extension Agent {
         }
     }
     
-    func updateValues() {
+    func updateValues(_ solved: Bool = false) {
         DispatchQueue.main.async {
             let coins = self.totalCoins
-            let general = coins + self.holeJumpeds * 30
+            let general = coins + self.holeJumpeds * 30 + (solved ? 330 : 0)
             self.delegate?.update(coins: coins, general: general)
         }
     }
