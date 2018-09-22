@@ -8,7 +8,7 @@
 
 import Foundation
 
-var mock: Bool { return false }
+var mock: Bool { return true }
 
 extension Map {
     
