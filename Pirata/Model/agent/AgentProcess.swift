@@ -28,8 +28,10 @@ extension Agent {
             if slot.type == .bau, !self.cheasts.contains(where: {$0.slot == slot}) {
                 let cheast = Cheast(slot)
                 self.cheasts.append(cheast)
+                self.bauLocalizado()
             } else if slot.type == .porta {
                 self.door = slot
+                self.portaLocalizada()
             }
         }
     }

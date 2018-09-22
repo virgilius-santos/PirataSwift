@@ -32,6 +32,10 @@ class ViewController: UIViewController {
         return matriz
     }()
     
+    @IBOutlet weak var qtdBauLabel: UILabel!
+    
+    @IBOutlet weak var doorLocLabel: UILabel!
+    
     @IBOutlet weak var coinsLabel: UILabel!
     
     @IBOutlet weak var totalLabel: UILabel!
@@ -41,6 +45,9 @@ class ViewController: UIViewController {
     @IBAction func testAction(_ sender: Any) {
         agent?.start()
     }
+    
+    @IBOutlet weak var divisaoSacolas: UILabel!
+    
     
     @IBOutlet weak var rootStackView: UIStackView! {
         didSet {
@@ -210,5 +217,17 @@ extension ViewController: AgentDelegate {
     func growUp(_ slot: Slot) {
         let destinationView = slotView(slot)
         growUp(destinationView)
+    }
+    
+    func bauLocalizado(qtd: Int) {
+        qtdBauLabel.text = "\(qtd) bau(s)"
+    }
+    
+    func portaLocalizada() {
+        doorLocLabel.text = "Sim"
+    }
+    
+    func divisaoDeSacolas(_ div: String) {
+        divisaoSacolas.text = div
     }
 }

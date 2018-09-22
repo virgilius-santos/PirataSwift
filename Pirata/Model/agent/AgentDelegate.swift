@@ -16,6 +16,9 @@ protocol AgentDelegate {
     func stopflip(completion: @escaping()->())
     func goOut(direction: Direction, value: Float)
     func growUp(_ slot: Slot)
+    func bauLocalizado(qtd: Int)
+    func portaLocalizada()
+    func divisaoDeSacolas(_ div: String)
 }
 
 extension Agent {
@@ -60,6 +63,25 @@ extension Agent {
     func growUp(_ slot: Slot) {
         DispatchQueue.main.async {
             self.delegate?.growUp(slot)
+        }
+    }
+    
+    
+    func bauLocalizado() {
+        DispatchQueue.main.async {
+            self.delegate?.bauLocalizado(qtd: self.cheasts.count)
+        }
+    }
+    
+    func portaLocalizada() {
+        DispatchQueue.main.async {
+            self.delegate?.portaLocalizada()
+        }
+    }
+    
+    func divisaoDeSacolas(_ div: String) {
+        DispatchQueue.main.async {
+            self.delegate?.divisaoDeSacolas(div)
         }
     }
 }
