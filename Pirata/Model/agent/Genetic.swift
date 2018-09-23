@@ -88,6 +88,7 @@ class Genetic {
         return decode
     }
     
+    /// com probabilidade de 50% ele muta um gene de um elemento da populacao
     private func mutar() {
         let fator = randomNumber(100)
         let member = randomNumber(populacao.count)
