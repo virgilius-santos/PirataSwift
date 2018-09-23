@@ -24,7 +24,7 @@ class Genetic {
         self.sacolas = sacolas
         self.baus = baus
         
-        let qtdPopulacao = elite + baus * 500
+        let qtdPopulacao = elite + baus * 5000
         
         self.populacao = [[Int]] (
             repeating: [Int](repeating: 0, count: sacolas.count),
@@ -66,7 +66,7 @@ class Genetic {
                 
                 index = self.checkElite()
                 
-            } while (index == nil && self.generation < 300 )
+            } while (index == nil && self.generation < 20 )
             
             let values = self.decodificar(index: index ?? 0)
             
@@ -92,7 +92,7 @@ class Genetic {
         let fator = randomNumber(100)
         let member = randomNumber(populacao.count)
         let gene = randomNumber(populacao[member].count)
-        if (fator < 95 ) {
+        if (fator < 50 ) {
             var value = populacao[member][gene]
             while value == populacao[member][gene] {
                 value = randomNumber(baus)
@@ -105,8 +105,8 @@ class Genetic {
     /// retorna o index do pai com o menor valor
     private func tornetizar() -> Int {
         var pais: [Int] = []
-        for _ in 0 ..< baus {
-            pais.append(randomNumber(aptidoes.count))
+        for i in 0 ..< baus {
+            pais.append(randomNumber(aptidoes.count/baus) + i*baus)
         }
         let melhor = pais
             .map({(index:$0,value:aptidoes[$0])})
