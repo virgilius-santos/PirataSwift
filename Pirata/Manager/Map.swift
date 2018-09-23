@@ -99,7 +99,7 @@ class Map {
         let slots = getEmptyIndex()
         var slot: Slot?
         repeat {
-            let index = Int(arc4random_uniform(UInt32(slots.count)))
+            let index = randomNumber(slots.count)
             slot = slots[index]
         } while (slot == nil || slot!.type != .Empty)
         return slot!

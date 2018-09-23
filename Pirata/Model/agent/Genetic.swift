@@ -89,22 +89,24 @@ class Genetic {
     }
     
     private func mutar() {
-        let fator = Int(arc4random_uniform(100))
-        let member = Int(arc4random_uniform(UInt32(populacao.count)))
-        let gene = Int(arc4random_uniform(UInt32(populacao[member].count)))
+        let fator = randomNumber(100)
+        let member = randomNumber(populacao.count)
+        let gene = randomNumber(populacao[member].count)
         if (fator < 95 ) {
             var value = populacao[member][gene]
             while value == populacao[member][gene] {
-                value = Int(arc4random_uniform(3))
+                value = randomNumber(baus)
             }
             populacao[member][gene] = value
         }
     }
     
+    /// gera um array de possiveis pais
+    /// retorna o index do pai com o menor valor
     private func tornetizar() -> Int {
         var pais: [Int] = []
         for _ in 0 ..< baus {
-            pais.append(Int(arc4random_uniform(UInt32(aptidoes.count))))
+            pais.append(randomNumber(aptidoes.count))
         }
         let melhor = pais
             .map({(index:$0,value:aptidoes[$0])})
@@ -161,6 +163,7 @@ class Genetic {
                 return set1.element < set2.element
             })
         
+        /// seta o menor valor ao indice zero da populacao intermediarias
         if let (index, _) = setSorted.first {
             popIntermediaria[0] = populacao[index]
         }
@@ -169,24 +172,28 @@ class Genetic {
     private func calcularAptidoes() {
         for i in 0 ..< populacao.count {
             
-            // array com o numero de baus
-            var v: [Int] = [Int](repeating: 0, count: baus)
+            /// array com o numero de baus iniciado em zero
+            var arrayBaus: [Int] = [Int](repeating: 0, count: self.baus)
             
+            /// as sacolas sao somadas ao bau correspondente
             for j in 0 ..< populacao[i].count {
                 let indiceBau = populacao[i][j]
-                v[indiceBau] += sacolas[j].valor
+                arrayBaus[indiceBau] += sacolas[j].valor
             }
             
-            let mean: Float = Float(v.reduce(0, +)) / Float(v.count)
-            let sd: Float = (v.reduce(0.0, {$0 + sqrt(pow((Float($1)-mean),2)/Float(v.count))}))
+            /// calcula o desvio padrao usando os valores dos baus
+            let mean: Float = Float(arrayBaus.reduce(0, +)) / Float(arrayBaus.count)
+            let sd: Float = (arrayBaus.reduce(0.0, {$0 + sqrt(pow((Float($1)-mean),2)/Float(arrayBaus.count))}))
             aptidoes[i] = sd
         }
     }
     
+    /// para cada item da matrix gera um bau
+    /// com uma distribuição aleatória
     private func popular(start: Int = 0) {
         for i in start ..< populacao.count {
             for j in 0 ..< populacao[i].count {
-                populacao[i][j] = Int(arc4random_uniform(UInt32(baus)))
+                populacao[i][j] = randomNumber(baus)
             }
         }
     }

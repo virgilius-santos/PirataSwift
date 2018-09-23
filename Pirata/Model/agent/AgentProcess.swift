@@ -38,7 +38,7 @@ extension Agent {
     
     func processRegionLookingBags(dataNode: [DataNode], _ data: ([Slot], Int)?) {
         
-        if let (route, index) = data, route[index].type == .saco {
+        if let (route, index) = data, route.last?.type == .saco {
             switchEvent(.goToRoute((route, index)))
             return
         }

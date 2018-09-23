@@ -38,3 +38,11 @@ extension Agent {
         }
     }
 }
+
+func randomNumber(_ data: Int) -> Int {
+    let limit: UInt32 = 10000
+    let random = Double(arc4random_uniform(limit)) / Double(limit)
+    let value = random * Double(data)
+    let number = Int(value)
+    return number
+}

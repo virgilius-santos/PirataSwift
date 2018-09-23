@@ -13,7 +13,7 @@ extension Map {
     /// gera o muro lateral
     func makeSideWall() {
         // gera a direcao do paredao e seta a parede no jogo
-        sideWallPosition = mock ? .left : Position(rawValue: Int(arc4random_uniform(4)))
+        sideWallPosition = mock ? .left : Position(rawValue: randomNumber(4))
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             addSlot(index, type: .muro)
@@ -24,7 +24,7 @@ extension Map {
     /// gera a porta que fica no muro lateral
     func makeDoor() {
         // gera o index da porta no paredao
-        doorLocation = mock ? 0 : Int(arc4random_uniform(UInt32(mapSettings.square)))
+        doorLocation = mock ? 0 : randomNumber(mapSettings.square)
         let index = sideWallPosition.door(limit: mapSettings.square, value: doorLocation)
         addSlot(index, type: .porta)
         print("\(#function) - completo")
@@ -35,7 +35,7 @@ extension Map {
         var aux = 0
         // gera os index dos baus
         while (aux < mapSettings.cheastNumbers) {
-            let value = mock ? mockCheast[aux] : Int(arc4random_uniform(UInt32(mapSettings.square)))
+            let value = mock ? mockCheast[aux] : randomNumber(mapSettings.square)
             if doorLocation == value { continue }
             
             let index = sideWallPosition.cheast(limit: mapSettings.square, value: value)
@@ -55,12 +55,12 @@ extension Map {
         while (aux < mapSettings.internalWallNumbers) {
             
             // seleciona uma direcao aleatoria pra parede interna
-            guard let direction = mock ? mockDir[aux] : Direction(rawValue: Int(arc4random_uniform(4)))
+            guard let direction = mock ? mockDir[aux] : Direction(rawValue: randomNumber(4))
                 else { continue }
             
             // seleciona um ponto que sera a linha ou coluna de acordo com a direcao
-            let column = mock ? mockCol[aux] : Int(arc4random_uniform(UInt32(mapSettings.square)))
-            let row = mock ? mockRow[aux] : Int(arc4random_uniform(UInt32(mapSettings.square)))
+            let column = mock ? mockCol[aux] : randomNumber(mapSettings.square)
+            let row = mock ? mockRow[aux] : randomNumber(mapSettings.square)
 
             if matriz[column][row].type != .Empty { continue }
 
@@ -107,7 +107,7 @@ extension Map {
         var aux = 0
         while (aux < mapSettings.holeNumbers) {
             var emptyIndex = getEmptyIndex(excludeHole: true, excludeCheast: true)
-            let pos = mock ? mockHole(emptyIndex,aux: aux) : Int(arc4random_uniform(UInt32(emptyIndex.count)))
+            let pos = mock ? mockHole(emptyIndex,aux: aux) : randomNumber(emptyIndex.count)
             let slot = emptyIndex.remove(at: pos)
             let index = slot.index
             
@@ -137,7 +137,7 @@ extension Map {
         var aux = 0
         while aux < bags.data.count {
             var emptyIndex = mock ? mockBags(getEmptyIndex()) : getEmptyIndex()
-            let pos = mock ? mockBagsIndex[aux] : Int(arc4random_uniform(UInt32(emptyIndex.count)))
+            let pos = mock ? mockBagsIndex[aux] : randomNumber(emptyIndex.count)
             let index = emptyIndex.remove(at: pos).index
             if matriz[index.col][index.row].type != .Empty { continue }
 

@@ -25,7 +25,7 @@ struct Bags {
     mutating func makePackage() {
         var padrao = self.defaultValue
         for i in 1 ... (qtd-1) {
-            let novoValor = mock ? self.defaultValue/qtd : Int(arc4random_uniform(UInt32(padrao/(qtd-i))))
+            let novoValor = mock ? self.defaultValue/qtd : randomNumber(padrao/(qtd-i))
             data.append(Bag(valor: novoValor))
             padrao -= novoValor
         }
