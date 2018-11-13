@@ -107,11 +107,26 @@ extension Map {
     
     /// coloca os sacos de din din na arena
     func makeBags() {
-        addSlot(Index(col: 3, row: 3), type: .saco)
-        addSlot(Index(col: 3, row: 4), type: .saco)
-        addSlot(Index(col: 3, row: 6), type: .saco)
-        addSlot(Index(col: 1, row: 6), type: .saco)
-        addSlot(Index(col: 2, row: 8), type: .saco)
+
+        var index = Index(col: 3, row: 3)
+        bags.data[4].index = index
+        addSlot(index, type: .saco)
+
+        index = Index(col: 2, row: 8)
+        bags.data[3].index = index
+        addSlot(index, type: .saco)
+
+        index = Index(col: 1, row: 6)
+        bags.data[2].index = index
+        addSlot(index, type: .saco)
+
+        index = Index(col: 3, row: 6)
+        bags.data[1].index = index
+        addSlot(index, type: .saco)
+
+        index = Index(col: 3, row: 4)
+        bags.data[0].index = index
+        addSlot(index, type: .saco)
         
         print("\(#function) - completo")
     }
