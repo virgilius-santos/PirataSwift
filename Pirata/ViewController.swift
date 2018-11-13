@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let speed: Double = mock ? 0.1 : 0.5
+    let speed: Double = mock ? 0.1 : 0.1
     private lazy var map = Map(square: (mock ? 10 : 10))
     private var agent: Agent!
     private var agentImageView: UIImageView!

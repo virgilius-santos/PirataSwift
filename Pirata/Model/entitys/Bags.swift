@@ -22,6 +22,7 @@ struct Bags {
         }
     }
     
+    
     mutating func makePackage() {
         var padrao = self.defaultValue
         for i in 1 ... (qtd-1) {
@@ -30,6 +31,5 @@ struct Bags {
             padrao -= novoValor
         }
         data.append(Bag(valor: padrao))
-        
     }
 }

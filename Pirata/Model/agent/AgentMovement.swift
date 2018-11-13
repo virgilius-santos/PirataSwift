@@ -44,7 +44,7 @@ extension Agent {
         }
         
         if from.index.col != to.index.col, from.index.row != to.index.row {
-            switchEvent(.goToSlot(to, false))
+            switchEvent(.goToSlot(route.last!, false))
             return
         }
         

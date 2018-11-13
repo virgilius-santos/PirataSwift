@@ -24,7 +24,7 @@ class Genetic {
         self.sacolas = sacolas
         self.baus = baus
         
-        let qtdPopulacao = elite + baus * 5000
+        let qtdPopulacao = elite + baus * 500
         
         self.populacao = [[Int]] (
             repeating: [Int](repeating: 0, count: sacolas.count),
@@ -45,28 +45,32 @@ class Genetic {
     
     func start(completion:@escaping([[Bag]])->()) {
         DispatchQueue(label: "genetic").async {
-            
-            self.generation = 0
-            
-            self.popular()
-            
-            self.calcularAptidoes()
-            
+            var repeatTimes = 100
             var index: Int? = nil
             repeat {
-                self.generation += 1
+                self.generation = 0
                 
-                self.elitizar()
-                
-                self.gerar()
-                
-                self.mutar()
+                self.popular()
                 
                 self.calcularAptidoes()
                 
-                index = self.checkElite()
+                repeat {
+                    self.generation += 1
+                    
+                    self.elitizar()
+                    
+                    self.gerar()
+                    
+                    self.mutar()
+                    
+                    self.calcularAptidoes()
+                    
+                    index = self.checkElite()
+                    
+                } while (index == nil && self.generation < 40 )
                 
-            } while (index == nil && self.generation < 20 )
+                repeatTimes -= 1
+            } while (index == nil && repeatTimes > 0 )
             
             let values = self.decodificar(index: index ?? 0)
             
@@ -105,51 +109,45 @@ class Genetic {
     /// gera um array de possiveis pais
     /// retorna o index do pai com o menor valor
     private func tornetizar() -> Int {
-        var pais: [Int] = []
-        for i in 0 ..< baus {
-            pais.append(randomNumber(aptidoes.count/baus) + i*baus)
-        }
-        let melhor = pais
-            .map({(index:$0,value:aptidoes[$0])})
-            .sorted(by: {$0.value < $1.value})
-            .first!
-            .index
 
-        return melhor
+        let linha1 = randomNumber(populacao.count)
+        var linha2 = 0
+        repeat {
+            linha2 = randomNumber(populacao.count)
+        } while (linha2 == linha1)
+        
+        let apt1 = aptidoes[linha1]
+        let apt2 = aptidoes[linha2]
+        
+        return (apt1 < apt2) ? linha1 : linha2
     }
     
     private func gerar() {
         
-        var idxBauInicial = 0
-        
         // funcao similiar a for (int i=0, i<16; i+=4)
         // para avançar de quatro em quatro nas linhas da populacao
         // a partir da linha 1, ex. 1,5,9
-        stride(from: 1, to: populacao.count, by: baus).forEach { linha in
+        stride(from: 1, to: populacao.count, by: 2).forEach { linha in
             
-            // array com index aleatorios dos projenitores
-            // de acordo com o numero de baus
-            var idxProjenitores: [Int] = [Int]()
-            for _ in 0 ..< baus {
-                idxProjenitores.append(tornetizar())
-            }
+            var mae = 0
+            
+            let pai = tornetizar()
+            repeat {
+                mae = tornetizar()
+            } while (pai == mae)
             
             // funcao similiar a for (int i=0, i<16; i+=4)
             // para avançar de quatro em quatro nas linhas da populacao
             // a partir da linha 1, ex. 1,5,9
-            stride(from: 0, to: populacao[linha].count, by: baus).forEach { idxSacolas in
-                
-                var idxProj = idxBauInicial
-                for idxSac in idxSacolas ..< (idxSacolas + baus) {
-                    for linUnitaria in linha ..< (linha + baus) {
-                        popIntermediaria[linUnitaria][idxSac]
-                            = populacao[idxProjenitores[idxProj]][idxSac]
-                        idxProj = (idxProj+1) % baus
-                    }
-                }
-                
-                idxBauInicial = (idxBauInicial+1) % baus
-            }
+            let final = populacao[linha].count
+            let step = final/2
+            
+            popIntermediaria[linha][0..<step] = populacao[pai][0..<step]
+            popIntermediaria[linha][step..<final] = populacao[mae][step..<final]
+            
+            popIntermediaria[linha+1][0..<step] = populacao[mae][0..<step]
+            popIntermediaria[linha+1][step..<final] = populacao[pai][step..<final]
+            
         }
         
         populacao = popIntermediaria
@@ -171,6 +169,7 @@ class Genetic {
     }
     
     private func calcularAptidoes() {
+        
         for i in 0 ..< populacao.count {
             
             /// array com o numero de baus iniciado em zero
@@ -183,9 +182,15 @@ class Genetic {
             }
             
             /// calcula o desvio padrao usando os valores dos baus
+//            let mean: Float = Float(arrayBaus.reduce(0, +)) / Float(arrayBaus.count)
+//            let sd: Float = (arrayBaus.reduce(0.0, {$0 + sqrt(pow((Float($1)-mean),2)/Float(arrayBaus.count))}))
+//            aptidoes[i] = sd
+            for j in 0 ..< arrayBaus.count {
+                arrayBaus[j] = abs((total/baus) - arrayBaus[j])
+            }
+            
             let mean: Float = Float(arrayBaus.reduce(0, +)) / Float(arrayBaus.count)
-            let sd: Float = (arrayBaus.reduce(0.0, {$0 + sqrt(pow((Float($1)-mean),2)/Float(arrayBaus.count))}))
-            aptidoes[i] = sd
+            aptidoes[i] = mean
         }
     }
     
