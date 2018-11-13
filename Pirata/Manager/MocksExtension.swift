@@ -14,9 +14,9 @@ extension Map {
     
     var mockCheast: [Int] { return [9,8,7,6,5,4,3,2]}
     
-    var mockDir: [Direction?] { return [.horizontal, .vertical, .vertical, .vertical] }
-    var mockCol: [Int] { return [2, 7, 9, 3] }
-    var mockRow: [Int] { return [3, 1, 5, 4] }
+    var mockDir: [Direction?] { return [.vertical, .vertical, .vertical, .vertical] }
+    var mockCol: [Int] { return [4, 5, 6, 7] }
+    var mockRow: [Int] { return [1, 1, 1, 1] }
     
     func mockHole(_ data: [Slot], aux: Int) -> Int {
         let mockCol = [5,5,4,5,5]
