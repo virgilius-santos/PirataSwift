@@ -61,14 +61,14 @@ class Agent {
             case .goToSlot(let slot, let excludeRole):
                 self.getRoute(toBag: slot, excludeRole: excludeRole)
                 
-            case .goToRoute(let route, let index):
+            case .goToRoute(_, _):
                 
-                if route[index + 1].type == .buraco {
-                    self.holeAction(route: route, index: index)
-                } else {
-                    self.move(route: route, index: index)
-                }
-                
+//                if route[index + 1].type == .buraco {
+//                    self.holeAction(route: route, index: index)
+//                } else {
+//                    self.move(route: route, index: index)
+//                }
+                    break
             case .colectBag:
                 self.colectBag()
                 
@@ -82,7 +82,7 @@ class Agent {
                 self.completedAction()
                 
             case .distributedBags:
-                self.distributedBagsInCheasts()
+//                self.distributedBagsInCheasts()
                 break
             }
         }

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1832E6F121A0D8F900746AF2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F021A0D8F900746AF2 /* MapViewController.swift */; };
+		1832E6F421A0DCDB00746AF2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */; };
+		1832E6F621A0DD2800746AF2 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F521A0DD2800746AF2 /* UIStackViewExtension.swift */; };
+		1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F721A0E07800746AF2 /* SlotExtension.swift */; };
+		1832E6FA21A0E0B700746AF2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */; };
+		1832E6FC21A0E2C200746AF2 /* IndexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */; };
 		185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185580AA2151DBE000473BE6 /* MocksExtension.swift */; };
 		18A8806121429D8500B2E027 /* SlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8806021429D8500B2E027 /* SlotView.xib */; };
 		18A8806421429E2200B2E027 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8806321429E2200B2E027 /* SlotView.swift */; };
@@ -42,6 +48,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1832E6F021A0D8F900746AF2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		1832E6F521A0DD2800746AF2 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
+		1832E6F721A0E07800746AF2 /* SlotExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotExtension.swift; sourceTree = "<group>"; };
+		1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexExtension.swift; sourceTree = "<group>"; };
 		185580AA2151DBE000473BE6 /* MocksExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksExtension.swift; sourceTree = "<group>"; };
 		18A8806021429D8500B2E027 /* SlotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlotView.xib; sourceTree = "<group>"; };
 		18A8806321429E2200B2E027 /* SlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
@@ -89,11 +101,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1832E6F221A0DCBA00746AF2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */,
+				1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */,
+				1832E6F721A0E07800746AF2 /* SlotExtension.swift */,
+				1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */,
+				1832E6F521A0DD2800746AF2 /* UIStackViewExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		18A8806221429E0C00B2E027 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18D3A4AF2142854A004A1BB0 /* Main.storyboard */,
+				18D3A4AD2142854A004A1BB0 /* ViewController.swift */,
 				18A8806021429D8500B2E027 /* SlotView.xib */,
 				18A8806321429E2200B2E027 /* SlotView.swift */,
+				1832E6F021A0D8F900746AF2 /* MapViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,9 +218,8 @@
 		18D3A4AA2142854A004A1BB0 /* Pirata */ = {
 			isa = PBXGroup;
 			children = (
+				1832E6F221A0DCBA00746AF2 /* Extension */,
 				18A880662142B2DA00B2E027 /* SupportFiles */,
-				18D3A4AF2142854A004A1BB0 /* Main.storyboard */,
-				18D3A4AD2142854A004A1BB0 /* ViewController.swift */,
 				18A8806221429E0C00B2E027 /* View */,
 				18A880652142B2C900B2E027 /* Manager */,
 				18CF72DE21433F5C002A1340 /* Model */,
@@ -233,6 +259,7 @@
 				TargetAttributes = {
 					18D3A4A72142854A004A1BB0 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -273,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1832E6F421A0DCDB00746AF2 /* UIViewExtension.swift in Sources */,
 				18CF72FD2145EE60002A1340 /* AgentRandom.swift in Sources */,
 				18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */,
 				18CF72EE21445309002A1340 /* Position.swift in Sources */,
@@ -285,17 +313,22 @@
 				18CF72D921433367002A1340 /* Bag.swift in Sources */,
 				18CF72F5214455B3002A1340 /* Agent.swift in Sources */,
 				18CF72E221433FE2002A1340 /* Index.swift in Sources */,
+				1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */,
 				18CF730121460DBC002A1340 /* Util.swift in Sources */,
 				18CF72E621434E20002A1340 /* DataNode.swift in Sources */,
+				1832E6F121A0D8F900746AF2 /* MapViewController.swift in Sources */,
 				18CF72DD21433EDE002A1340 /* MapUtil.swift in Sources */,
 				18CF72DB21433E49002A1340 /* MapConstructor.swift in Sources */,
 				18CF730321461345002A1340 /* AgentCompleted.swift in Sources */,
 				18CF7307214694CF002A1340 /* Cheast.swift in Sources */,
+				1832E6FA21A0E0B700746AF2 /* ArrayExtension.swift in Sources */,
 				18CF72E42143494B002A1340 /* MapAStar.swift in Sources */,
 				18CF72F721455856002A1340 /* EventType.swift in Sources */,
+				1832E6FC21A0E2C200746AF2 /* IndexExtension.swift in Sources */,
 				18CF72D32142B312002A1340 /* Map.swift in Sources */,
 				185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */,
 				18CF72D52142D686002A1340 /* Direction.swift in Sources */,
+				1832E6F621A0DD2800746AF2 /* UIStackViewExtension.swift in Sources */,
 				18CF72E021433FA3002A1340 /* ImageType.swift in Sources */,
 				18CF72F02144532E002A1340 /* Bags.swift in Sources */,
 				18CF730D2148B89E002A1340 /* AgentProcess.swift in Sources */,
@@ -455,7 +488,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.organization.Pirata;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -475,7 +508,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.organization.Pirata;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

@@ -23,34 +23,34 @@ extension Agent {
         }
     }
     
-    func distributedBagsInCheasts() {
-        if door == nil || cheasts.count != map.mapSettings.cheastNumbers {
-            switchEvent(.start)
-            return
-        }
-        
-        for index in 0 ..< distributedBags.count {
-            if cheasts[index].isCompleted { continue }
-            
-            if cheasts[index].slot == self.location {
-                let bags = distributedBags[index]
-                cheasts[index].add(bags)
-                distributedBagsInCheasts()
-                growUp(self.location)
-            } else {
-                let slot = cheasts[index].slot
-                getRoute(toBag: slot)
-            }
-            return
-        }
-        
-        if door! != location {
-            getRoute(toBag: door!)
-            return
-        }
-        
-        moveOut()
-    }
+//    func distributedBagsInCheasts() {
+//        if door == nil || cheasts.count != map.mapSettings.cheastNumbers {
+//            switchEvent(.start)
+//            return
+//        }
+//        
+//        for index in 0 ..< distributedBags.count {
+//            if cheasts[index].isCompleted { continue }
+//            
+//            if cheasts[index].slot == self.location {
+//                let bags = distributedBags[index]
+//                cheasts[index].add(bags)
+//                distributedBagsInCheasts()
+//                growUp(self.location)
+//            } else {
+//                let slot = cheasts[index].slot
+//                getRoute(toBag: slot)
+//            }
+//            return
+//        }
+//        
+//        if door! != location {
+//            getRoute(toBag: door!)
+//            return
+//        }
+//        
+//        moveOut()
+//    }
     
     
 }

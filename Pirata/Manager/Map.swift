@@ -10,7 +10,7 @@ import UIKit
 
 protocol MapDelegate {
     func setImage(with type: ImageType, index: Index)
-    func fadeOut(slot: Slot, completion: @escaping()->())
+    func fadeOut(slot: Slot, speed: Double, completion: @escaping()->())
     func loadComplete()
 }
 
@@ -52,7 +52,7 @@ class Map {
     
     func cleanImage(slot: Slot, completion: @escaping(Bag?)->()) {
         DispatchQueue.main.async {
-            self.delegate?.fadeOut(slot: slot) {
+            self.delegate?.fadeOut(slot: slot, speed: 2) {
                 self.matriz[slot.index.col][slot.index.row].set(type: .Empty)
                 let bag = self.bags.data.first(where: {$0.index == slot.index})
                 completion(bag)
