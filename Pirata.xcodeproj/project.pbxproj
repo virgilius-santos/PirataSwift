@@ -37,7 +37,6 @@
 		18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72FA2145A796002A1340 /* MapSettings.swift */; };
 		18CF72FD2145EE60002A1340 /* AgentRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72FC2145EE60002A1340 /* AgentRandom.swift */; };
 		18CF72FF2146098F002A1340 /* AgentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72FE2146098F002A1340 /* AgentDelegate.swift */; };
-		18CF730121460DBC002A1340 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF730021460DBC002A1340 /* Util.swift */; };
 		18CF730321461345002A1340 /* AgentCompleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF730221461345002A1340 /* AgentCompleted.swift */; };
 		18CF7305214614AE002A1340 /* Genetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF7304214614AE002A1340 /* Genetic.swift */; };
 		18CF7307214694CF002A1340 /* Cheast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF7306214694CF002A1340 /* Cheast.swift */; };
@@ -81,7 +80,6 @@
 		18CF72FA2145A796002A1340 /* MapSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettings.swift; sourceTree = "<group>"; };
 		18CF72FC2145EE60002A1340 /* AgentRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentRandom.swift; sourceTree = "<group>"; };
 		18CF72FE2146098F002A1340 /* AgentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentDelegate.swift; sourceTree = "<group>"; };
-		18CF730021460DBC002A1340 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		18CF730221461345002A1340 /* AgentCompleted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentCompleted.swift; sourceTree = "<group>"; };
 		18CF7304214614AE002A1340 /* Genetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genetic.swift; sourceTree = "<group>"; };
 		18CF7306214694CF002A1340 /* Cheast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cheast.swift; sourceTree = "<group>"; };
@@ -135,9 +133,13 @@
 			isa = PBXGroup;
 			children = (
 				18CF72F4214455B3002A1340 /* Agent.swift */,
+				18CF730C2148B89E002A1340 /* AgentProcess.swift */,
 				18CF72FE2146098F002A1340 /* AgentDelegate.swift */,
 				1832E70521A19FC200746AF2 /* AgentMovementDelegate.swift */,
 				1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */,
+				18CF730E2148B976002A1340 /* AgentMovement.swift */,
+				18CF72FC2145EE60002A1340 /* AgentRandom.swift */,
+				18CF730221461345002A1340 /* AgentCompleted.swift */,
 			);
 			path = Agent;
 			sourceTree = "<group>";
@@ -178,7 +180,7 @@
 		18CF72DE21433F5C002A1340 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18CF72F321445590002A1340 /* agent */,
+				18CF72F321445590002A1340 /* Genetic */,
 				18CF72F12144553B002A1340 /* enum */,
 				18CF72F22144556C002A1340 /* entitys */,
 			);
@@ -209,17 +211,12 @@
 			path = entitys;
 			sourceTree = "<group>";
 		};
-		18CF72F321445590002A1340 /* agent */ = {
+		18CF72F321445590002A1340 /* Genetic */ = {
 			isa = PBXGroup;
 			children = (
-				18CF730E2148B976002A1340 /* AgentMovement.swift */,
-				18CF72FC2145EE60002A1340 /* AgentRandom.swift */,
-				18CF730221461345002A1340 /* AgentCompleted.swift */,
-				18CF730C2148B89E002A1340 /* AgentProcess.swift */,
-				18CF730021460DBC002A1340 /* Util.swift */,
 				18CF7304214614AE002A1340 /* Genetic.swift */,
 			);
-			path = agent;
+			path = Genetic;
 			sourceTree = "<group>";
 		};
 		18D3A49F2142854A004A1BB0 = {
@@ -341,7 +338,6 @@
 				18CF72E221433FE2002A1340 /* Index.swift in Sources */,
 				1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */,
 				1832E70621A19FC200746AF2 /* AgentMovementDelegate.swift in Sources */,
-				18CF730121460DBC002A1340 /* Util.swift in Sources */,
 				18CF72E621434E20002A1340 /* DataNode.swift in Sources */,
 				1832E6F121A0D8F900746AF2 /* MapViewController.swift in Sources */,
 				1832E70021A172C500746AF2 /* Configurator.swift in Sources */,

@@ -18,7 +18,7 @@ class Configurator {
     var rootViewController: ViewController!
     
     var map: Map
-    var mapVC: MapViewController
+    var mapVC: MapViewController!
 
     var agent: Agent
     var agentVC: AgentViewController!
@@ -27,7 +27,6 @@ class Configurator {
         self.window = window
 
         map = Map(square: 10)
-        mapVC = MapViewController(map: map)
 
         let startLocation = Slot(index: Index(col: 1, row: 1))
         agent = Agent(map: map, startLocation: startLocation)
@@ -35,6 +34,7 @@ class Configurator {
 
     func start() {
 
+        mapVC = MapViewController(map: map)
         agentVC = AgentViewController(agent: agent, mapVC: mapVC)
 
         rootViewController?.removeFromParent()
