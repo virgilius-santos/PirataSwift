@@ -42,7 +42,7 @@ extension UIView {
         }
     }
 
-    func goOut(direction: Direction, value: CGFloat, speed: Double) {
+    func goOut(direction: Orientation, value: CGFloat, speed: Double) {
         UIView.animate(withDuration: speed, animations: { [weak self] in
             if direction == .vertical {
                 self?.center.x += value

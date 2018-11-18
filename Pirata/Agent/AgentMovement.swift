@@ -64,7 +64,7 @@ extension Agent {
 
         if bagCompare {
             self.updateValues(true)
-            let direction: Direction = (sideWallPosition == .left || sideWallPosition == .right)
+            let direction: Orientation = (sideWallPosition == .left || sideWallPosition == .right)
                 ? .vertical : .horizontal
             let value: Float = (sideWallPosition == .left || sideWallPosition == .up)
                 ? -40 : 40

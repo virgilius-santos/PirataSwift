@@ -13,22 +13,22 @@ extension Map {
     /// gera o muro lateral
     func makeSideWall() {
         // gera a direcao do paredao e seta a parede no jogo
-        sideWallPosition = Position.down
+        sideWallPosition = Direction.down
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             matriz.setSlot(index, type: .muro)
         }
-        sideWallPosition = Position.left
+        sideWallPosition = Direction.left
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             matriz.setSlot(index, type: .muro)
         }
-        sideWallPosition = Position.up
+        sideWallPosition = Direction.up
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             matriz.setSlot(index, type: .muro)
         }
-        sideWallPosition = Position.right
+        sideWallPosition = Direction.right
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             matriz.setSlot(index, type: .muro)
@@ -67,28 +67,28 @@ extension Map {
 
         // constroi uma parede com comprimento 10
         for i in 0 ..< 10 {
-            index = Direction.vertical.internWall(row: 0, col: 4, indice: i)
+            index = Orientation.vertical.internWall(row: 0, col: 4, indice: i)
             matriz.setSlot(index, type: .muro)
         }
 
         // constroi uma parede com comprimento 2
         for i in 0 ..< 2 {
-            index = Direction.horizontal.internWall(row: 1, col: 2, indice: i)
+            index = Orientation.horizontal.internWall(row: 1, col: 2, indice: i)
             matriz.setSlot(index, type: .muro)
         }
         // constroi uma parede com comprimento 2
         for i in 0 ..< 2 {
-            index = Direction.horizontal.internWall(row: 5, col: 2, indice: i)
+            index = Orientation.horizontal.internWall(row: 5, col: 2, indice: i)
             matriz.setSlot(index, type: .muro)
         }
         // constroi uma parede com comprimento 2
         for i in 0 ..< 2 {
-            index = Direction.horizontal.internWall(row: 3, col: 1, indice: i)
+            index = Orientation.horizontal.internWall(row: 3, col: 1, indice: i)
             matriz.setSlot(index, type: .muro)
         }
         // constroi uma parede com comprimento 2
         for i in 0 ..< 2 {
-            index = Direction.horizontal.internWall(row: 7, col: 1, indice: i)
+            index = Orientation.horizontal.internWall(row: 7, col: 1, indice: i)
             matriz.setSlot(index, type: .muro)
         }
 

@@ -10,6 +10,8 @@ import Foundation
 
 class Agent {
 
+    var redeNeural = RedeNeural()
+
     var defaultLocation: Slot
 
     var movementDelegate: AgentMovementDelegate?

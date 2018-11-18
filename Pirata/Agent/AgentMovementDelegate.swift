@@ -13,7 +13,7 @@ protocol AgentMovementDelegate {
     func jump(to: Slot, completion: @escaping()->())
     func startflip()
     func stopflip(completion: @escaping()->())
-    func goOut(direction: Direction, value: Float)
+    func goOut(direction: Orientation, value: Float)
 }
 
 extension Agent {
@@ -42,7 +42,7 @@ extension Agent {
         }
     }
 
-    func goOut(direction: Direction, value: Float) {
+    func goOut(direction: Orientation, value: Float) {
         DispatchQueue.main.async {
             self.movementDelegate?.goOut(direction: direction, value: value)
         }

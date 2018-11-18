@@ -33,7 +33,7 @@ class Map {
     
     var mapSettings: MapSettings
     
-    var sideWallPosition: Position!
+    var sideWallPosition: Direction!
     var doorLocation: Int!
     var bags: Bags
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-private var direction: Position = .up
+private var direction: Direction = .up
 var change: Bool = true
 
 extension Agent {
@@ -100,9 +100,9 @@ extension Agent {
         switchEvent(.goToSlot(first.slot, true))
     }
     
-    func updateDirection(_ position: Position) {
+    func updateDirection(_ position: Direction) {
         direction = (Int.randomNumber(100) < 20)
-            ? Position(rawValue: Int.randomNumber(4))!
+            ? Direction(rawValue: Int.randomNumber(4))!
             : position
     }
 }

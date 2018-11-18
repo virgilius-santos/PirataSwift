@@ -14,7 +14,7 @@ extension Map {
     
     var mockCheast: [Int] { return [9,8,7,6,5,4,3,2]}
     
-    var mockDir: [Direction?] { return [.vertical, .vertical, .vertical, .vertical] }
+    var mockDir: [Orientation?] { return [.vertical, .vertical, .vertical, .vertical] }
     var mockCol: [Int] { return [4, 5, 6, 7] }
     var mockRow: [Int] { return [1, 1, 1, 1] }
     

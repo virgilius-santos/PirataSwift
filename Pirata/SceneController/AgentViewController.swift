@@ -62,7 +62,7 @@ extension AgentViewController: AgentMovementDelegate {
         completion()
     }
 
-    func goOut(direction: Direction, value: Float) {
+    func goOut(direction: Orientation, value: Float) {
         _agentImageView.goOut(
             direction: direction, value: CGFloat(value), speed: Agent.speed)
     }

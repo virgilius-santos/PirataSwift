@@ -17,11 +17,14 @@
 		1832E70321A17F0300746AF2 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70221A17F0300746AF2 /* IntExtension.swift */; };
 		1832E70621A19FC200746AF2 /* AgentMovementDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70521A19FC200746AF2 /* AgentMovementDelegate.swift */; };
 		1832E70821A1E18A00746AF2 /* AgentAccessMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */; };
+		1832E70B21A1FC7C00746AF2 /* Neuronio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70A21A1FC7C00746AF2 /* Neuronio.swift */; };
+		1832E70D21A1FE3C00746AF2 /* RedeNeural.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70C21A1FE3C00746AF2 /* RedeNeural.swift */; };
+		1832E70F21A20E8C00746AF2 /* Acao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70E21A20E8C00746AF2 /* Acao.swift */; };
+		1832E71121A20ECD00746AF2 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71021A20ECC00746AF2 /* Orientation.swift */; };
 		185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185580AA2151DBE000473BE6 /* MocksExtension.swift */; };
 		18A8806121429D8500B2E027 /* SlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8806021429D8500B2E027 /* SlotView.xib */; };
 		18A8806421429E2200B2E027 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8806321429E2200B2E027 /* SlotView.swift */; };
 		18CF72D32142B312002A1340 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72D22142B312002A1340 /* Map.swift */; };
-		18CF72D52142D686002A1340 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72D42142D686002A1340 /* Direction.swift */; };
 		18CF72D921433367002A1340 /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72D821433367002A1340 /* Bag.swift */; };
 		18CF72DB21433E49002A1340 /* MapConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72DA21433E49002A1340 /* MapConstructor.swift */; };
 		18CF72E021433FA3002A1340 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72DF21433FA3002A1340 /* ImageType.swift */; };
@@ -29,7 +32,7 @@
 		18CF72E42143494B002A1340 /* MapAStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72E32143494B002A1340 /* MapAStar.swift */; };
 		18CF72E621434E20002A1340 /* DataNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72E521434E20002A1340 /* DataNode.swift */; };
 		18CF72EC21444364002A1340 /* MapRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72EB21444364002A1340 /* MapRegion.swift */; };
-		18CF72EE21445309002A1340 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72ED21445309002A1340 /* Position.swift */; };
+		18CF72EE21445309002A1340 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72ED21445309002A1340 /* Direction.swift */; };
 		18CF72F02144532E002A1340 /* Bags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72EF2144532E002A1340 /* Bags.swift */; };
 		18CF72F5214455B3002A1340 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72F4214455B3002A1340 /* Agent.swift */; };
 		18CF72F721455856002A1340 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72F621455856002A1340 /* EventType.swift */; };
@@ -60,11 +63,14 @@
 		1832E70221A17F0300746AF2 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		1832E70521A19FC200746AF2 /* AgentMovementDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentMovementDelegate.swift; sourceTree = "<group>"; };
 		1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentAccessMap.swift; sourceTree = "<group>"; };
+		1832E70A21A1FC7C00746AF2 /* Neuronio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuronio.swift; sourceTree = "<group>"; };
+		1832E70C21A1FE3C00746AF2 /* RedeNeural.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeNeural.swift; sourceTree = "<group>"; };
+		1832E70E21A20E8C00746AF2 /* Acao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acao.swift; sourceTree = "<group>"; };
+		1832E71021A20ECC00746AF2 /* Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
 		185580AA2151DBE000473BE6 /* MocksExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksExtension.swift; sourceTree = "<group>"; };
 		18A8806021429D8500B2E027 /* SlotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlotView.xib; sourceTree = "<group>"; };
 		18A8806321429E2200B2E027 /* SlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
 		18CF72D22142B312002A1340 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		18CF72D42142D686002A1340 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		18CF72D821433367002A1340 /* Bag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		18CF72DA21433E49002A1340 /* MapConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConstructor.swift; sourceTree = "<group>"; };
 		18CF72DF21433FA3002A1340 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
@@ -72,7 +78,7 @@
 		18CF72E32143494B002A1340 /* MapAStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAStar.swift; sourceTree = "<group>"; };
 		18CF72E521434E20002A1340 /* DataNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataNode.swift; sourceTree = "<group>"; };
 		18CF72EB21444364002A1340 /* MapRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRegion.swift; sourceTree = "<group>"; };
-		18CF72ED21445309002A1340 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		18CF72ED21445309002A1340 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		18CF72EF2144532E002A1340 /* Bags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bags.swift; sourceTree = "<group>"; };
 		18CF72F4214455B3002A1340 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		18CF72F621455856002A1340 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
@@ -144,6 +150,15 @@
 			path = Agent;
 			sourceTree = "<group>";
 		};
+		1832E70921A1FC6200746AF2 /* RedeNeural */ = {
+			isa = PBXGroup;
+			children = (
+				1832E70C21A1FE3C00746AF2 /* RedeNeural.swift */,
+				1832E70A21A1FC7C00746AF2 /* Neuronio.swift */,
+			);
+			path = RedeNeural;
+			sourceTree = "<group>";
+		};
 		18A8806221429E0C00B2E027 /* SceneController */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +195,7 @@
 		18CF72DE21433F5C002A1340 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1832E70921A1FC6200746AF2 /* RedeNeural */,
 				18CF72F321445590002A1340 /* Genetic */,
 				18CF72F12144553B002A1340 /* enum */,
 				18CF72F22144556C002A1340 /* entitys */,
@@ -190,8 +206,9 @@
 		18CF72F12144553B002A1340 /* enum */ = {
 			isa = PBXGroup;
 			children = (
-				18CF72ED21445309002A1340 /* Position.swift */,
-				18CF72D42142D686002A1340 /* Direction.swift */,
+				1832E71021A20ECC00746AF2 /* Orientation.swift */,
+				1832E70E21A20E8C00746AF2 /* Acao.swift */,
+				18CF72ED21445309002A1340 /* Direction.swift */,
 				18CF72DF21433FA3002A1340 /* ImageType.swift */,
 				18CF72F621455856002A1340 /* EventType.swift */,
 			);
@@ -325,7 +342,7 @@
 				1832E6F421A0DCDB00746AF2 /* UIViewExtension.swift in Sources */,
 				18CF72FD2145EE60002A1340 /* AgentRandom.swift in Sources */,
 				18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */,
-				18CF72EE21445309002A1340 /* Position.swift in Sources */,
+				18CF72EE21445309002A1340 /* Direction.swift in Sources */,
 				18CF730F2148B976002A1340 /* AgentMovement.swift in Sources */,
 				1832E70321A17F0300746AF2 /* IntExtension.swift in Sources */,
 				18CF72FF2146098F002A1340 /* AgentDelegate.swift in Sources */,
@@ -342,6 +359,7 @@
 				1832E6F121A0D8F900746AF2 /* MapViewController.swift in Sources */,
 				1832E70021A172C500746AF2 /* Configurator.swift in Sources */,
 				18CF72DB21433E49002A1340 /* MapConstructor.swift in Sources */,
+				1832E70D21A1FE3C00746AF2 /* RedeNeural.swift in Sources */,
 				18CF730321461345002A1340 /* AgentCompleted.swift in Sources */,
 				18CF7307214694CF002A1340 /* Cheast.swift in Sources */,
 				1832E6FA21A0E0B700746AF2 /* ArrayExtension.swift in Sources */,
@@ -349,15 +367,17 @@
 				18CF72F721455856002A1340 /* EventType.swift in Sources */,
 				1832E6FC21A0E2C200746AF2 /* IndexExtension.swift in Sources */,
 				18CF72D32142B312002A1340 /* Map.swift in Sources */,
+				1832E70F21A20E8C00746AF2 /* Acao.swift in Sources */,
 				185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */,
 				1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */,
+				1832E70B21A1FC7C00746AF2 /* Neuronio.swift in Sources */,
 				1832E70821A1E18A00746AF2 /* AgentAccessMap.swift in Sources */,
-				18CF72D52142D686002A1340 /* Direction.swift in Sources */,
 				18CF72E021433FA3002A1340 /* ImageType.swift in Sources */,
 				18CF72F02144532E002A1340 /* Bags.swift in Sources */,
 				18CF730D2148B89E002A1340 /* AgentProcess.swift in Sources */,
 				18D3A4AC2142854A004A1BB0 /* AppDelegate.swift in Sources */,
 				18CF7305214614AE002A1340 /* Genetic.swift in Sources */,
+				1832E71121A20ECD00746AF2 /* Orientation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

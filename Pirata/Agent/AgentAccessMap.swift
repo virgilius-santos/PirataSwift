@@ -14,10 +14,10 @@ extension Agent {
 
     var cheastNumbers: Int { return map.mapSettings.cheastNumbers }
 
-    var sideWallPosition: Position { return map.sideWallPosition }
+    var sideWallPosition: Direction { return map.sideWallPosition }
 
     func getRegion(completion: @escaping (Map.RegionList)->()) {
-        let regionList = map.getLargeRegion(location)
+        let regionList = map.getRegion(location)
         completion(regionList)
     }
 
