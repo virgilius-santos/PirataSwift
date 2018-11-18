@@ -21,10 +21,10 @@ extension Agent {
     }
     
     func colectBag() {
-        map.cleanImage(slot: self.location) { bag in
-            self.bags.append(bag!)
-            self.checkIfisCompleted()
-        }
+//        map.cleanImage(slot: self.location) { bag in
+//            self.bags.append(bag!)
+//            self.checkIfisCompleted()
+//        }
     }
     
     func checkIfisCompleted() {

@@ -48,14 +48,16 @@ class MapViewController {
     }
 
     /// le todas as imagens que foram setadas no modelo
-    func loadData() {
-        _mapModel
-            .matriz
-            .lazy
-            .flatMap({$0})
-            .forEach { (slot) in
-                let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-                slotView.imageView.image = slot.type.image
+    func loadData(completion: @escaping()->()) {
+        _mapModel.loadData() { matriz in
+            matriz
+                .lazy
+                .flatMap({$0})
+                .forEach { (slot) in
+                    let slotView = slot.slotView(fromMatriz: self._matrizSlotView)
+                    slotView.imageView.image = slot.type.image
+            }
+            completion()
         }
     }
 

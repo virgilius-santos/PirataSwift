@@ -11,7 +11,8 @@ import Foundation
 
 
 class Agent {
-    
+
+    var movementDelegate: AgentMovementDelegate?
     var delegate: AgentDelegate?
     
     var map: Map
@@ -37,19 +38,26 @@ class Agent {
     var totalCoins: Int {return self.bags.reduce(0, { $0 + $1.valor}) * 10}
     
     var isCompleted: Bool = false
+
+    var speed: Double = 0.1
     
     init(map: Map, startLocation location: Slot) {
         self.map = map
-        self.location = Slot(index: Index(col: 1, row: 1))
+        self.location = location
         self.location.set(type: .pirate)
         self.bags = []
         self.cheasts = []
         self.distributedBags = []
     }
-    
+
     func start() {
         print("Agent started\n")
         switchEvent(.start)
+    }
+
+    func stop() {
+        print("Agent stoped\n")
+        switchEvent(.distributedBags)
     }
     
     func switchEvent(_ event: EventType) {
@@ -61,13 +69,13 @@ class Agent {
             case .goToSlot(let slot, let excludeRole):
                 self.getRoute(toBag: slot, excludeRole: excludeRole)
                 
-            case .goToRoute(_, _):
+            case .goToRoute(let (route, index)):
                 
-//                if route[index + 1].type == .buraco {
-//                    self.holeAction(route: route, index: index)
-//                } else {
-//                    self.move(route: route, index: index)
-//                }
+                if route[index + 1].type == .buraco {
+                    self.holeAction(route: route, index: index)
+                } else {
+                    self.move(route: route, index: index)
+                }
                     break
             case .colectBag:
                 self.colectBag()

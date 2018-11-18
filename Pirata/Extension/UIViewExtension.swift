@@ -50,5 +50,21 @@ extension UIView {
 
         })
     }
+
+    func moveAnimation(center: CGPoint, speed: Double, completion: @escaping()->()) {
+        UIView.animate(withDuration: speed, animations: {
+            self.center = center
+        }) { (check) in
+            completion()
+        }
+    }
+
+    func jumpAnimation(center: CGPoint, speed: Double, completion: @escaping()->()) {
+        UIView.animate(withDuration: speed, animations: {
+            self.center = center
+        }) { (check) in
+            completion()
+        }
+    }
     
 }

@@ -13,6 +13,7 @@
 		1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F721A0E07800746AF2 /* SlotExtension.swift */; };
 		1832E6FA21A0E0B700746AF2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */; };
 		1832E6FC21A0E2C200746AF2 /* IndexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */; };
+		1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6FD21A0F67200746AF2 /* AgentViewController.swift */; };
 		185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185580AA2151DBE000473BE6 /* MocksExtension.swift */; };
 		18A8806121429D8500B2E027 /* SlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8806021429D8500B2E027 /* SlotView.xib */; };
 		18A8806421429E2200B2E027 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8806321429E2200B2E027 /* SlotView.swift */; };
@@ -54,6 +55,7 @@
 		1832E6F721A0E07800746AF2 /* SlotExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotExtension.swift; sourceTree = "<group>"; };
 		1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexExtension.swift; sourceTree = "<group>"; };
+		1832E6FD21A0F67200746AF2 /* AgentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentViewController.swift; sourceTree = "<group>"; };
 		185580AA2151DBE000473BE6 /* MocksExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksExtension.swift; sourceTree = "<group>"; };
 		18A8806021429D8500B2E027 /* SlotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlotView.xib; sourceTree = "<group>"; };
 		18A8806321429E2200B2E027 /* SlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
@@ -118,9 +120,10 @@
 			children = (
 				18D3A4AF2142854A004A1BB0 /* Main.storyboard */,
 				18D3A4AD2142854A004A1BB0 /* ViewController.swift */,
+				1832E6F021A0D8F900746AF2 /* MapViewController.swift */,
+				1832E6FD21A0F67200746AF2 /* AgentViewController.swift */,
 				18A8806021429D8500B2E027 /* SlotView.xib */,
 				18A8806321429E2200B2E027 /* SlotView.swift */,
-				1832E6F021A0D8F900746AF2 /* MapViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				1832E6FC21A0E2C200746AF2 /* IndexExtension.swift in Sources */,
 				18CF72D32142B312002A1340 /* Map.swift in Sources */,
 				185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */,
+				1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */,
 				18CF72D52142D686002A1340 /* Direction.swift in Sources */,
 				1832E6F621A0DD2800746AF2 /* UIStackViewExtension.swift in Sources */,
 				18CF72E021433FA3002A1340 /* ImageType.swift in Sources */,

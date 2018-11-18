@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol MapDelegate {
-    func setImage(with type: ImageType, index: Index)
-    func fadeOut(slot: Slot, speed: Double, completion: @escaping()->())
-    func loadComplete()
-}
+//protocol MapDelegate {
+//    func setImage(with type: ImageType, index: Index)
+//    func fadeOut(slot: Slot, speed: Double, completion: @escaping()->())
+//    func loadComplete()
+//}
 
 class Map {
 
-    var delegate: MapDelegate?
-    
+//    var delegate: MapDelegate?
+
     lazy var busySlots: Set<Index> = Set<Index>()
     lazy var matriz: [[Slot]] = {
         var matriz = [[Slot]]()
@@ -43,24 +43,24 @@ class Map {
         self.mapSettings = MapSettings(square: square)
         self.bags = Bags(mapSettings.bagsNumbers)
     }
+
+//    func setImage(with type: ImageType, index: Index) {
+//        DispatchQueue.main.async {
+//            self.delegate?.setImage(with: type, index: index)
+//        }
+//    }
+//    
+//    func cleanImage(slot: Slot, completion: @escaping(Bag?)->()) {
+//        DispatchQueue.main.async {
+//            self.delegate?.fadeOut(slot: slot, speed: 2) {
+//                self.matriz[slot.index.col][slot.index.row].set(type: .Empty)
+//                let bag = self.bags.data.first(where: {$0.index == slot.index})
+//                completion(bag)
+//            }
+//        }
+//    }
     
-    func setImage(with type: ImageType, index: Index) {
-        DispatchQueue.main.async {
-            self.delegate?.setImage(with: type, index: index)
-        }
-    }
-    
-    func cleanImage(slot: Slot, completion: @escaping(Bag?)->()) {
-        DispatchQueue.main.async {
-            self.delegate?.fadeOut(slot: slot, speed: 2) {
-                self.matriz[slot.index.col][slot.index.row].set(type: .Empty)
-                let bag = self.bags.data.first(where: {$0.index == slot.index})
-                completion(bag)
-            }
-        }
-    }
-    
-    func loadData() {
+    func loadData(completion: @escaping([[Slot]])->()) {
         DispatchQueue(label: "background").async {
             self.makeSideWall()
             
@@ -75,7 +75,7 @@ class Map {
             self.makeBags()
             
             DispatchQueue.main.async {
-                self.delegate?.loadComplete()
+                completion(self.matriz)
             }
         }
     }
@@ -92,7 +92,7 @@ class Map {
         }
         matriz[index.col][index.row].set(type: type)
         busySlots.insert(matriz[index.col][index.row].index)
-        setImage(with: type, index: index)
+//        setImage(with: type, index: index)
     }
     
     var freeSlot: Slot {
