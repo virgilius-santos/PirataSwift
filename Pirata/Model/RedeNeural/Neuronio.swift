@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Neuronio {
+class Neuronio {
 
-    var pesoZero: Double = 0
-    var pesos: [Double] = []
+    private var _pesoZero: Double = 0
+    private var _pesos: [Double] = []
 
     var randomDouble: Double {
         let gen = ClosedRange<Double>(uncheckedBounds: (-1,1))
@@ -20,13 +20,24 @@ struct Neuronio {
     }
 
     init() {
-        setPesos()
+        randomComplete()
     }
 
-    mutating func setPesos(pesos: [Double] = []) {
-        self.pesoZero = randomDouble
+    func randomComplete() {
+        _pesoZero = randomDouble
         for _ in 0...3 {
-            self.pesos.append(randomDouble)
+            _pesos.removeAll()
+            _pesos.append(randomDouble)
+        }
+    }
+
+    func setPesos(pesos: [Double] = []) {
+        if pesos.count != _pesos.count + 1 {
+            randomComplete()
+        } else {
+            var p = pesos
+            _pesoZero = p.removeFirst()
+            _pesos = p
         }
     }
 
@@ -37,10 +48,10 @@ struct Neuronio {
             .reduce(0) { (result, dado) -> Double in
 
                 let (index, parametro) = dado
-                return result + parametro * self.pesos[index]
+                return result + parametro * _pesos[index]
         }
 
-        valor += self.pesoZero
+        valor += _pesoZero
         return valor
     }
 

@@ -30,6 +30,11 @@ class RedeNeural {
         }
     }
 
+    func setPesos() {
+        neuronios.forEach({$0.setPesos()})
+        neuroniosMovimento.forEach({$0.setPesos()})
+        neuroniosDirecao.forEach({$0.setPesos()})
+    }
 
     func entrada(slots: [Slot]) -> (acao: Acao, direcao: Direction) {
 

@@ -9,6 +9,77 @@
 import Foundation
 
 extension Agent {
+
+    func switchEvent(_ event: EventType) {
+        if stopped {
+            return
+        }
+
+        switch event {
+        case .start:
+            self.analiseRegion()
+
+        case .lookingBags(let (dataNode, routeData)):
+            self.processRegionLookingBags(dataNode: dataNode, routeData)
+            break
+
+        case .lookingCheastAndDoors(let (dataNode, routeData)):
+            self.processRegionLookingCheastAndDoor(dataNode: dataNode, routeData)
+            break
+
+        case .goToSlot(let (slot, excludeRole)):
+            self.getRoute(toBag: slot, excludeRole: excludeRole)
+
+        case .goToRoute(let (route, index)):
+            if route[index + 1].type == .buraco {
+                self.holeAction(route: route, index: index)
+            } else {
+                self.move(route: route, index: index)
+            }
+            break
+
+        case .colectBag:
+            self.colectBag()
+
+        case .traveling(let routeData):
+            self.analiseRegion(routeData)
+
+        case .randomBags(let dataNode):
+            self.randomSlot(dataNode)
+
+        case .completed:
+            self.completedAction()
+            break
+
+        case .distributedBags:
+            //                self.distributedBagsInCheasts()
+            break
+        }
+
+    }
+
+    func analiseRegion(_ routeData: Map.RouteData? = nil) {
+        getRegion { (regionList) in
+
+            self.processRegion(regionList)
+
+            let dataNode: [DataNode] =
+                regionList.getEmptyIndex()
+                    .map { slot in
+                        let distance = slot.index.calcDistance(from: self.location.index)
+                        return DataNode(slot: slot, distance: distance)
+                    }
+                    .sorted(by: {$0.distance < $1.distance})
+
+
+            if self.isCompleted {
+                self.switchEvent(.lookingCheastAndDoors(dataNode, routeData))
+            } else {
+                self.switchEvent(.lookingBags(dataNode, routeData))
+            }
+
+        }
+    }
     
     func processMove(to: Slot, next: Int, route: [Slot]) {
         self.location = to
