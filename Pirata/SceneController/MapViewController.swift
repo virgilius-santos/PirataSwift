@@ -82,4 +82,9 @@ class MapViewController {
         return center
     }
 
+    func newSlot(fromSlot slot: Slot, acao: Acao, direcao: Direction) -> Slot? {
+        let newSlot = _mapModel.matriz.slot(index: slot.index, acao: acao, direcao: direcao)
+        return newSlot
+    }
+
 }

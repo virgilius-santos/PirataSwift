@@ -14,9 +14,16 @@ protocol AgentMovementDelegate {
     func startflip()
     func stopflip(completion: @escaping()->())
     func goOut(direction: Orientation, value: Float)
+    func move(acao:Acao, direcao: Direction, completion: @escaping(Slot?)->())
 }
 
 extension Agent {
+
+    func move(acao:Acao, direcao: Direction, completion: @escaping(Slot?)->()) {
+        DispatchQueue.main.async {
+            self.movementDelegate?.move(acao: acao, direcao: direcao, completion: completion)
+        }
+    }
 
     func moveView(to: Slot, completion: @escaping()->()) {
         DispatchQueue.main.async {

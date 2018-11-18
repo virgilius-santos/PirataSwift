@@ -25,8 +25,8 @@ class Neuronio {
 
     func randomComplete() {
         _pesoZero = randomDouble
+        _pesos.removeAll()
         for _ in 0...3 {
-            _pesos.removeAll()
             _pesos.append(randomDouble)
         }
     }

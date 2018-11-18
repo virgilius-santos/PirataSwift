@@ -73,7 +73,7 @@ class Agent {
     func start() {
         print("Agent started\n")
         stopped = false
-        redeNeural.setPesos()
+        switchEvent(evt: .start)
     }
 
     func stop() {
@@ -89,8 +89,6 @@ class Agent {
         location = defaultLocation
     }
     
-    
-
     func colectBag() {
         coletarBag(location) { (bag) in
             self.bags.append(bag)

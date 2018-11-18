@@ -20,3 +20,10 @@ enum EventType {
     case completed
     case distributedBags
 }
+
+enum EventNeuralType {
+    case start
+    case goToSlot(Acao, Direction)
+    case analisar(Slot)
+    case error
+}

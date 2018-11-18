@@ -41,6 +41,20 @@ class AgentViewController {
 
 extension AgentViewController: AgentMovementDelegate {
 
+    func move(acao: Acao, direcao: Direction, completion: @escaping (Slot?) -> ()) {
+
+        guard let newSlot = _mapVC.newSlot(fromSlot: Agent.location, acao: acao, direcao: direcao) else {
+            completion(nil)
+            return
+        }
+
+        let center = _mapVC.center(fromSlot: newSlot, to: _rootView)
+        _agentImageView.moveAnimation(center: center, speed: Agent.speed) {
+            completion(newSlot)
+        }
+
+    }
+
     func move(to: Slot, completion: @escaping () -> ()) {
         let center = _mapVC.center(fromSlot: to, to: _rootView)
         _agentImageView.moveAnimation(

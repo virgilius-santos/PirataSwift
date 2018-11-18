@@ -9,6 +9,17 @@
 import Foundation
 
 extension Agent {
+
+    func move(acao:Acao, direcao: Direction) {
+        move(acao: acao, direcao: direcao) { [weak self] (slot) in
+            if slot != nil {
+                self?.location = slot!
+                self?.switchEvent(evt: .analisar(slot!))
+            } else {
+                self?.switchEvent(evt: .start)
+            }
+        }
+    }
     
     func move(route: Map.Route, index: Int = 0) {
         let next = index + 1

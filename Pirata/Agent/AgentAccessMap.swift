@@ -21,6 +21,11 @@ extension Agent {
         completion(regionList)
     }
 
+    func getRegion() -> Map.RegionList {
+        let regionList = map.getRegion(location)
+        return regionList
+    }
+
     func getRoute(toBag bag: Slot, excludeRole: Bool = true) {
         map.getRoute(from: location, to: bag, excludeRole: excludeRole) { (route) in
             if route.count > 1 {

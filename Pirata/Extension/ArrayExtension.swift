@@ -98,35 +98,50 @@ extension Array where Array == Map.Region {
     }
 
     /// slot a esquerda do index
-    func leftSlot(fromIndex index: Pirata.Index) -> Slot? {
-        if index.col == 0 {
+    func leftSlot(fromIndex index: Pirata.Index, offset: Int = 1) -> Slot? {
+        if index.col - offset < 0 {
             return nil
         }
-        return self[index.col-1][index.row]
+        return self[index.col-offset][index.row]
     }
 
     /// slot a direita do index
-    func rightSlot(fromIndex index: Pirata.Index) -> Slot? {
-        if index.col + 1 == self.count {
+    func rightSlot(fromIndex index: Pirata.Index, offset: Int = 1) -> Slot? {
+        if index.col + offset >= self.count {
             return nil
         }
-        return self[index.col+1][index.row]
+        return self[index.col+offset][index.row]
     }
 
     /// slot acima do index
-    func upSlot(fromIndex index: Pirata.Index) -> Slot? {
-        if index.row == 0 {
+    func upSlot(fromIndex index: Pirata.Index, offset: Int = 1) -> Slot? {
+        if index.row - offset < 0 {
             return nil
         }
-        return self[index.col][index.row-1]
+        return self[index.col][index.row-offset]
     }
 
     /// slot abaixo do index
-    func downSlot(fromIndex index: Pirata.Index) -> Slot? {
-        if index.row + 1 == self[index.col].count {
+    func downSlot(fromIndex index: Pirata.Index, offset: Int = 1) -> Slot? {
+        if index.row + offset >= self[index.col].count {
             return nil
         }
-        return self[index.col][index.row+1]
+        return self[index.col][index.row+offset]
+    }
+
+    /// slot abaixo do index
+    func slot(index: Pirata.Index, acao: Acao, direcao: Direction) -> Slot? {
+        let offset = acao == .anda ? 1 : 2
+        switch direcao {
+        case .left:
+            return leftSlot(fromIndex: index, offset: offset)
+        case .right:
+            return rightSlot(fromIndex: index, offset: offset)
+        case .up:
+            return upSlot(fromIndex: index, offset: offset)
+        case .down:
+            return downSlot(fromIndex: index, offset: offset)
+        }
     }
 
     func isIndexIdle(_ index: Pirata.Index?) -> Bool {

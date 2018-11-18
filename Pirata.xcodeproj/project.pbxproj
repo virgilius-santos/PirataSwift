@@ -21,6 +21,7 @@
 		1832E70D21A1FE3C00746AF2 /* RedeNeural.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70C21A1FE3C00746AF2 /* RedeNeural.swift */; };
 		1832E70F21A20E8C00746AF2 /* Acao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70E21A20E8C00746AF2 /* Acao.swift */; };
 		1832E71121A20ECD00746AF2 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71021A20ECC00746AF2 /* Orientation.swift */; };
+		1832E71321A218FC00746AF2 /* AgentNeuralProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71221A218FC00746AF2 /* AgentNeuralProcess.swift */; };
 		185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185580AA2151DBE000473BE6 /* MocksExtension.swift */; };
 		18A8806121429D8500B2E027 /* SlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8806021429D8500B2E027 /* SlotView.xib */; };
 		18A8806421429E2200B2E027 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8806321429E2200B2E027 /* SlotView.swift */; };
@@ -67,6 +68,7 @@
 		1832E70C21A1FE3C00746AF2 /* RedeNeural.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeNeural.swift; sourceTree = "<group>"; };
 		1832E70E21A20E8C00746AF2 /* Acao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acao.swift; sourceTree = "<group>"; };
 		1832E71021A20ECC00746AF2 /* Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
+		1832E71221A218FC00746AF2 /* AgentNeuralProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentNeuralProcess.swift; sourceTree = "<group>"; };
 		185580AA2151DBE000473BE6 /* MocksExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksExtension.swift; sourceTree = "<group>"; };
 		18A8806021429D8500B2E027 /* SlotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlotView.xib; sourceTree = "<group>"; };
 		18A8806321429E2200B2E027 /* SlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				18CF72F4214455B3002A1340 /* Agent.swift */,
+				1832E71221A218FC00746AF2 /* AgentNeuralProcess.swift */,
 				18CF730C2148B89E002A1340 /* AgentProcess.swift */,
 				18CF72FE2146098F002A1340 /* AgentDelegate.swift */,
 				1832E70521A19FC200746AF2 /* AgentMovementDelegate.swift */,
@@ -371,6 +374,7 @@
 				185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */,
 				1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */,
 				1832E70B21A1FC7C00746AF2 /* Neuronio.swift in Sources */,
+				1832E71321A218FC00746AF2 /* AgentNeuralProcess.swift in Sources */,
 				1832E70821A1E18A00746AF2 /* AgentAccessMap.swift in Sources */,
 				18CF72E021433FA3002A1340 /* ImageType.swift in Sources */,
 				18CF72F02144532E002A1340 /* Bags.swift in Sources */,
