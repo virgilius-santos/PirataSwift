@@ -127,7 +127,7 @@ class Agent {
             self.randomSlot(dataNode)
 
         case .completed:
-//                self.completedAction()
+                self.completedAction()
             break
 
         case .distributedBags:

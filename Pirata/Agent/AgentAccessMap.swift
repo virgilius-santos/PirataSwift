@@ -17,9 +17,8 @@ extension Agent {
     var sideWallPosition: Position { return map.sideWallPosition }
 
     func getRegion(completion: @escaping (Map.RegionList)->()) {
-        map.getRegion(location) { (regionList) in
-            completion(regionList)
-        }
+        let regionList = map.getLargeRegion(location)
+        completion(regionList)
     }
 
     func getRoute(toBag bag: Slot, excludeRole: Bool = true) {

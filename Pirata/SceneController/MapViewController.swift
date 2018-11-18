@@ -82,8 +82,4 @@ class MapViewController {
         return center
     }
 
-    func getRegion(_ slot: Slot, completion: @escaping (Map.RegionList)->()) {
-        _mapModel.getRegion(slot, completion: completion)
-    }
-
 }
