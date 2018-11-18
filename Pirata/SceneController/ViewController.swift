@@ -12,9 +12,11 @@ class ViewController: UIViewController {
 
     var playing = false
 
-    var AgentVC: AgentViewController!
+    weak var AgentVC: AgentViewController!
 
-    var MapVC: MapViewController!
+    weak var MapVC: MapViewController!
+
+    weak var configurator: Configurator!
 
     @IBOutlet weak var qtdBauLabel: UILabel!
     
@@ -33,7 +35,7 @@ class ViewController: UIViewController {
     @IBAction func testAction(_ sender: Any) {
         if playing {
             AgentVC.Agent.stop()
-            reset()
+            configurator.reset()
         } else {
             AgentVC.Agent.start()
         }
@@ -43,21 +45,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         rootStackView.spacing = 5
-        MapVC.addStackViews(rootStackView: rootStackView)
         MapVC.loadData() {
+            self.MapVC.addStackViews(rootStackView: self.rootStackView)
+            self.view.layoutIfNeeded()
             self.AgentVC.insertAgent(inView: self.view)
         }
     }
 
-    func reset() {
-        update()
-        bauLocalizado()
-        portaLocalizada()
-        divisaoDeSacolas()
-        MapVC.loadData() {
-            self.AgentVC.moveToStart()
-        }
-    }
 }
 
 extension ViewController: AgentDelegate {
@@ -82,6 +76,9 @@ extension ViewController: AgentDelegate {
         MapVC.growUp(slot: slot, speed: 0.2)
     }
 
+    func getBag(slot: Slot, speed: Double, completion: @escaping(Bag)->()) {
+        MapVC.getBag(slot: slot, speed: speed, completion: completion)
+    }
 }
 
 //extension ViewController: MapDelegate {

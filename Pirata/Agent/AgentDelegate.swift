@@ -14,47 +14,7 @@ protocol AgentDelegate {
     func bauLocalizado(qtd: Int)
     func portaLocalizada(_ status: Bool)
     func divisaoDeSacolas(_ div: String)
-}
-
-protocol AgentMovementDelegate {
-    func move(to: Slot, completion: @escaping()->())
-    func jump(to: Slot, completion: @escaping()->())
-    func startflip()
-    func stopflip(completion: @escaping()->())
-    func goOut(direction: Direction, value: Float)
-}
-
-extension Agent {
-    func jumpView(to: Slot, completion: @escaping()->()) {
-        DispatchQueue.main.async {
-            self.movementDelegate?.jump(to: to, completion: completion)
-        }
-    }
-    
-    func moveView(to: Slot, completion: @escaping()->()) {
-        DispatchQueue.main.async {
-            self.movementDelegate?.move(to: to, completion: completion)
-        }
-    }
-
-    func startflip() {
-        DispatchQueue.main.async {
-            self.movementDelegate?.startflip()
-        }
-    }
-
-    func stopflip(completion: @escaping()->()) {
-        DispatchQueue.main.async {
-            self.movementDelegate?.stopflip(completion:completion)
-        }
-    }
-
-    func goOut(direction: Direction, value: Float) {
-        DispatchQueue.main.async {
-            self.movementDelegate?.goOut(direction: direction, value: value)
-        }
-    }
-
+    func getBag(slot: Slot, speed: Double, completion: @escaping(Bag)->())
 }
 
 extension Agent {
@@ -89,6 +49,12 @@ extension Agent {
     func divisaoDeSacolas(_ div: String) {
         DispatchQueue.main.async {
             self.delegate?.divisaoDeSacolas(div)
+        }
+    }
+
+    func coletarBag(_ slot: Slot, completion: @escaping(Bag)->()) {
+        DispatchQueue.main.async {
+            self.delegate?.getBag(slot: slot, speed: self.speed, completion: completion)
         }
     }
 }

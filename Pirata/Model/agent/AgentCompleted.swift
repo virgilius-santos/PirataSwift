@@ -11,7 +11,7 @@ import Foundation
 var lastCheastVisited = 0
 extension Agent {
     func completedAction() {
-        let genetic = Genetic(sacolas: bags, baus: map.mapSettings.cheastNumbers)
+        let genetic = Genetic(sacolas: bags, baus: cheastNumbers)
         startflip()
         genetic.start { (distributedBags) in
             self.divisaoDeSacolas("\(distributedBags.map({$0.reduce(0, {$0+$1.valor})}))")

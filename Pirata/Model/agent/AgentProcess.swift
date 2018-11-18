@@ -23,8 +23,8 @@ extension Agent {
         }
     }
     
-    func processRegion(_ region: [[Slot]]) {
-        region.flatMap({$0}).forEach { (slot) in
+    func processRegion(_ regionList: Map.RegionList) {
+        regionList.forEach { (slot) in
             if slot.type == .bau, !self.cheasts.contains(where: {$0.slot == slot}) {
                 let cheast = Cheast(slot)
                 self.cheasts.append(cheast)
@@ -36,10 +36,10 @@ extension Agent {
         }
     }
     
-    func processRegionLookingBags(dataNode: [DataNode], _ data: ([Slot], Int)?) {
+    func processRegionLookingBags(dataNode: [DataNode], _ routeData: Map.RouteData?) {
         
-        if let (route, index) = data, route.last?.type == .saco {
-            switchEvent(.goToRoute((route, index)))
+        if routeData?.route.last?.type == .saco {
+            switchEvent(.goToRoute(routeData!))
             return
         }
         
@@ -48,23 +48,23 @@ extension Agent {
             return
         }
         
-        if let (route, index) = data {
-            switchEvent(.goToRoute((route, index)))
+        if routeData != nil {
+            switchEvent(.goToRoute(routeData!))
             return
         }
         
         switchEvent(.randomBags(dataNode))
     }
     
-    func processRegionLookingCheastAndDoor(dataNode: [DataNode], _ data: ([Slot], Int)?) {
+    func processRegionLookingCheastAndDoor(dataNode: [DataNode], _ routeData: Map.RouteData?) {
         
         if door != nil, cheasts.count == map.mapSettings.cheastNumbers {
             switchEvent(.distributedBags)
             return
         }
         
-        if let (route, index) = data {
-            self.switchEvent(.goToRoute((route, index)))
+        if routeData != nil {
+            self.switchEvent(.goToRoute(routeData!))
             return
         }
         

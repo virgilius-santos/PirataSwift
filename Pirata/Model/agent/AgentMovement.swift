@@ -10,16 +10,16 @@ import Foundation
 
 extension Agent {
     
-    func move(route: [Slot], index: Int = 0) {
+    func move(route: Map.Route, index: Int = 0) {
         let next = index + 1
         let to = route[next]
 
-        self.moveView(to: to) {
-            self.processMove(to: to, next: next, route: route)
+        self.moveView(to: to) { [weak self] in
+            self?.processMove(to: to, next: next, route: route)
         }
     }
 
-    func holeAction(route: [Slot], index: Int) {
+    func holeAction(route: Map.Route, index: Int) {
         if route.count <= index + 2 {
             print("\(#function) -errorHoleDetected\n \n")
             switchEvent(.start)
@@ -48,14 +48,15 @@ extension Agent {
             return
         }
 
-        jumpView(to: to) {
-            self.holeJumpeds += 1
-            self.processMove(to: to, next: last, route: route)
+        jumpView(to: to) { [weak self] in
+            self?.holeJumpeds += 1
+            self?.processMove(to: to, next: last, route: route)
         }
     }
 
     func moveOut() {
-        let bagValues = distributedBags.map { (bags) -> Int in
+        let bagValues = distributedBags
+            .map { (bags) -> Int in
             return bags.map({$0.valor}).reduce(0,+)
         }
 
@@ -63,9 +64,9 @@ extension Agent {
 
         if bagCompare {
             self.updateValues(true)
-            let direction: Direction = (map.sideWallPosition == .left || map.sideWallPosition == .right)
+            let direction: Direction = (sideWallPosition == .left || sideWallPosition == .right)
                 ? .vertical : .horizontal
-            let value: Float = (map.sideWallPosition == .left || map.sideWallPosition == .up)
+            let value: Float = (sideWallPosition == .left || sideWallPosition == .up)
                 ? -40 : 40
             goOut(direction: direction, value: value)
         }

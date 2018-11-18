@@ -19,20 +19,26 @@ class MapViewController {
     init(map: Map) {
         _matrizSlotView = []
         _mapModel = map
+    }
 
-        completeMatriz()
+    /// le todas as imagens que foram setadas no modelo
+    func loadData(completion: @escaping()->()) {
+        _mapModel.completeMatriz()
+        _mapModel.loadData() { matriz in
+            self.completeMatriz(region: matriz)
+            completion()
+        }
     }
 
     /// converte os modelos de slot presentes no _mapModel
     /// em slotView que serão add na tela
-    private func completeMatriz() {
-        _matrizSlotView
-            = _mapModel
-                .matriz
-                .lazy
-                .map { (slots) -> [SlotView] in
+    private func completeMatriz(region: Map.Region) {
 
-                    return slots.map({$0.slotView()})
+        _matrizSlotView = region
+            .lazy
+            .map { (slots) -> [SlotView] in
+
+                return slots.map({$0.slotView()})
         }
 
     }
@@ -47,24 +53,14 @@ class MapViewController {
         _rootStackView = rootStackView
     }
 
-    /// le todas as imagens que foram setadas no modelo
-    func loadData(completion: @escaping()->()) {
-        _mapModel.loadData() { matriz in
-            matriz
-                .lazy
-                .flatMap({$0})
-                .forEach { (slot) in
-                    let slotView = slot.slotView(fromMatriz: self._matrizSlotView)
-                    slotView.imageView.image = slot.type.image
-            }
-            completion()
-        }
-    }
-
     /// some com um slot
-    func fadeOut(slot: Slot, speed: Double, completion: @escaping()->()) {
+    func getBag(slot: Slot, speed: Double, completion: @escaping(Bag)->()) {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-        slotView.imageView.fadeOut(speed: speed, completion: completion)
+        slotView.imageView.fadeOut(speed: speed) { [weak self] in
+            if let bag = self?._mapModel.getBag(slot: slot) {
+                completion(bag)
+            }
+        }
     }
 
     /// faz um slot crescer
@@ -72,15 +68,22 @@ class MapViewController {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
         slotView.imageView.growUp(speed: speed)
     }
-    
+
+    /// retorna o frame de um slot
     func frame(fromSlot slot: Slot) -> CGRect {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
         return slotView.imageView.frame
     }
 
+    /// retorna a posicao na tela de um slot em relacao a uma View
     func center(fromSlot slot: Slot, to view: UIView) -> CGPoint {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-        return view.convert(slotView.center, from: slotView.superview)
+        let center = view.convert(slotView.center, from: slotView.superview)
+        return center
+    }
+
+    func getRegion(_ slot: Slot, completion: @escaping (Map.RegionList)->()) {
+        _mapModel.getRegion(slot, completion: completion)
     }
 
 }

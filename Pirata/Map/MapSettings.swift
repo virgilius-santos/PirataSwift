@@ -9,6 +9,7 @@
 import Foundation
 
 struct MapSettings {
+    
     var square: Int
     var cheastNumbers: Int
     var internalWallNumbers: Int

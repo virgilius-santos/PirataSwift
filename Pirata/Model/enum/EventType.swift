@@ -10,10 +10,12 @@ import Foundation
 
 enum EventType {
     case start
-    case goToRoute(([Slot], Int))
+    case lookingBags([DataNode], Map.RouteData?)
+    case lookingCheastAndDoors([DataNode], Map.RouteData?)
+    case goToRoute(Map.RouteData)
     case goToSlot(Slot, Bool)
     case colectBag
-    case traveling(([Slot], Int))
+    case traveling(Map.RouteData)
     case randomBags([DataNode])
     case completed
     case distributedBags

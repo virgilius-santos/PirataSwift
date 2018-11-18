@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		1832E6F121A0D8F900746AF2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F021A0D8F900746AF2 /* MapViewController.swift */; };
 		1832E6F421A0DCDB00746AF2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */; };
-		1832E6F621A0DD2800746AF2 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F521A0DD2800746AF2 /* UIStackViewExtension.swift */; };
 		1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F721A0E07800746AF2 /* SlotExtension.swift */; };
 		1832E6FA21A0E0B700746AF2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */; };
 		1832E6FC21A0E2C200746AF2 /* IndexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */; };
 		1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6FD21A0F67200746AF2 /* AgentViewController.swift */; };
+		1832E70021A172C500746AF2 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6FF21A172C500746AF2 /* Configurator.swift */; };
+		1832E70321A17F0300746AF2 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70221A17F0300746AF2 /* IntExtension.swift */; };
+		1832E70621A19FC200746AF2 /* AgentMovementDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70521A19FC200746AF2 /* AgentMovementDelegate.swift */; };
+		1832E70821A1E18A00746AF2 /* AgentAccessMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */; };
 		185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185580AA2151DBE000473BE6 /* MocksExtension.swift */; };
 		18A8806121429D8500B2E027 /* SlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8806021429D8500B2E027 /* SlotView.xib */; };
 		18A8806421429E2200B2E027 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8806321429E2200B2E027 /* SlotView.swift */; };
@@ -21,7 +24,6 @@
 		18CF72D52142D686002A1340 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72D42142D686002A1340 /* Direction.swift */; };
 		18CF72D921433367002A1340 /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72D821433367002A1340 /* Bag.swift */; };
 		18CF72DB21433E49002A1340 /* MapConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72DA21433E49002A1340 /* MapConstructor.swift */; };
-		18CF72DD21433EDE002A1340 /* MapUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72DC21433EDE002A1340 /* MapUtil.swift */; };
 		18CF72E021433FA3002A1340 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72DF21433FA3002A1340 /* ImageType.swift */; };
 		18CF72E221433FE2002A1340 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72E121433FE2002A1340 /* Index.swift */; };
 		18CF72E42143494B002A1340 /* MapAStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72E32143494B002A1340 /* MapAStar.swift */; };
@@ -51,11 +53,14 @@
 /* Begin PBXFileReference section */
 		1832E6F021A0D8F900746AF2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		1832E6F521A0DD2800746AF2 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
 		1832E6F721A0E07800746AF2 /* SlotExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotExtension.swift; sourceTree = "<group>"; };
 		1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexExtension.swift; sourceTree = "<group>"; };
 		1832E6FD21A0F67200746AF2 /* AgentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentViewController.swift; sourceTree = "<group>"; };
+		1832E6FF21A172C500746AF2 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
+		1832E70221A17F0300746AF2 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		1832E70521A19FC200746AF2 /* AgentMovementDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentMovementDelegate.swift; sourceTree = "<group>"; };
+		1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentAccessMap.swift; sourceTree = "<group>"; };
 		185580AA2151DBE000473BE6 /* MocksExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksExtension.swift; sourceTree = "<group>"; };
 		18A8806021429D8500B2E027 /* SlotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlotView.xib; sourceTree = "<group>"; };
 		18A8806321429E2200B2E027 /* SlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
@@ -63,7 +68,6 @@
 		18CF72D42142D686002A1340 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		18CF72D821433367002A1340 /* Bag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		18CF72DA21433E49002A1340 /* MapConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConstructor.swift; sourceTree = "<group>"; };
-		18CF72DC21433EDE002A1340 /* MapUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUtil.swift; sourceTree = "<group>"; };
 		18CF72DF21433FA3002A1340 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		18CF72E121433FE2002A1340 /* Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
 		18CF72E32143494B002A1340 /* MapAStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAStar.swift; sourceTree = "<group>"; };
@@ -108,38 +112,56 @@
 			children = (
 				1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */,
 				1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */,
+				1832E70221A17F0300746AF2 /* IntExtension.swift */,
 				1832E6F721A0E07800746AF2 /* SlotExtension.swift */,
 				1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */,
-				1832E6F521A0DD2800746AF2 /* UIStackViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		18A8806221429E0C00B2E027 /* View */ = {
+		1832E70121A1734900746AF2 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				18CF72D22142B312002A1340 /* Map.swift */,
+				18CF72DA21433E49002A1340 /* MapConstructor.swift */,
+				18CF72E32143494B002A1340 /* MapAStar.swift */,
+				18CF72EB21444364002A1340 /* MapRegion.swift */,
+				18CF72FA2145A796002A1340 /* MapSettings.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		1832E70421A19F9500746AF2 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				18CF72F4214455B3002A1340 /* Agent.swift */,
+				18CF72FE2146098F002A1340 /* AgentDelegate.swift */,
+				1832E70521A19FC200746AF2 /* AgentMovementDelegate.swift */,
+				1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */,
+			);
+			path = Agent;
+			sourceTree = "<group>";
+		};
+		18A8806221429E0C00B2E027 /* SceneController */ = {
 			isa = PBXGroup;
 			children = (
 				18D3A4AF2142854A004A1BB0 /* Main.storyboard */,
+				1832E6FF21A172C500746AF2 /* Configurator.swift */,
 				18D3A4AD2142854A004A1BB0 /* ViewController.swift */,
 				1832E6F021A0D8F900746AF2 /* MapViewController.swift */,
 				1832E6FD21A0F67200746AF2 /* AgentViewController.swift */,
 				18A8806021429D8500B2E027 /* SlotView.xib */,
 				18A8806321429E2200B2E027 /* SlotView.swift */,
 			);
-			path = View;
+			path = SceneController;
 			sourceTree = "<group>";
 		};
-		18A880652142B2C900B2E027 /* Manager */ = {
+		18A880652142B2C900B2E027 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				18CF72D22142B312002A1340 /* Map.swift */,
-				18CF72DA21433E49002A1340 /* MapConstructor.swift */,
-				18CF72DC21433EDE002A1340 /* MapUtil.swift */,
-				18CF72E32143494B002A1340 /* MapAStar.swift */,
-				18CF72EB21444364002A1340 /* MapRegion.swift */,
-				18CF72FA2145A796002A1340 /* MapSettings.swift */,
 				185580AA2151DBE000473BE6 /* MocksExtension.swift */,
 			);
-			path = Manager;
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		18A880662142B2DA00B2E027 /* SupportFiles */ = {
@@ -190,8 +212,6 @@
 		18CF72F321445590002A1340 /* agent */ = {
 			isa = PBXGroup;
 			children = (
-				18CF72FE2146098F002A1340 /* AgentDelegate.swift */,
-				18CF72F4214455B3002A1340 /* Agent.swift */,
 				18CF730E2148B976002A1340 /* AgentMovement.swift */,
 				18CF72FC2145EE60002A1340 /* AgentRandom.swift */,
 				18CF730221461345002A1340 /* AgentCompleted.swift */,
@@ -223,9 +243,11 @@
 			children = (
 				1832E6F221A0DCBA00746AF2 /* Extension */,
 				18A880662142B2DA00B2E027 /* SupportFiles */,
-				18A8806221429E0C00B2E027 /* View */,
-				18A880652142B2C900B2E027 /* Manager */,
+				18A8806221429E0C00B2E027 /* SceneController */,
+				1832E70121A1734900746AF2 /* Map */,
+				1832E70421A19F9500746AF2 /* Agent */,
 				18CF72DE21433F5C002A1340 /* Model */,
+				18A880652142B2C900B2E027 /* Mock */,
 			);
 			path = Pirata;
 			sourceTree = "<group>";
@@ -308,6 +330,7 @@
 				18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */,
 				18CF72EE21445309002A1340 /* Position.swift in Sources */,
 				18CF730F2148B976002A1340 /* AgentMovement.swift in Sources */,
+				1832E70321A17F0300746AF2 /* IntExtension.swift in Sources */,
 				18CF72FF2146098F002A1340 /* AgentDelegate.swift in Sources */,
 				18CF72F92145A77E002A1340 /* Slot.swift in Sources */,
 				18CF72EC21444364002A1340 /* MapRegion.swift in Sources */,
@@ -317,10 +340,11 @@
 				18CF72F5214455B3002A1340 /* Agent.swift in Sources */,
 				18CF72E221433FE2002A1340 /* Index.swift in Sources */,
 				1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */,
+				1832E70621A19FC200746AF2 /* AgentMovementDelegate.swift in Sources */,
 				18CF730121460DBC002A1340 /* Util.swift in Sources */,
 				18CF72E621434E20002A1340 /* DataNode.swift in Sources */,
 				1832E6F121A0D8F900746AF2 /* MapViewController.swift in Sources */,
-				18CF72DD21433EDE002A1340 /* MapUtil.swift in Sources */,
+				1832E70021A172C500746AF2 /* Configurator.swift in Sources */,
 				18CF72DB21433E49002A1340 /* MapConstructor.swift in Sources */,
 				18CF730321461345002A1340 /* AgentCompleted.swift in Sources */,
 				18CF7307214694CF002A1340 /* Cheast.swift in Sources */,
@@ -331,8 +355,8 @@
 				18CF72D32142B312002A1340 /* Map.swift in Sources */,
 				185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */,
 				1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */,
+				1832E70821A1E18A00746AF2 /* AgentAccessMap.swift in Sources */,
 				18CF72D52142D686002A1340 /* Direction.swift in Sources */,
-				1832E6F621A0DD2800746AF2 /* UIStackViewExtension.swift in Sources */,
 				18CF72E021433FA3002A1340 /* ImageType.swift in Sources */,
 				18CF72F02144532E002A1340 /* Bags.swift in Sources */,
 				18CF730D2148B89E002A1340 /* AgentProcess.swift in Sources */,

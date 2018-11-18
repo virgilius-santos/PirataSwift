@@ -94,13 +94,13 @@ class Genetic {
     
     /// com probabilidade de 50% ele muta um gene de um elemento da populacao
     private func mutar() {
-        let fator = randomNumber(100)
-        let member = randomNumber(populacao.count)
-        let gene = randomNumber(populacao[member].count)
+        let fator = Int.randomNumber(100)
+        let member = Int.randomNumber(populacao.count)
+        let gene = Int.randomNumber(populacao[member].count)
         if (fator < 50 ) {
             var value = populacao[member][gene]
             while value == populacao[member][gene] {
-                value = randomNumber(baus)
+                value = Int.randomNumber(baus)
             }
             populacao[member][gene] = value
         }
@@ -110,10 +110,10 @@ class Genetic {
     /// retorna o index do pai com o menor valor
     private func tornetizar() -> Int {
 
-        let linha1 = randomNumber(populacao.count)
+        let linha1 = Int.randomNumber(populacao.count)
         var linha2 = 0
         repeat {
-            linha2 = randomNumber(populacao.count)
+            linha2 = Int.randomNumber(populacao.count)
         } while (linha2 == linha1)
         
         let apt1 = aptidoes[linha1]
@@ -199,7 +199,7 @@ class Genetic {
     private func popular(start: Int = 0) {
         for i in start ..< populacao.count {
             for j in 0 ..< populacao[i].count {
-                populacao[i][j] = randomNumber(baus)
+                populacao[i][j] = Int.randomNumber(baus)
             }
         }
     }

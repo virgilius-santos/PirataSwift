@@ -72,7 +72,7 @@ extension Agent {
                 ? (change ? $0.slot.index.col > $1.slot.index.col : $0.slot.index.col < $1.slot.index.col)
                 : $0.slot.index.row > $1.slot.index.row })
         
-        guard let first = sorted.first, location.index.row < map.matriz.count - 2 else {
+        guard let first = sorted.first, location.index.row < matrizSize - 2 else {
             updateDirection(.right)
             randomSlot(region)
             return
@@ -89,7 +89,7 @@ extension Agent {
                 ? (change ? $0.slot.index.row < $1.slot.index.row : $0.slot.index.row > $1.slot.index.row)
                 : $0.slot.index.col > $1.slot.index.col })
         
-        guard let first = sorted.first, location.index.col < map.matriz.count - 2 else {
+        guard let first = sorted.first, location.index.col < matrizSize - 2 else {
             updateDirection(.up)
             randomSlot(region)
             return
@@ -101,8 +101,8 @@ extension Agent {
     }
     
     func updateDirection(_ position: Position) {
-        direction = (randomNumber(100) < 20)
-            ? Position(rawValue: randomNumber(4))!
+        direction = (Int.randomNumber(100) < 20)
+            ? Position(rawValue: Int.randomNumber(4))!
             : position
     }
 }

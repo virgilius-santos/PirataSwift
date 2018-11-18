@@ -10,39 +10,33 @@ import UIKit
 
 class AgentViewController {
 
-    var Agent: Agent
-    var defaultLocation: Slot
+    weak var Agent: Agent!
     
     private weak var _rootView: UIView!
-    private var _agentImageView: UIImageView!
-    private var _mapVC: MapViewController
+    private weak var _agentImageView: UIImageView!
+    private weak var _mapVC: MapViewController!
 
     init(agent: Agent, mapVC: MapViewController) {
         Agent = agent
         _mapVC = mapVC
-        defaultLocation = agent.location
         
         agent.movementDelegate = self
     }
 
     func insertAgent(inView view: UIView) {
         _rootView = view
-
+        _agentImageView?.layer.removeAllAnimations()
         let agentSlot = Agent.location
-
-        _agentImageView?.removeFromSuperview()
-        _agentImageView = UIImageView(image: agentSlot.type.image)
-        _agentImageView.bounds = _mapVC.frame(fromSlot: agentSlot)
-        _agentImageView.contentMode = .scaleAspectFit
-        _agentImageView.center = _mapVC.center(fromSlot: agentSlot, to: _rootView)
-
-        _rootView.addSubview(_agentImageView)
+        let agentImageView = UIImageView(image: agentSlot.type.image)
+        agentImageView.bounds = _mapVC.frame(fromSlot: agentSlot)
+        agentImageView.contentMode = .scaleAspectFit
+        agentImageView.center = _mapVC.center(fromSlot: agentSlot, to: _rootView)
+        _rootView.addSubview(agentImageView)
+        _agentImageView = agentImageView
         print("\(#function)\n -\(agentSlot)\n")
     }
 
-    func moveToStart() {
-        move(to: defaultLocation) { }
-    }
+
 }
 
 extension AgentViewController: AgentMovementDelegate {

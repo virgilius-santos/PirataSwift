@@ -13,6 +13,7 @@ extension Slot {
         let slotView = SlotView()
         slotView.row = self.index.row
         slotView.col = self.index.col
+        slotView.imageView.image = self.type.image
         return slotView
     }
 

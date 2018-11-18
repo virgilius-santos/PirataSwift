@@ -16,22 +16,22 @@ extension Map {
         sideWallPosition = Position.down
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
-            addSlot(index, type: .muro)
+            matriz.setSlot(index, type: .muro)
         }
         sideWallPosition = Position.left
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
-            addSlot(index, type: .muro)
+            matriz.setSlot(index, type: .muro)
         }
         sideWallPosition = Position.up
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
-            addSlot(index, type: .muro)
+            matriz.setSlot(index, type: .muro)
         }
         sideWallPosition = Position.right
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
-            addSlot(index, type: .muro)
+            matriz.setSlot(index, type: .muro)
         }
         print("\(#function) - completo")
     }
@@ -40,7 +40,7 @@ extension Map {
     func makeDoor() {
         // gera o index da porta no paredao
         let index = Index(col: 1, row: 8)
-        addSlot(index, type: .porta)
+        matriz.setSlot(index, type: .porta)
         print("\(#function) - completo")
     }
     
@@ -68,28 +68,28 @@ extension Map {
         // constroi uma parede com comprimento 10
         for i in 0 ..< 10 {
             index = Direction.vertical.internWall(row: 0, col: 4, indice: i)
-            addSlot(index, type: .muro)
+            matriz.setSlot(index, type: .muro)
         }
 
         // constroi uma parede com comprimento 2
         for i in 0 ..< 2 {
             index = Direction.horizontal.internWall(row: 1, col: 2, indice: i)
-            addSlot(index, type: .muro)
+            matriz.setSlot(index, type: .muro)
         }
         // constroi uma parede com comprimento 2
         for i in 0 ..< 2 {
             index = Direction.horizontal.internWall(row: 5, col: 2, indice: i)
-            addSlot(index, type: .muro)
+            matriz.setSlot(index, type: .muro)
         }
         // constroi uma parede com comprimento 2
         for i in 0 ..< 2 {
             index = Direction.horizontal.internWall(row: 3, col: 1, indice: i)
-            addSlot(index, type: .muro)
+            matriz.setSlot(index, type: .muro)
         }
         // constroi uma parede com comprimento 2
         for i in 0 ..< 2 {
             index = Direction.horizontal.internWall(row: 7, col: 1, indice: i)
-            addSlot(index, type: .muro)
+            matriz.setSlot(index, type: .muro)
         }
 
         print("\(#function) - completo")
@@ -98,10 +98,10 @@ extension Map {
     /// cria os buracos na arena
     func makeHole() {
         
-        addSlot(Index(col: 2, row: 2), type: .buraco)
-        addSlot(Index(col: 2, row: 4), type: .buraco)
-        addSlot(Index(col: 1, row: 5), type: .buraco)
-        addSlot(Index(col: 3, row: 7), type: .buraco)
+        matriz.setSlot(Index(col: 2, row: 2), type: .buraco)
+        matriz.setSlot(Index(col: 2, row: 4), type: .buraco)
+        matriz.setSlot(Index(col: 1, row: 5), type: .buraco)
+        matriz.setSlot(Index(col: 3, row: 7), type: .buraco)
         print("\(#function) - completo")
     }
     
@@ -110,23 +110,23 @@ extension Map {
 
         var index = Index(col: 3, row: 3)
         bags.data[4].index = index
-        addSlot(index, type: .saco)
+        matriz.setSlot(index, type: .saco)
 
         index = Index(col: 2, row: 8)
         bags.data[3].index = index
-        addSlot(index, type: .saco)
+        matriz.setSlot(index, type: .saco)
 
         index = Index(col: 1, row: 6)
         bags.data[2].index = index
-        addSlot(index, type: .saco)
+        matriz.setSlot(index, type: .saco)
 
         index = Index(col: 3, row: 6)
         bags.data[1].index = index
-        addSlot(index, type: .saco)
+        matriz.setSlot(index, type: .saco)
 
         index = Index(col: 3, row: 4)
         bags.data[0].index = index
-        addSlot(index, type: .saco)
+        matriz.setSlot(index, type: .saco)
         
         print("\(#function) - completo")
     }
