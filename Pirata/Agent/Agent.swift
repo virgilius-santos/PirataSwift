@@ -80,35 +80,22 @@ class Agent {
         defaultLocation = _location
     }
 
-    var aux = true
     func start() {
-        if !stopped {
-//            print("Agent started")
-            switchEvent(evt: .start)
-        } else {
-            if aux {
-//            print("Agent REstartado")
-            switchEvent(evt: .start)
-                aux.toggle()
-            }
+        stopped = false
+        DispatchQueue(label: "Agent").async {
+            self.switchEvent(evt: .start)
         }
     }
 
-//    func stop() {
-//        print("Agent stoped\n")
-//        stopped = true
-//    }
-
     func reset() {
-//        print("Agent Resetado\n")
         redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
         moveView(to: defaultLocation)
         location = defaultLocation
         stopped = true
-//        bags.removeAll()
-//        cheasts.removeAll()
-//        door = nil
-//        distributedBags.removeAll()
+        bags.removeAll()
+        cheasts.removeAll()
+        door = nil
+        distributedBags.removeAll()
         next()
     }
 
