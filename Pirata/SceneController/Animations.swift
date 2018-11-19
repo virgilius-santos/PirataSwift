@@ -30,11 +30,11 @@ class Animations {
     }
 
     func processAnimation() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             if self.animations.isEmpty {
                 return
             }
-            usleep(1000)
+//            sleep(1)
             let type = self.animations.removeFirst()
             switch type {
             case .slot(let (f, (p,s))):

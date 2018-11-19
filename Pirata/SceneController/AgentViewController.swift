@@ -74,19 +74,37 @@ extension AgentViewController: AgentMovementDelegate {
     }
 
     func move(to: Slot) {
-//        DispatchQueue.main.async {
-            let center = self._mapVC.center(fromSlot: to, to: self._rootView)
-            let speed = self.Agent.speed
-            self.animations.append(.slot(self.moveAnimation, (center, speed)))
-//        }
+        let group = DispatchGroup()
+        group.enter()
+        var center: CGPoint!
+
+        DispatchQueue.main.async {
+            center = self._mapVC.center(fromSlot: to, to: self._rootView)
+            group.leave()
+        }
+
+        // wait ...
+        group.wait()
+
+        let speed = self.Agent.speed
+        self.animations.append(.slot(self.moveAnimation, (center, speed)))
     }
 
     func jump(to: Slot) {
-//        DispatchQueue.main.async {
-            let center = self._mapVC.center(fromSlot: to, to: self._rootView)
-            let speed = self.Agent.speed/2
-            self.animations.append(.slot(self.moveAnimation, (center, speed)))
-//        }
+        let group = DispatchGroup()
+        group.enter()
+        var center: CGPoint!
+
+        DispatchQueue.main.async {
+            center = self._mapVC.center(fromSlot: to, to: self._rootView)
+            group.leave()
+        }
+
+        // wait ...
+        group.wait()
+
+        let speed = self.Agent.speed/2
+        self.animations.append(.slot(self.moveAnimation, (center, speed)))
     }
 
     func startflip() {

@@ -108,7 +108,11 @@ extension Agent {
         let newSlot = slot(movement: movement)
         if newSlot != nil {
             location = newSlot!
-            moveView(to: newSlot!)
+            if movement.acao == .anda {
+                moveView(to: newSlot!)
+            } else {
+                jumpView(to: newSlot!)
+            }
         }
         self.switchEvent(evt: .analisarPosicaoAtual)
     }
@@ -117,7 +121,11 @@ extension Agent {
         let newSlot = slot(movement: movement)
         if newSlot != nil {
             self.location = newSlot!
-            moveView(to: newSlot!)
+            if movement.acao == .anda {
+                moveView(to: newSlot!)
+            } else {
+                jumpView(to: newSlot!)
+            }
         }
         self.faults += 100
         reset()
