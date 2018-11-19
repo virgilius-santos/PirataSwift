@@ -14,19 +14,49 @@ extension Agent {
         switch evt {
         case .start:
             redeNeural.setPesos()
-            switchEvent(evt: .analisarRegiao)
+            switchEvent(evt: .analisarPosicaoAtual)
+            break
+        case .analisarPosicaoAtual:
+            analisePosicaoAtual()
             break
         case .analisarRegiao:
             analiseRegion()
             break
         case .analisar(let (slot, movement)):
-            analisar(slot: slot, movement: movement)
+            analisarMovimentoEscolhido(slot: slot, movement: movement)
             break
         case .goToSlot(let movement):
             move(movement: movement)
             break
         case .error:
             print("\n--------Erroor--------\n")
+            break
+        }
+    }
+
+    func analisePosicaoAtual() {
+        switch location.type {
+        case .muro:
+            faults += 100
+            stopped = true
+            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
+            next()
+            break
+        case .saco:
+            colectBag(slot: location)
+            break
+        case .porta:
+            isCompleted = true
+            stopped = true
+            break
+        case .buraco:
+            faults += 50
+            stopped = true
+            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
+            next()
+            break
+        default: //todos os outros são "empty"
+            switchEvent(evt: .analisarRegiao)
             break
         }
     }
@@ -53,20 +83,13 @@ extension Agent {
         switchEvent(evt: .analisar(slot, movement))
     }
 
-    func analisar(slot: Slot, movement: Movement) {
+    func analisarMovimentoEscolhido(slot: Slot, movement: Movement) {
         switch slot.type {
         case .muro:
             faults += 100
             stopped = true
             redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
             next()
-            break
-        case .saco:
-            colectBag(slot: slot)
-            break
-        case .porta:
-            isCompleted = true
-            stopped = true
             break
         case .buraco where movement.acao == .anda:
             faults += 50
@@ -85,13 +108,12 @@ extension Agent {
     }
 
     func colectBag(slot: Slot) {
-        if slot.index != location.index {
-            return
+
+        self.coletarBag(slot) { [weak self] (bag) in
+            self?.bags.append(bag)
+            self?.switchEvent(evt: .analisarRegiao)
         }
-        coletarBag(location) { (bag) in
-            self.bags.append(bag)
-            self.switchEvent(evt: .analisarRegiao)
-        }
+
     }
     
     func move(movement: Movement) {
@@ -99,7 +121,7 @@ extension Agent {
             if slot != nil {
                 self?.location = slot!
             }
-            self?.switchEvent(evt: .analisarRegiao)
+            self?.switchEvent(evt: .analisarPosicaoAtual)
         }
     }
 }

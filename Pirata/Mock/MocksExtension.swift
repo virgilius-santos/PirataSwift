@@ -10,23 +10,50 @@ import Foundation
 
 var mock: Bool { return false }
 
-var actions: [Agent.Movement] {
+var bate_parede: [Agent.Movement] {
+    return [
+        (Acao.anda, Direction.left)
+    ]
+}
+
+var pula_parede: [Agent.Movement] {
     return [
         (Acao.anda, Direction.down),
-        (Acao.anda, Direction.right),
-        (Acao.anda, Direction.down),
-        (Acao.pula, Direction.right),
-        (Acao.anda, Direction.down),
-        (Acao.anda, Direction.down),
-        (Acao.pula, Direction.right),
-        (Acao.pula, Direction.down),
-        (Acao.anda, Direction.right),
-        (Acao.anda, Direction.right),
-        (Acao.pula, Direction.down),
-        (Acao.anda, Direction.left),
-        (Acao.pula, Direction.left),
-        (Acao.pula, Direction.left)
+        (Acao.pula, Direction.down)
     ]
+}
+
+var anda_buraco: [Agent.Movement] {
+    return [
+        (Acao.anda, Direction.down),
+        (Acao.anda, Direction.right)
+    ]
+}
+
+var pula_buraco: [Agent.Movement] {
+    return [
+        (Acao.anda, Direction.down),
+        (Acao.pula, Direction.right)
+    ]
+}
+
+var pula_saco_bate_parede: [Agent.Movement] {
+    return [
+        (Acao.anda, Direction.down),
+        (Acao.pula, Direction.right),
+        (Acao.anda, Direction.down),
+        (Acao.pula, Direction.down)
+    ]
+}
+
+var actions: [Agent.Movement] {
+    return [
+        bate_parede
+        , pula_parede
+        , anda_buraco
+        , pula_saco_bate_parede
+        ]
+        .flatMap({$0})
 }
 
 var indice = -1

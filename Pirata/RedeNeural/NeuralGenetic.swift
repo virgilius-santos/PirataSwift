@@ -41,7 +41,7 @@ class NeuralGenetic {
         populacaoSelected += 1
         print("pop: \(populacaoSelected)")
         if (populacaoSelected == populacao.count) {
-            populacaoSelected = 0
+            return []
         }
         return populacao[populacaoSelected]
 
