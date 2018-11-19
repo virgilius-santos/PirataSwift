@@ -72,8 +72,8 @@ class MapViewController {
     /// - um slot que sera a referencia inicial
     /// - acao que indicara a distancia em relacao a referencia
     /// - e a direcao em relacao a referencia
-    func newSlot(fromSlot slot: Slot, acao: Acao, direcao: Direction) -> Slot? {
-        let newSlot = _mapModel.matriz.slot(index: slot.index, acao: acao, direcao: direcao)
+    func newSlot(fromSlot slot: Slot, movement: Agent.Movement) -> Slot? {
+        let newSlot = _mapModel.matriz.slot(index: slot.index, movement: movement)
         return newSlot
     }
 

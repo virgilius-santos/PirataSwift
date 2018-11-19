@@ -73,15 +73,12 @@ class AgentViewController {
 
 extension AgentViewController: AgentMovementDelegate {
 
-    func move(acao: Acao, direcao: Direction) -> Slot? {
+    func slot(movement: Agent.Movement) -> Slot? {
 
-        guard let newSlot = _mapVC.newSlot(fromSlot: Agent.location, acao: acao, direcao: direcao) else {
+        guard let newSlot = _mapVC.newSlot(fromSlot: Agent.location, movement: movement) else {
             return nil
         }
-
-        move(to: newSlot)
         return newSlot
-
     }
 
     func move(to: Slot) {

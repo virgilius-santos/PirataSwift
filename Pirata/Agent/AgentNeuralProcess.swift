@@ -85,17 +85,7 @@ extension Agent {
         switch slot.type {
         case .muro where movement.acao == .pula:
             wrongMove(movement: movement)
-//            faults += 100
-//            stopped = true
-//            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
-//            next()
             break
-//        case .buraco where movement.acao == .anda:
-//            faults += 50
-//            stopped = true
-//            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
-//            next()
-//            break
         case .buraco where movement.acao == .pula:
             holeJumpeds += 1
             switchEvent(evt: .goToSlot(movement))
@@ -115,17 +105,19 @@ extension Agent {
     }
 
     func move(movement: Movement) {
-        let slot = move(acao: movement.acao, direcao: movement.direcao)
-        if slot != nil {
-            self.location = slot!
+        let newSlot = slot(movement: movement)
+        if newSlot != nil {
+            location = newSlot!
+            moveView(to: newSlot!)
         }
         self.switchEvent(evt: .analisarPosicaoAtual)
     }
 
     func wrongMove(movement: Movement) {
-        let slot = move(acao: movement.acao, direcao: movement.direcao)
-        if slot != nil {
-            self.location = slot!
+        let newSlot = slot(movement: movement)
+        if newSlot != nil {
+            self.location = newSlot!
+            moveView(to: newSlot!)
         }
         self.faults += 100
         reset()

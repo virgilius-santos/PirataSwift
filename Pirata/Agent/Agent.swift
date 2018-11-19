@@ -26,11 +26,7 @@ class Agent {
             return _location
         }
         set {
-            if !stopped {
-                _location = newValue
-            } else {
-                _location = defaultLocation
-            }
+            _location = newValue
         }
     }
     private var _location: Slot
@@ -84,25 +80,38 @@ class Agent {
         defaultLocation = _location
     }
 
+    var aux = true
     func start() {
-        print("Agent started\n")
-        stopped = false
-        switchEvent(evt: .start)
+        if !stopped {
+//            print("Agent started")
+            switchEvent(evt: .start)
+        } else {
+            if aux {
+//            print("Agent REstartado")
+            switchEvent(evt: .start)
+                aux.toggle()
+            }
+        }
     }
 
-    func stop() {
-        print("Agent stoped\n")
-        stopped = true
-    }
+//    func stop() {
+//        print("Agent stoped\n")
+//        stopped = true
+//    }
 
     func reset() {
-        bags.removeAll()
-        cheasts.removeAll()
-        door = nil
-        distributedBags.removeAll()
+//        print("Agent Resetado\n")
+        redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
+        moveView(to: defaultLocation)
         location = defaultLocation
+        stopped = true
+//        bags.removeAll()
+//        cheasts.removeAll()
+//        door = nil
+//        distributedBags.removeAll()
+        next()
     }
-    
+
     func colectBag() {
         let bag = coletarBag(location)
         self.bags.append(bag)

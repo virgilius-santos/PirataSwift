@@ -18,8 +18,6 @@ class ViewController: UIViewController {
 
     weak var configurator: Configurator!
 
-    var autoStart = false
-
     weak var animations: Animations!
     
     @IBOutlet weak var qtdBauLabel: UILabel!
@@ -38,7 +36,6 @@ class ViewController: UIViewController {
 
     @IBAction func testAction(_ sender: Any) {
         if playing {
-            AgentVC.Agent.stop()
             configurator.reset()
         } else {
             AgentVC.Agent.start()
@@ -53,45 +50,43 @@ class ViewController: UIViewController {
             self.MapVC.addStackViews(rootStackView: self.rootStackView)
             self.view.layoutIfNeeded()
             self.AgentVC.insertAgent(inView: self.view)
-            if self.autoStart {
-                self.AgentVC.Agent.start()
-            }
         }
     }
 
-
+    
 }
 
 extension ViewController: AgentDelegate {
     func next() {
-        animations.append(.void({
+//        animations.append(.void({
             self.configurator.next()
-        }))
+//            self.animations.processAnimation()
+//        }))
     }
 
     func update(coins: Int = 0, general: Int = 0) {
-        animations.append(.void({
+        DispatchQueue.main.async {
             self.coinsLabel.text = "Moedas Coletadas: \(coins)"
             self.totalLabel.text = "Pontuação Geral: \(general)"
-        }))
+        }
     }
 
     func bauLocalizado(qtd: Int = 0) {
-        animations.append(.void({
+        DispatchQueue.main.async {
             self.qtdBauLabel.text = "\(qtd) bau(s)"
-        }))
+        }
     }
 
     func portaLocalizada(_ status: Bool = false) {
-        animations.append(.void({
+        DispatchQueue.main.async {
             self.doorLocLabel.text = status ? "Sim" : "Não"
-        }))
+        }
     }
 
     func divisaoDeSacolas(_ div: String = String()) {
-        animations.append(.void({
+        DispatchQueue.main.async {
             self.divisaoSacolas.text = div
-        }))
+        }
     }
 
     func growUp(_ slot: Slot) {

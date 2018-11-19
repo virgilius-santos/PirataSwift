@@ -76,12 +76,12 @@ var completa: [Agent.Movement] {
 
 var actions: [Agent.Movement] = {
     return [
-        bate_parede
-        , pula_parede
-        , anda_buraco
-        , pula_saco_bate_parede
-        , pula_porta
-        , completa
+//        bate_parede
+//        , pula_parede
+//        , anda_buraco
+//        , pula_saco_bate_parede
+//        , pula_porta
+        completa
         ]
         .flatMap({$0})
 }()
@@ -89,6 +89,7 @@ var actions: [Agent.Movement] = {
 var nextAction: Agent.Movement? {
     if actions.isEmpty {
         return nil
-}
-    return actions.removeFirst()
+    }
+    let action = actions.removeFirst()
+    return action
 }

@@ -39,7 +39,6 @@ class NeuralGenetic {
     func getPesos() -> [Double] {
 
         populacaoSelected += 1
-        print("pop: \(populacaoSelected)")
         if (populacaoSelected == populacao.count) {
             return []
         }

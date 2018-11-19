@@ -60,16 +60,15 @@ class Configurator {
     }
 
     func reset() {
-//        rootViewController.removeFromParent()
-        agent.stop()
         agent.reset()
-        agent.start()
+//        rootViewController.removeFromParent()
+//        agent.stop()
+//        agent.reset()
 //        start()
     }
 
     func next() {
-        reset()
-        rootViewController.autoStart = true
+        agent.start()
     }
 
 }

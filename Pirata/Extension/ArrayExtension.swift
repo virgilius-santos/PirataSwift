@@ -130,9 +130,9 @@ extension Array where Array == Map.Region {
     }
 
     /// slot abaixo do index
-    func slot(index: Pirata.Index, acao: Acao, direcao: Direction) -> Slot? {
-        let offset = acao == .anda ? 1 : 2
-        switch direcao {
+    func slot(index: Pirata.Index, movement: Agent.Movement) -> Slot? {
+        let offset = movement.acao == .anda ? 1 : 2
+        switch movement.direcao {
         case .left:
             return leftSlot(fromIndex: index, offset: offset)
         case .right:

@@ -14,13 +14,13 @@ protocol AgentMovementDelegate {
     func startflip()
     func stopflip()
     func goOut(direction: Orientation, value: Float)
-    func move(acao:Acao, direcao: Direction) -> Slot?
+    func slot(movement: Agent.Movement) -> Slot?
 }
 
 extension Agent {
 
-    func move(acao:Acao, direcao: Direction) -> Slot? {
-        return self.movementDelegate?.move(acao: acao, direcao: direcao)
+    func slot(movement: Movement) -> Slot? {
+        return self.movementDelegate?.slot(movement: movement)
     }
 
     func moveView(to: Slot) {
