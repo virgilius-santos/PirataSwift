@@ -20,11 +20,10 @@ extension Agent {
             move(acao: acao, direcao: direcao)
             break
         case .analisar(let slot):
-            print("\n--------analisar \(slot)--------\n")
+            analisar(slot: slot)
             break
         case .error:
             print("\n--------Erroor--------\n")
-            
             break
         }
     }
@@ -33,5 +32,20 @@ extension Agent {
         let regionList = getRegion()
         let (acao, direcao) = redeNeural.entrada(slots: regionList)
         switchEvent(evt: .goToSlot(acao, direcao))
+    }
+
+    func analisar(slot: Slot) {
+        switch slot.type {
+        case .muro:
+            break
+        case .saco:
+            break
+        case .porta:
+            break
+        case .buraco:
+            break
+        default: //todos os outros são "empty"
+            break
+        }
     }
 }

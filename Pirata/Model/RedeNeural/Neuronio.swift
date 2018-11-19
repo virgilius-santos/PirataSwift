@@ -10,35 +10,27 @@ import Foundation
 
 class Neuronio {
 
+    var qdtPesos: Int { return 1 + _pesos.count}
+
     private var _pesoZero: Double = 0
     private var _pesos: [Double] = []
-
-    var randomDouble: Double {
-        let gen = ClosedRange<Double>(uncheckedBounds: (-1,1))
-        let val = Double.random(in: gen)
-        return val
-    }
 
     init() {
         randomComplete()
     }
 
     func randomComplete() {
-        _pesoZero = randomDouble
+        _pesoZero = Double.randomDouble
         _pesos.removeAll()
         for _ in 0...3 {
-            _pesos.append(randomDouble)
+            _pesos.append(Double.randomDouble)
         }
     }
 
-    func setPesos(pesos: [Double] = []) {
-        if pesos.count != _pesos.count + 1 {
-            randomComplete()
-        } else {
-            var p = pesos
-            _pesoZero = p.removeFirst()
-            _pesos = p
-        }
+    func setPesos(_ pesos: [Double]) {
+        var p = pesos
+        _pesoZero = p.removeFirst()
+        _pesos = p
     }
 
     func calculaPesos(parametros: [Double]) -> Double {

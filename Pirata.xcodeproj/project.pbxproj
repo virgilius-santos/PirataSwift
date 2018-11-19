@@ -22,6 +22,8 @@
 		1832E70F21A20E8C00746AF2 /* Acao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70E21A20E8C00746AF2 /* Acao.swift */; };
 		1832E71121A20ECD00746AF2 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71021A20ECC00746AF2 /* Orientation.swift */; };
 		1832E71321A218FC00746AF2 /* AgentNeuralProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71221A218FC00746AF2 /* AgentNeuralProcess.swift */; };
+		1832E71521A234BC00746AF2 /* NeuralGenetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71421A234BC00746AF2 /* NeuralGenetic.swift */; };
+		1832E71721A235B700746AF2 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71621A235B700746AF2 /* DoubleExtension.swift */; };
 		185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185580AA2151DBE000473BE6 /* MocksExtension.swift */; };
 		18A8806121429D8500B2E027 /* SlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8806021429D8500B2E027 /* SlotView.xib */; };
 		18A8806421429E2200B2E027 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8806321429E2200B2E027 /* SlotView.swift */; };
@@ -69,6 +71,8 @@
 		1832E70E21A20E8C00746AF2 /* Acao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acao.swift; sourceTree = "<group>"; };
 		1832E71021A20ECC00746AF2 /* Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
 		1832E71221A218FC00746AF2 /* AgentNeuralProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentNeuralProcess.swift; sourceTree = "<group>"; };
+		1832E71421A234BC00746AF2 /* NeuralGenetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralGenetic.swift; sourceTree = "<group>"; };
+		1832E71621A235B700746AF2 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		185580AA2151DBE000473BE6 /* MocksExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksExtension.swift; sourceTree = "<group>"; };
 		18A8806021429D8500B2E027 /* SlotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlotView.xib; sourceTree = "<group>"; };
 		18A8806321429E2200B2E027 /* SlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 				1832E70221A17F0300746AF2 /* IntExtension.swift */,
 				1832E6F721A0E07800746AF2 /* SlotExtension.swift */,
 				1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */,
+				1832E71621A235B700746AF2 /* DoubleExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 			children = (
 				1832E70C21A1FE3C00746AF2 /* RedeNeural.swift */,
 				1832E70A21A1FC7C00746AF2 /* Neuronio.swift */,
+				1832E71421A234BC00746AF2 /* NeuralGenetic.swift */,
 			);
 			path = RedeNeural;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 				18A8806421429E2200B2E027 /* SlotView.swift in Sources */,
 				18D3A4AE2142854A004A1BB0 /* ViewController.swift in Sources */,
 				18CF72D921433367002A1340 /* Bag.swift in Sources */,
+				1832E71721A235B700746AF2 /* DoubleExtension.swift in Sources */,
 				18CF72F5214455B3002A1340 /* Agent.swift in Sources */,
 				18CF72E221433FE2002A1340 /* Index.swift in Sources */,
 				1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */,
@@ -375,6 +382,7 @@
 				1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */,
 				1832E70B21A1FC7C00746AF2 /* Neuronio.swift in Sources */,
 				1832E71321A218FC00746AF2 /* AgentNeuralProcess.swift in Sources */,
+				1832E71521A234BC00746AF2 /* NeuralGenetic.swift in Sources */,
 				1832E70821A1E18A00746AF2 /* AgentAccessMap.swift in Sources */,
 				18CF72E021433FA3002A1340 /* ImageType.swift in Sources */,
 				18CF72F02144532E002A1340 /* Bags.swift in Sources */,
