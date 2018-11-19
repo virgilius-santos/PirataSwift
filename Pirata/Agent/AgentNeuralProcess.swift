@@ -85,18 +85,19 @@ extension Agent {
 
     func analisarMovimentoEscolhido(slot: Slot, movement: Movement) {
         switch slot.type {
-        case .muro:
-            faults += 100
-            stopped = true
-            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
-            next()
+        case .muro where movement.acao == .pula:
+            wrongMove(movement: movement)
+//            faults += 100
+//            stopped = true
+//            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
+//            next()
             break
-        case .buraco where movement.acao == .anda:
-            faults += 50
-            stopped = true
-            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
-            next()
-            break
+//        case .buraco where movement.acao == .anda:
+//            faults += 50
+//            stopped = true
+//            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
+//            next()
+//            break
         case .buraco where movement.acao == .pula:
             holeJumpeds += 1
             switchEvent(evt: .goToSlot(movement))
@@ -115,13 +116,25 @@ extension Agent {
         }
 
     }
-    
+
     func move(movement: Movement) {
         move(acao: movement.acao, direcao: movement.direcao) { [weak self] (slot) in
             if slot != nil {
                 self?.location = slot!
             }
             self?.switchEvent(evt: .analisarPosicaoAtual)
+        }
+    }
+
+    func wrongMove(movement: Movement) {
+        move(acao: movement.acao, direcao: movement.direcao) { (slot) in
+            if slot != nil {
+                self.location = slot!
+            }
+            self.faults += 100
+            self.stopped = true
+            self.redeNeural.genetic.setarAptidoes(apt: Double(self.totalPoints))
+            self.next()
         }
     }
 }
