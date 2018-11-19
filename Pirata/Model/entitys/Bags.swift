@@ -17,9 +17,7 @@ struct Bags {
     
     init(_ qtd: Int) {
         self.qtd = qtd
-        for _ in 0..<qtd {
-            makePackage()
-        }
+         makePackage()
     }
     
     

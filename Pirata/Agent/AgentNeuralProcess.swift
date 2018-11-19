@@ -62,7 +62,7 @@ extension Agent {
             next()
             break
         case .saco:
-            colectBag()
+            colectBag(slot: slot)
             break
         case .porta:
             isCompleted = true
