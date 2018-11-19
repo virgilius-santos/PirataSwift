@@ -10,6 +10,8 @@ import Foundation
 
 class Agent {
 
+    public typealias Movement = (acao: Acao, direcao: Direction)
+
     var redeNeural = RedeNeural()
 
     var defaultLocation: Slot

@@ -68,7 +68,7 @@ class RedeNeural {
         }
     }
 
-    func entrada(slots: [Slot]) -> (acao: Acao, direcao: Direction) {
+    func entrada(slots: [Slot]) -> Agent.Movement {
 
         let input = slots.map({Double($0.type.index)})
 
@@ -91,7 +91,7 @@ class RedeNeural {
         let direcao = Direction(rawValue: direcaoKey!.offset)
 
         print((movimento!, direcao!))
-        return (Acao.anda, Direction.left)//(movimento!, direcao!)
+        return nextAction//(movimento!, direcao!)
 
     }
 }

@@ -19,10 +19,10 @@ struct MapSettings {
     
     init(square: Int) {
         self.square = square
-        self.cheastNumbers = Int(Double(square * square) * 0.04)
-        self.internalWallNumbers = Int(Double(square * square) * 0.04)
+        self.cheastNumbers = 0
+        self.internalWallNumbers = 0
         self.internalWallLenght = 5
-        self.holeNumbers = Int(Double(square * square) * 0.05)
-        self.bagsNumbers = Int(Double(square * square) * 0.04)
+        self.holeNumbers = 4
+        self.bagsNumbers = 5
     }
 }

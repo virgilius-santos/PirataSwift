@@ -10,7 +10,7 @@ import Foundation
 
 var mock: Bool { return false }
 
-var actions: [(Acao, Direction)] {
+var actions: [Agent.Movement] {
     return [
         (Acao.anda, Direction.down),
         (Acao.anda, Direction.right),
@@ -30,7 +30,7 @@ var actions: [(Acao, Direction)] {
 }
 
 var indice = -1
-var nextAction: (Acao, Direction) {
+var nextAction: Agent.Movement {
     indice += 1
     if indice == actions.count {
         indice = 0

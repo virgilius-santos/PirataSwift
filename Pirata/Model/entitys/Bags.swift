@@ -24,12 +24,12 @@ struct Bags {
     
     
     mutating func makePackage() {
-        var padrao = self.defaultValue
-        for i in 1 ... (qtd-1) {
-            let novoValor = mock ? self.defaultValue/qtd : Int.randomNumber(padrao/(qtd-i))
-            data.append(Bag(valor: novoValor))
-            padrao -= novoValor
+        //var padrao = self.defaultValue
+        for _ in 0 ..< (qtd) {
+            //let novoValor = self.defaultValue
+            data.append(Bag(valor: self.defaultValue))
+            //padrao -= novoValor
         }
-        data.append(Bag(valor: padrao))
+        data.append(Bag(valor: self.defaultValue))
     }
 }

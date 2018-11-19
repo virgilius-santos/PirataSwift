@@ -14,13 +14,16 @@ extension Agent {
         switch evt {
         case .start:
             redeNeural.setPesos()
+            switchEvent(evt: .analisarRegiao)
+            break
+        case .analisarRegiao:
             analiseRegion()
             break
-        case .analisar(let (slot, acao)):
-            analisar(slot: slot, acao: acao)
+        case .analisar(let (slot, movement)):
+            analisar(slot: slot, movement: movement)
             break
-        case .goToSlot(let (acao, direcao)):
-            move(acao: acao, direcao: direcao)
+        case .goToSlot(let movement):
+            move(movement: movement)
             break
         case .error:
             print("\n--------Erroor--------\n")
@@ -30,12 +33,12 @@ extension Agent {
 
     func analiseRegion() {
         let regionList = getRegion()
-        let (acao, direcao) = redeNeural.entrada(slots: regionList)
+        let movement = redeNeural.entrada(slots: regionList)
 
         var rowOffset = 0
         var cowOffset = 0
 
-        switch direcao {
+        switch movement.direcao {
         case .left: cowOffset = -1
         case .right: cowOffset = 1
         case .up: rowOffset = -1
@@ -47,10 +50,10 @@ extension Agent {
                 && $0.index.row == location.index.row + rowOffset
         })!
 
-        switchEvent(evt: .analisar(slot, acao))
+        switchEvent(evt: .analisar(slot, movement))
     }
 
-    func analisar(slot: Slot, acao: Acao) {
+    func analisar(slot: Slot, movement: Movement) {
         switch slot.type {
         case .muro:
             faults += 100
@@ -65,26 +68,38 @@ extension Agent {
             isCompleted = true
             stopped = true
             break
-        case .buraco:
+        case .buraco where movement.acao == .anda:
             faults += 50
             stopped = true
             redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
             next()
             break
+        case .buraco where movement.acao == .pula:
+            holeJumpeds += 1
+            switchEvent(evt: .goToSlot(movement))
+            break
         default: //todos os outros são "empty"
-            analiseRegion()
+            switchEvent(evt: .goToSlot(movement))
             break
         }
     }
 
-    func move(acao:Acao, direcao: Direction) {
-        //        move(acao: acao, direcao: direcao) { [weak self] (slot) in
-        //            if slot != nil {
-        //                self?.location = slot!
-        //                self?.switchEvent(evt: .analisar(slot!))
-        //            } else {
-        //                self?.switchEvent(evt: .start)
-        //            }
-        //        }
+    func colectBag(slot: Slot) {
+        if slot.index != location.index {
+            return
+        }
+        coletarBag(location) { (bag) in
+            self.bags.append(bag)
+            self.switchEvent(evt: .analisarRegiao)
+        }
+    }
+    
+    func move(movement: Movement) {
+        move(acao: movement.acao, direcao: movement.direcao) { [weak self] (slot) in
+            if slot != nil {
+                self?.location = slot!
+            }
+            self?.switchEvent(evt: .analisarRegiao)
+        }
     }
 }
