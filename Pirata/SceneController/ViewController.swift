@@ -18,6 +18,8 @@ class ViewController: UIViewController {
 
     weak var configurator: Configurator!
 
+    var autoStart = false
+
     @IBOutlet weak var qtdBauLabel: UILabel!
     
     @IBOutlet weak var doorLocLabel: UILabel!
@@ -49,12 +51,20 @@ class ViewController: UIViewController {
             self.MapVC.addStackViews(rootStackView: self.rootStackView)
             self.view.layoutIfNeeded()
             self.AgentVC.insertAgent(inView: self.view)
+            if self.autoStart {
+                self.AgentVC.Agent.start()
+            }
         }
     }
+
 
 }
 
 extension ViewController: AgentDelegate {
+    func next() {
+        configurator.next()
+    }
+
     func update(coins: Int = 0, general: Int = 0) {
         coinsLabel.text = "Moedas Coletadas: \(coins)"
         totalLabel.text = "Pontuação Geral: \(general)"

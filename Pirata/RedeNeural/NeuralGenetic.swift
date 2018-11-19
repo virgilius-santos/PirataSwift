@@ -16,18 +16,53 @@ class NeuralGenetic {
 
     var populacaoSelected = -1
 
+
+    /// inicia os array com a qtd de pessos passada
+    /// para cada item da matrix gera um peso
+    /// com uma distribuição aleatória
+    func popular(pesos: Int) {
+        let qtd: Int = 10
+        populacao
+            = [[Double]](repeating: [Double](repeating: 0, count: pesos), count: qtd)
+        popIntermediaria
+            = [[Double]](repeating: [Double](repeating: 0, count: pesos), count: qtd)
+        aptidoes
+            = [Double](repeating: -1000, count: qtd)
+
+        for i in 0 ..< qtd {
+            for j in 0 ..< pesos {
+                populacao[i][j] = (Double.randomDouble)
+            }
+        }
+    }
+
     func getPesos() -> [Double] {
+
         populacaoSelected += 1
+        print("pop: \(populacaoSelected)")
+        if (populacaoSelected == populacao.count) {
+            populacaoSelected = 0
+        }
         return populacao[populacaoSelected]
+
     }
 
     func setarAptidoes(apt: Double) {
         aptidoes[populacaoSelected] = apt
+        if populacaoSelected+1 == aptidoes.count {
+            processar()
+        }
+    }
 
+    private func processar() {
+        populacaoSelected = -1
+        elitizar()
+        gerar()
+        mutar()
     }
 
     /// com probabilidade de 50% ele muta um gene de um elemento da populacao
-    func mutar() {
+    private func mutar() {
         let fator = Int.randomNumber(100)
         let member = Int.randomNumber(populacao.count)
         let gene = Int.randomNumber(populacao[member].count)
@@ -40,9 +75,9 @@ class NeuralGenetic {
         }
     }
 
-    /// gera um array de possiveis pais
+    /// gera dois possiveis pais
     /// retorna o index do pai com o menor valor
-    func tornetizar() -> Int {
+    private func tornetizar() -> Int {
 
         let linha1 = Int.randomNumber(populacao.count)
         var linha2 = 0
@@ -56,7 +91,7 @@ class NeuralGenetic {
         return (apt1 < apt2) ? linha1 : linha2
     }
 
-    func gerar() {
+    private func gerar() {
 
         // funcao similiar a for (int i=0, i<16; i+=4)
         // para avançar de quatro em quatro nas linhas da populacao
@@ -81,7 +116,7 @@ class NeuralGenetic {
         populacao = popIntermediaria
     }
 
-    func elitizar(){
+    private func elitizar() {
 
         // set (chave, valor) ordenada para pegar o index do menor valor
         let setSorted = aptidoes
@@ -93,19 +128,6 @@ class NeuralGenetic {
         /// seta o menor valor ao indice zero da populacao intermediarias
         if let (index, _) = setSorted.first {
             popIntermediaria[0] = populacao[index]
-        }
-    }
-
-    /// para cada item da matrix gera um bau
-    /// com uma distribuição aleatória
-    func popular(pesos: Int) {
-        let qtd: Int = 10
-        populacao = [[Double]](repeating: [Double](repeating: 0, count: pesos), count: qtd)
-        aptidoes = [Double](repeating: -1000, count: qtd)
-        for i in 0 ..< qtd {
-            for j in 0 ..< pesos {
-                populacao[i][j] = (Double.randomDouble)
-            }
         }
     }
 }

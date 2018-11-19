@@ -33,7 +33,7 @@ class AgentViewController {
         agentImageView.center = _mapVC.center(fromSlot: agentSlot, to: _rootView)
         _rootView.addSubview(agentImageView)
         _agentImageView = agentImageView
-        print("\(#function)\n -\(agentSlot)\n")
+//        print("\(#function)\n -\(agentSlot)\n")
     }
 
 

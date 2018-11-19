@@ -24,6 +24,6 @@ enum EventType {
 enum EventNeuralType {
     case start
     case goToSlot(Acao, Direction)
-    case analisar(Slot)
+    case analisar(Slot, Acao)
     case error
 }

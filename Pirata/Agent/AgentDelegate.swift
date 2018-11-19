@@ -15,14 +15,21 @@ protocol AgentDelegate {
     func portaLocalizada(_ status: Bool)
     func divisaoDeSacolas(_ div: String)
     func getBag(slot: Slot, speed: Double, completion: @escaping(Bag)->())
+    func next()
 }
 
 extension Agent {
+
+    func next() {
+        DispatchQueue.main.async {
+            self.delegate?.next()
+        }
+    }
     
-    func updateValues(_ solved: Bool = false) {
+    func updateValues() {
         DispatchQueue.main.async {
             let coins = self.totalCoins
-            let general = coins + self.holeJumpeds * 30 + (solved ? 330 : 0)
+            let general = self.totalPoints
             self.delegate?.update(coins: coins, general: general)
         }
     }

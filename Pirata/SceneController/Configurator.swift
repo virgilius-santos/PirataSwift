@@ -57,4 +57,10 @@ class Configurator {
         agent.reset()
         start()
     }
+
+    func next() {
+        reset()
+        rootViewController.autoStart = true
+    }
+
 }

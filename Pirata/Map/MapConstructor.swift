@@ -33,7 +33,7 @@ extension Map {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             matriz.setSlot(index, type: .muro)
         }
-        print("\(#function) - completo")
+//        print("\(#function) - completo")
     }
     
     /// gera a porta que fica no muro lateral
@@ -41,7 +41,7 @@ extension Map {
         // gera o index da porta no paredao
         let index = Index(col: 1, row: 8)
         matriz.setSlot(index, type: .porta)
-        print("\(#function) - completo")
+//        print("\(#function) - completo")
     }
     
     /// cria os baus na arena
@@ -92,7 +92,7 @@ extension Map {
             matriz.setSlot(index, type: .muro)
         }
 
-        print("\(#function) - completo")
+//        print("\(#function) - completo")
     }
     
     /// cria os buracos na arena
@@ -102,7 +102,7 @@ extension Map {
         matriz.setSlot(Index(col: 2, row: 4), type: .buraco)
         matriz.setSlot(Index(col: 1, row: 5), type: .buraco)
         matriz.setSlot(Index(col: 3, row: 7), type: .buraco)
-        print("\(#function) - completo")
+//        print("\(#function) - completo")
     }
     
     /// coloca os sacos de din din na arena
@@ -128,6 +128,6 @@ extension Map {
         bags.data[0].index = index
         matriz.setSlot(index, type: .saco)
         
-        print("\(#function) - completo")
+//        print("\(#function) - completo")
     }
 }

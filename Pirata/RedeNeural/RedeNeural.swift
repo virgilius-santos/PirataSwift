@@ -45,6 +45,11 @@ class RedeNeural {
 
     func setPesos() {
         let pesos = genetic.getPesos()
+
+        if pesos.isEmpty {
+            return
+        }
+
         var start = 0
         var end = 0
 
@@ -85,6 +90,8 @@ class RedeNeural {
         let movimento = Acao(rawValue: movimentoKey!.offset)
         let direcao = Direction(rawValue: direcaoKey!.offset)
 
-        return (movimento!, direcao!)
+        print((movimento!, direcao!))
+        return (Acao.anda, Direction.left)//(movimento!, direcao!)
+
     }
 }

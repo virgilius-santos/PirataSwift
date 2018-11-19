@@ -16,11 +16,11 @@ extension Agent {
             redeNeural.setPesos()
             analiseRegion()
             break
+        case .analisar(let (slot, acao)):
+            analisar(slot: slot, acao: acao)
+            break
         case .goToSlot(let (acao, direcao)):
             move(acao: acao, direcao: direcao)
-            break
-        case .analisar(let slot):
-            analisar(slot: slot)
             break
         case .error:
             print("\n--------Erroor--------\n")
@@ -31,21 +31,60 @@ extension Agent {
     func analiseRegion() {
         let regionList = getRegion()
         let (acao, direcao) = redeNeural.entrada(slots: regionList)
-        switchEvent(evt: .goToSlot(acao, direcao))
+
+        var rowOffset = 0
+        var cowOffset = 0
+
+        switch direcao {
+        case .left: cowOffset = -1
+        case .right: cowOffset = 1
+        case .up: rowOffset = -1
+        case .down: rowOffset = 1
+        }
+
+        let slot = regionList.first(where: {
+            $0.index.col == location.index.col + cowOffset
+                && $0.index.row == location.index.row + rowOffset
+        })!
+
+        switchEvent(evt: .analisar(slot, acao))
     }
 
-    func analisar(slot: Slot) {
+    func analisar(slot: Slot, acao: Acao) {
         switch slot.type {
         case .muro:
+            faults += 100
+            stopped = true
+            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
+            next()
             break
         case .saco:
+            colectBag()
             break
         case .porta:
+            isCompleted = true
+            stopped = true
             break
         case .buraco:
+            faults += 50
+            stopped = true
+            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
+            next()
             break
         default: //todos os outros são "empty"
+            analiseRegion()
             break
         }
+    }
+
+    func move(acao:Acao, direcao: Direction) {
+        //        move(acao: acao, direcao: direcao) { [weak self] (slot) in
+        //            if slot != nil {
+        //                self?.location = slot!
+        //                self?.switchEvent(evt: .analisar(slot!))
+        //            } else {
+        //                self?.switchEvent(evt: .start)
+        //            }
+        //        }
     }
 }

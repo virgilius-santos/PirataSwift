@@ -37,13 +37,14 @@ extension Agent {
     }
 
     func checkIfisCompleted() {
-        if map.bags.totalSet * 10 == totalCoins {
-            if self.isCompleted != true {
-                self.isCompleted = true
-            }
-            self.switchEvent(.completed)
-        } else {
-            self.switchEvent(.start)
-        }
+        switchEvent(evt: .start)
+//        if map.bags.totalSet * 10 == totalCoins {
+//            if self.isCompleted != true {
+//                self.isCompleted = true
+//            }
+//            self.switchEvent(.completed)
+//        } else {
+//            self.switchEvent(.start)
+//        }
     }
 }

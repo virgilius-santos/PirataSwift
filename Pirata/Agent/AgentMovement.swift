@@ -10,17 +10,6 @@ import Foundation
 
 extension Agent {
 
-    func move(acao:Acao, direcao: Direction) {
-        move(acao: acao, direcao: direcao) { [weak self] (slot) in
-            if slot != nil {
-                self?.location = slot!
-                self?.switchEvent(evt: .analisar(slot!))
-            } else {
-                self?.switchEvent(evt: .start)
-            }
-        }
-    }
-    
     func move(route: Map.Route, index: Int = 0) {
         let next = index + 1
         let to = route[next]
@@ -74,7 +63,7 @@ extension Agent {
         let bagCompare = bagValues.reduce(true, {$0 && ($1 == bagValues[0])})
 
         if bagCompare {
-            self.updateValues(true)
+            self.updateValues()
             let direction: Orientation = (sideWallPosition == .left || sideWallPosition == .right)
                 ? .vertical : .horizontal
             let value: Float = (sideWallPosition == .left || sideWallPosition == .up)

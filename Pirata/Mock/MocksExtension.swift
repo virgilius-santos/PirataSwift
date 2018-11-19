@@ -10,7 +10,36 @@ import Foundation
 
 var mock: Bool { return false }
 
+var actions: [(Acao, Direction)] {
+    return [
+        (Acao.anda, Direction.down),
+        (Acao.anda, Direction.right),
+        (Acao.anda, Direction.down),
+        (Acao.pula, Direction.right),
+        (Acao.anda, Direction.down),
+        (Acao.anda, Direction.down),
+        (Acao.pula, Direction.right),
+        (Acao.pula, Direction.down),
+        (Acao.anda, Direction.right),
+        (Acao.anda, Direction.right),
+        (Acao.pula, Direction.down),
+        (Acao.anda, Direction.left),
+        (Acao.pula, Direction.left),
+        (Acao.pula, Direction.left)
+    ]
+}
+
+var indice = -1
+var nextAction: (Acao, Direction) {
+    indice += 1
+    if indice == actions.count {
+        indice = 0
+    }
+    return actions[indice]
+}
 extension Map {
+
+
     
     var mockCheast: [Int] { return [9,8,7,6,5,4,3,2]}
     
