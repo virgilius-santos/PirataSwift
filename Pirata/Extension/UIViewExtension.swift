@@ -63,11 +63,5 @@ extension UIView {
             self.center = center
         }) { _ in completion() }
     }
-
-    func jumpAnimation(center: CGPoint, speed: Double, completion: @escaping()->()) {
-        UIView.animate(withDuration: speed, animations: {
-            self.center = center
-        }) { _ in completion() }
-    }
     
 }

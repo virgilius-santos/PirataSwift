@@ -38,16 +38,8 @@ class AgentViewController {
 //        print("\(#function)\n -\(agentSlot)\n")
     }
 
-    private func moveAnimation(to: Slot) {
-        let center = _mapVC.center(fromSlot: to, to: _rootView)
-        _agentImageView.moveAnimation(center: center, speed: Agent.speed) {
-            self.animations.processAnimation()
-        }
-    }
-
-    private func jumpAnimation(to: Slot) {
-        let center = _mapVC.center(fromSlot: to, to: _rootView)
-        _agentImageView.jumpAnimation(center: center, speed: Agent.speed/2) {
+    private func moveAnimation(center: CGPoint, speed: Double) {
+        _agentImageView.moveAnimation(center: center, speed: speed) {
             self.animations.processAnimation()
         }
     }
@@ -82,11 +74,19 @@ extension AgentViewController: AgentMovementDelegate {
     }
 
     func move(to: Slot) {
-        animations.append(.slot(moveAnimation, to))
+//        DispatchQueue.main.async {
+            let center = self._mapVC.center(fromSlot: to, to: self._rootView)
+            let speed = self.Agent.speed
+            self.animations.append(.slot(self.moveAnimation, (center, speed)))
+//        }
     }
 
     func jump(to: Slot) {
-        animations.append(.slot(jumpAnimation, to))
+//        DispatchQueue.main.async {
+            let center = self._mapVC.center(fromSlot: to, to: self._rootView)
+            let speed = self.Agent.speed/2
+            self.animations.append(.slot(self.moveAnimation, (center, speed)))
+//        }
     }
 
     func startflip() {

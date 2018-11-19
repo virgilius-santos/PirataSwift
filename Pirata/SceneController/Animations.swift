@@ -6,12 +6,12 @@
 //  Copyright © 2018 Virgilius Santos. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Animations {
 
     enum AnimationType {
-        case slot ((Slot)->(), Slot)
+        case slot ((CGPoint, Double)->(), (CGPoint, Double))
         case void (()->())
         case orientation ((Orientation, Float)->(),(Orientation, Float))
         case slotSpeed ((Slot, Double)->(),(Slot, Double))
@@ -34,11 +34,11 @@ class Animations {
             if self.animations.isEmpty {
                 return
             }
-
+            usleep(1000)
             let type = self.animations.removeFirst()
             switch type {
-            case .slot(let (f, p)):
-                f(p)
+            case .slot(let (f, (p,s))):
+                f(p,s)
             case .void(let void):
                 void()
             case .orientation(let (f, (o,v))):
