@@ -68,6 +68,10 @@ class MapViewController {
         return center
     }
 
+    /// retorna um novo slot a partir de :
+    /// - um slot que sera a referencia inicial
+    /// - acao que indicara a distancia em relacao a referencia
+    /// - e a direcao em relacao a referencia
     func newSlot(fromSlot slot: Slot, acao: Acao, direcao: Direction) -> Slot? {
         let newSlot = _mapModel.matriz.slot(index: slot.index, acao: acao, direcao: direcao)
         return newSlot
@@ -83,6 +87,11 @@ extension MapViewController {
         return bag
     }
 
+    /// faz um slot crescer
+    func growUp(slot: Slot, speed: Double) {
+        animations.append(.slotSpeed(growUpAnimation, (slot,speed)))
+    }
+
     /// some com um slot
     private func getBagAnimation(slot: Slot, speed: Double) {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
@@ -92,13 +101,10 @@ extension MapViewController {
     }
 
     /// faz um slot crescer
-    func growUp(slot: Slot, speed: Double) {
-        animations.append(.slotSpeed(growUpAnimation, (slot,speed)))
-    }
-
-    /// faz um slot crescer
     private func growUpAnimation(slot: Slot, speed: Double) {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-        slotView.imageView.growUp(speed: speed)
+        slotView.imageView.growUp(speed: speed) { [weak self] in
+            self?.animations.processAnimation()
+        }
     }
 }

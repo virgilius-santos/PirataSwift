@@ -74,7 +74,7 @@ var completa: [Agent.Movement] {
         ].flatMap({$0})
 }
 
-var actions: [Agent.Movement] {
+var actions: [Agent.Movement] = {
     return [
         bate_parede
         , pula_parede
@@ -84,4 +84,11 @@ var actions: [Agent.Movement] {
         , completa
         ]
         .flatMap({$0})
+}()
+
+var nextAction: Agent.Movement? {
+    if actions.isEmpty {
+        return nil
+}
+    return actions.removeFirst()
 }

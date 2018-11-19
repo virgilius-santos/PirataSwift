@@ -38,23 +38,18 @@ extension Agent {
         switch location.type {
         case .muro:
             faults += 100
-            stopped = true
-            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
-            next()
+            reset()
             break
         case .saco:
             colectBag(slot: location)
             break
         case .porta:
             isCompleted = true
-            stopped = true
-            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
+            reset()
             break
         case .buraco:
             faults += 50
-            stopped = true
-            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
-            next()
+            reset()
             break
         default: //todos os outros são "empty"
             switchEvent(evt: .analisarRegiao)
@@ -64,7 +59,9 @@ extension Agent {
 
     func analiseRegion() {
         let regionList = getRegion()
-        let movement = redeNeural.entrada(slots: regionList)
+        guard let movement = redeNeural.entrada(slots: regionList) else {
+            return
+        }
 
         var rowOffset = 0
         var cowOffset = 0
@@ -131,8 +128,6 @@ extension Agent {
             self.location = slot!
         }
         self.faults += 100
-        self.stopped = true
-        self.redeNeural.genetic.setarAptidoes(apt: Double(self.totalPoints))
-        self.next()
+        reset()
     }
 }

@@ -37,10 +37,14 @@ class Animations {
 
             let type = self.animations.removeFirst()
             switch type {
-            case .slot(let (f, p)): f(p)
-            case .void(let void): void()
-            case .orientation(let (f, (o,v))): f(o,v)
-            case .slotSpeed(let (f, (s,v))): f(s,v)
+            case .slot(let (f, p)):
+                f(p)
+            case .void(let void):
+                void()
+            case .orientation(let (f, (o,v))):
+                f(o,v)
+            case .slotSpeed(let (f, (s,v))):
+                f(s,v)
             }
         }
     }

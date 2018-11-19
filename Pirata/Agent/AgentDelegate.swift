@@ -21,23 +21,14 @@ protocol AgentDelegate {
 extension Agent {
 
     func next() {
-        DispatchQueue.main.async {
-            self.delegate?.next()
-        }
+        self.delegate?.next()
     }
     
     func updateValues() {
-        DispatchQueue.main.async {
-            let coins = self.totalCoins
-            let general = self.totalPoints
-            self.delegate?.update(coins: coins, general: general)
-        }
+        let coins = self.totalCoins
+        let general = self.totalPoints
+        self.delegate?.update(coins: coins, general: general)
     }
-    
-    func growUp(_ slot: Slot) {
-        self.delegate?.growUp(slot)
-    }
-    
     
     func bauLocalizado() {
         self.delegate?.bauLocalizado(qtd: self.cheasts.count)
@@ -49,6 +40,10 @@ extension Agent {
     
     func divisaoDeSacolas(_ div: String) {
         self.delegate?.divisaoDeSacolas(div)
+    }
+
+    func growUp(_ slot: Slot) {
+        self.delegate?.growUp(slot)
     }
 
     func coletarBag(_ slot: Slot) -> Bag {

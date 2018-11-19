@@ -54,15 +54,19 @@ class AgentViewController {
 
     private func startflipAnimation() {
         _agentImageView.flip(speed: Agent.speed*2)
+        self.animations.processAnimation()
     }
 
     private func stopflipAnimation() {
-        _agentImageView.layer.removeAllAnimations()
+        #warning("implmentar stopflipAnimation()")
+        print("error \(#function)")
+        self.animations.processAnimation()
     }
 
     private func goOutAnimation(direction: Orientation, value: Float) {
-        _agentImageView.goOut(
-            direction: direction, value: CGFloat(value), speed: Agent.speed)
+        _agentImageView.goOut(direction: direction, value: CGFloat(value), speed: Agent.speed) {
+            self.animations.processAnimation()
+        }
     }
 
 }

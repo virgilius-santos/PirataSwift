@@ -20,7 +20,7 @@ extension UIView {
         }
     }
 
-    func growUp(speed: Double) {
+    func growUp(speed: Double, completion: @escaping()->()) {
         UIView.animate(withDuration: speed, animations: { [weak self] in
             self?.frame.size.height *= 1.2
             self?.frame.size.width *= 1.2
@@ -28,7 +28,11 @@ extension UIView {
             UIView.animate(withDuration: speed, animations: { [weak self] in
                 self?.frame.size.height *= 0.8
                 self?.frame.size.width *= 0.8
-            })
+            }) { [weak self] (check) in
+                if self != nil {
+                    completion()
+                }
+            }
         }
     }
 
@@ -42,35 +46,28 @@ extension UIView {
         }
     }
 
-    func goOut(direction: Orientation, value: CGFloat, speed: Double) {
+    func goOut(direction: Orientation, value: CGFloat, speed: Double, completion: @escaping()->()) {
         UIView.animate(withDuration: speed, animations: { [weak self] in
             if direction == .vertical {
                 self?.center.x += value
             } else {
                 self?.center.y += value
             }
-
-        })
+        }) { (_) in
+            completion()
+        }
     }
 
     func moveAnimation(center: CGPoint, speed: Double, completion: @escaping()->()) {
-        UIView.animate(withDuration: speed, animations: { [weak self] in
-            self?.center = center
-        }) { [weak self] (check) in
-            if self != nil {
-                completion()
-            }
-        }
+        UIView.animate(withDuration: speed, animations: {
+            self.center = center
+        }) { _ in completion() }
     }
 
     func jumpAnimation(center: CGPoint, speed: Double, completion: @escaping()->()) {
-        UIView.animate(withDuration: speed, animations: { [weak self] in
-            self?.center = center
-        }) { [weak self] (check) in
-            if self != nil {
-                completion()
-            }
-        }
+        UIView.animate(withDuration: speed, animations: {
+            self.center = center
+        }) { _ in completion() }
     }
     
 }

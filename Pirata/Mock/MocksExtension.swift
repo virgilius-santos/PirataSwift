@@ -10,15 +10,6 @@ import Foundation
 
 var mock: Bool { return false }
 
-
-var indice = -1
-var nextAction: Agent.Movement {
-    indice += 1
-    if indice == actions.count {
-        indice = 0
-    }
-    return actions[indice]
-}
 extension Map {
 
 
