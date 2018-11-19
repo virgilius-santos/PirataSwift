@@ -15,11 +15,10 @@ extension Agent {
         startflip()
         genetic.start { (distributedBags) in
             self.divisaoDeSacolas("\(distributedBags.map({$0.reduce(0, {$0+$1.valor})}))")
-            self.stopflip {
-                print("\(#function) - completed\n")
-                self.distributedBags = distributedBags
-                self.switchEvent(.distributedBags)
-            }
+            self.stopflip()
+            print("\(#function) - completed\n")
+            self.distributedBags = distributedBags
+            self.switchEvent(.distributedBags)
         }
     }
     

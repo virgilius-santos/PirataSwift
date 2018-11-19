@@ -13,10 +13,9 @@ extension Agent {
     func move(route: Map.Route, index: Int = 0) {
         let next = index + 1
         let to = route[next]
+        self.moveView(to: to)
+        self.processMove(to: to, next: next, route: route)
 
-        self.moveView(to: to) { [weak self] in
-            self?.processMove(to: to, next: next, route: route)
-        }
     }
 
     func holeAction(route: Map.Route, index: Int) {
@@ -48,10 +47,10 @@ extension Agent {
             return
         }
 
-        jumpView(to: to) { [weak self] in
-            self?.holeJumpeds += 1
-            self?.processMove(to: to, next: last, route: route)
-        }
+        jumpView(to: to)
+        holeJumpeds += 1
+        processMove(to: to, next: last, route: route)
+
     }
 
     func moveOut() {

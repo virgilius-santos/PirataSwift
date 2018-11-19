@@ -14,7 +14,7 @@ protocol AgentDelegate {
     func bauLocalizado(qtd: Int)
     func portaLocalizada(_ status: Bool)
     func divisaoDeSacolas(_ div: String)
-    func getBag(slot: Slot, speed: Double, completion: @escaping(Bag)->())
+    func getBag(slot: Slot, speed: Double) -> Bag
     func next()
 }
 
@@ -35,33 +35,23 @@ extension Agent {
     }
     
     func growUp(_ slot: Slot) {
-        DispatchQueue.main.async {
-            self.delegate?.growUp(slot)
-        }
+        self.delegate?.growUp(slot)
     }
     
     
     func bauLocalizado() {
-        DispatchQueue.main.async {
-            self.delegate?.bauLocalizado(qtd: self.cheasts.count)
-        }
+        self.delegate?.bauLocalizado(qtd: self.cheasts.count)
     }
     
     func portaLocalizada() {
-        DispatchQueue.main.async {
-            self.delegate?.portaLocalizada(true)
-        }
+        self.delegate?.portaLocalizada(true)
     }
     
     func divisaoDeSacolas(_ div: String) {
-        DispatchQueue.main.async {
-            self.delegate?.divisaoDeSacolas(div)
-        }
+        self.delegate?.divisaoDeSacolas(div)
     }
 
-    func coletarBag(_ slot: Slot, completion: @escaping(Bag)->()) {
-        DispatchQueue.main.async {
-            self.delegate?.getBag(slot: slot, speed: self.speed, completion: completion)
-        }
+    func coletarBag(_ slot: Slot) -> Bag {
+        return delegate!.getBag(slot: slot, speed: self.speed)
     }
 }

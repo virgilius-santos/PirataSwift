@@ -9,50 +9,38 @@
 import Foundation
 
 protocol AgentMovementDelegate {
-    func move(to: Slot, completion: @escaping()->())
-    func jump(to: Slot, completion: @escaping()->())
+    func move(to: Slot)
+    func jump(to: Slot)
     func startflip()
-    func stopflip(completion: @escaping()->())
+    func stopflip()
     func goOut(direction: Orientation, value: Float)
-    func move(acao:Acao, direcao: Direction, completion: @escaping(Slot?)->())
+    func move(acao:Acao, direcao: Direction) -> Slot?
 }
 
 extension Agent {
 
-    func move(acao:Acao, direcao: Direction, completion: @escaping(Slot?)->()) {
-        DispatchQueue.main.async {
-            self.movementDelegate?.move(acao: acao, direcao: direcao, completion: completion)
-        }
+    func move(acao:Acao, direcao: Direction) -> Slot? {
+        return self.movementDelegate?.move(acao: acao, direcao: direcao)
     }
 
-    func moveView(to: Slot, completion: @escaping()->()) {
-        DispatchQueue.main.async {
-            self.movementDelegate?.move(to: to, completion: completion)
-        }
+    func moveView(to: Slot) {
+        self.movementDelegate?.move(to: to)
     }
 
-    func jumpView(to: Slot, completion: @escaping()->()) {
-        DispatchQueue.main.async {
-            self.movementDelegate?.jump(to: to, completion: completion)
-        }
+    func jumpView(to: Slot) {
+        self.movementDelegate?.jump(to: to)
     }
 
     func startflip() {
-        DispatchQueue.main.async {
-            self.movementDelegate?.startflip()
-        }
+        self.movementDelegate?.startflip()
     }
 
-    func stopflip(completion: @escaping()->()) {
-        DispatchQueue.main.async {
-            self.movementDelegate?.stopflip(completion:completion)
-        }
+    func stopflip() {
+        self.movementDelegate?.stopflip()
     }
 
     func goOut(direction: Orientation, value: Float) {
-        DispatchQueue.main.async {
-            self.movementDelegate?.goOut(direction: direction, value: value)
-        }
+        self.movementDelegate?.goOut(direction: direction, value: value)
     }
 
 }

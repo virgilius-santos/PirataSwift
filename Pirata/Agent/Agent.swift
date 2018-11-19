@@ -104,10 +104,9 @@ class Agent {
     }
     
     func colectBag() {
-        coletarBag(location) { (bag) in
-            self.bags.append(bag)
-            self.checkIfisCompleted()
-        }
+        let bag = coletarBag(location)
+        self.bags.append(bag)
+        self.checkIfisCompleted()
     }
     
 }

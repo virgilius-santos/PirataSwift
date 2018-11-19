@@ -11,6 +11,8 @@ import UIKit
 class AgentViewController {
 
     weak var Agent: Agent!
+
+    weak var animations: Animations!
     
     private weak var _rootView: UIView!
     private weak var _agentImageView: UIImageView!
@@ -36,49 +38,66 @@ class AgentViewController {
 //        print("\(#function)\n -\(agentSlot)\n")
     }
 
+    private func moveAnimation(to: Slot) {
+        let center = _mapVC.center(fromSlot: to, to: _rootView)
+        _agentImageView.moveAnimation(center: center, speed: Agent.speed) {
+            self.animations.processAnimation()
+        }
+    }
+
+    private func jumpAnimation(to: Slot) {
+        let center = _mapVC.center(fromSlot: to, to: _rootView)
+        _agentImageView.jumpAnimation(center: center, speed: Agent.speed/2) {
+            self.animations.processAnimation()
+        }
+    }
+
+    private func startflipAnimation() {
+        _agentImageView.flip(speed: Agent.speed*2)
+    }
+
+    private func stopflipAnimation() {
+        _agentImageView.layer.removeAllAnimations()
+    }
+
+    private func goOutAnimation(direction: Orientation, value: Float) {
+        _agentImageView.goOut(
+            direction: direction, value: CGFloat(value), speed: Agent.speed)
+    }
 
 }
 
 extension AgentViewController: AgentMovementDelegate {
 
-    func move(acao: Acao, direcao: Direction, completion: @escaping (Slot?) -> ()) {
+    func move(acao: Acao, direcao: Direction) -> Slot? {
 
         guard let newSlot = _mapVC.newSlot(fromSlot: Agent.location, acao: acao, direcao: direcao) else {
-            completion(nil)
-            return
+            return nil
         }
 
-        let center = _mapVC.center(fromSlot: newSlot, to: _rootView)
-        _agentImageView.moveAnimation(center: center, speed: Agent.speed) {
-            completion(newSlot)
-        }
+        move(to: newSlot)
+        return newSlot
 
     }
 
-    func move(to: Slot, completion: @escaping () -> ()) {
-        let center = _mapVC.center(fromSlot: to, to: _rootView)
-        _agentImageView.moveAnimation(
-            center: center, speed: Agent.speed, completion: completion)
+    func move(to: Slot) {
+        animations.append(.slot(moveAnimation, to))
     }
 
-    func jump(to: Slot, completion: @escaping () -> ()) {
-        let center = _mapVC.center(fromSlot: to, to: _rootView)
-        _agentImageView.jumpAnimation(
-            center: center, speed: Agent.speed/2, completion: completion)
+    func jump(to: Slot) {
+        animations.append(.slot(jumpAnimation, to))
     }
 
     func startflip() {
-        _agentImageView.flip(speed: Agent.speed*2)
+        animations.append(.void(startflipAnimation))
     }
 
-    func stopflip(completion: @escaping () -> ()) {
-        _agentImageView.layer.removeAllAnimations()
-        completion()
+    func stopflip() {
+        animations.append(.void(stopflipAnimation))
     }
 
     func goOut(direction: Orientation, value: Float) {
-        _agentImageView.goOut(
-            direction: direction, value: CGFloat(value), speed: Agent.speed)
+        animations.append(.orientation(goOutAnimation, (direction, value)))
     }
     
 }

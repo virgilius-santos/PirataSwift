@@ -16,6 +16,8 @@ class MapViewController {
 
     private var _matrizSlotView: [[SlotView]]
 
+    weak var animations: Animations!
+
     init(map: Map) {
         _matrizSlotView = []
         _mapModel = map
@@ -53,22 +55,6 @@ class MapViewController {
         _rootStackView = rootStackView
     }
 
-    /// some com um slot
-    func getBag(slot: Slot, speed: Double, completion: @escaping(Bag)->()) {
-        let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-        slotView.imageView.fadeOut(speed: speed) { [weak self] in
-            if let bag = self?._mapModel.getBag(slot: slot) {
-                completion(bag)
-            }
-        }
-    }
-
-    /// faz um slot crescer
-    func growUp(slot: Slot, speed: Double) {
-        let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-        slotView.imageView.growUp(speed: speed)
-    }
-
     /// retorna o frame de um slot
     func frame(fromSlot slot: Slot) -> CGRect {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
@@ -87,4 +73,32 @@ class MapViewController {
         return newSlot
     }
 
+}
+
+extension MapViewController {
+    /// some com um slot
+    func getBag(slot: Slot, speed: Double) -> Bag {
+        animations.append(.slotSpeed(getBagAnimation, (slot,speed)))
+        let bag = _mapModel.getBag(slot: slot)
+        return bag
+    }
+
+    /// some com um slot
+    private func getBagAnimation(slot: Slot, speed: Double) {
+        let slotView = slot.slotView(fromMatriz: _matrizSlotView)
+        slotView.imageView.fadeOut(speed: speed) { [weak self] in
+            self?.animations.processAnimation()
+        }
+    }
+
+    /// faz um slot crescer
+    func growUp(slot: Slot, speed: Double) {
+        animations.append(.slotSpeed(growUpAnimation, (slot,speed)))
+    }
+
+    /// faz um slot crescer
+    private func growUpAnimation(slot: Slot, speed: Double) {
+        let slotView = slot.slotView(fromMatriz: _matrizSlotView)
+        slotView.imageView.growUp(speed: speed)
+    }
 }

@@ -25,6 +25,7 @@
 		1832E71521A234BC00746AF2 /* NeuralGenetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71421A234BC00746AF2 /* NeuralGenetic.swift */; };
 		1832E71721A235B700746AF2 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71621A235B700746AF2 /* DoubleExtension.swift */; };
 		1832E71921A2B01C00746AF2 /* MockScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71821A2B01C00746AF2 /* MockScene.swift */; };
+		1832E71B21A3266A00746AF2 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71A21A3266A00746AF2 /* Animations.swift */; };
 		185580AB2151DBE000473BE6 /* MocksExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185580AA2151DBE000473BE6 /* MocksExtension.swift */; };
 		18A8806121429D8500B2E027 /* SlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8806021429D8500B2E027 /* SlotView.xib */; };
 		18A8806421429E2200B2E027 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8806321429E2200B2E027 /* SlotView.swift */; };
@@ -75,6 +76,7 @@
 		1832E71421A234BC00746AF2 /* NeuralGenetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralGenetic.swift; sourceTree = "<group>"; };
 		1832E71621A235B700746AF2 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		1832E71821A2B01C00746AF2 /* MockScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockScene.swift; sourceTree = "<group>"; };
+		1832E71A21A3266A00746AF2 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		185580AA2151DBE000473BE6 /* MocksExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksExtension.swift; sourceTree = "<group>"; };
 		18A8806021429D8500B2E027 /* SlotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlotView.xib; sourceTree = "<group>"; };
 		18A8806321429E2200B2E027 /* SlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				1832E6FD21A0F67200746AF2 /* AgentViewController.swift */,
 				18A8806021429D8500B2E027 /* SlotView.xib */,
 				18A8806321429E2200B2E027 /* SlotView.swift */,
+				1832E71A21A3266A00746AF2 /* Animations.swift */,
 			);
 			path = SceneController;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				18CF730D2148B89E002A1340 /* AgentProcess.swift in Sources */,
 				18D3A4AC2142854A004A1BB0 /* AppDelegate.swift in Sources */,
 				18CF7305214614AE002A1340 /* Genetic.swift in Sources */,
+				1832E71B21A3266A00746AF2 /* Animations.swift in Sources */,
 				1832E71121A20ECD00746AF2 /* Orientation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

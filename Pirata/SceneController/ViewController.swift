@@ -20,6 +20,8 @@ class ViewController: UIViewController {
 
     var autoStart = false
 
+    weak var animations: Animations!
+    
     @IBOutlet weak var qtdBauLabel: UILabel!
     
     @IBOutlet weak var doorLocLabel: UILabel!
@@ -62,109 +64,42 @@ class ViewController: UIViewController {
 
 extension ViewController: AgentDelegate {
     func next() {
-        configurator.next()
+        animations.append(.void({
+            self.configurator.next()
+        }))
     }
 
     func update(coins: Int = 0, general: Int = 0) {
-        coinsLabel.text = "Moedas Coletadas: \(coins)"
-        totalLabel.text = "Pontuação Geral: \(general)"
+        animations.append(.void({
+            self.coinsLabel.text = "Moedas Coletadas: \(coins)"
+            self.totalLabel.text = "Pontuação Geral: \(general)"
+        }))
     }
 
     func bauLocalizado(qtd: Int = 0) {
-        qtdBauLabel.text = "\(qtd) bau(s)"
+        animations.append(.void({
+            self.qtdBauLabel.text = "\(qtd) bau(s)"
+        }))
     }
 
     func portaLocalizada(_ status: Bool = false) {
-        doorLocLabel.text = status ? "Sim" : "Não"
+        animations.append(.void({
+            self.doorLocLabel.text = status ? "Sim" : "Não"
+        }))
     }
 
     func divisaoDeSacolas(_ div: String = String()) {
-        divisaoSacolas.text = div
+        animations.append(.void({
+            self.divisaoSacolas.text = div
+        }))
     }
 
     func growUp(_ slot: Slot) {
         MapVC.growUp(slot: slot, speed: 0.2)
     }
 
-    func getBag(slot: Slot, speed: Double, completion: @escaping(Bag)->()) {
-        MapVC.getBag(slot: slot, speed: speed, completion: completion)
+    func getBag(slot: Slot, speed: Double) -> Bag {
+        return MapVC.getBag(slot: slot, speed: speed)
     }
 }
 
-//extension ViewController: MapDelegate {
-
-
-//    func createAgent() {
-//        let agent = Agent(map: map, startLocation: map.freeSlot)
-//        agent.delegate = self
-//
-//        let agentSlot = agent.location
-//
-//        let agentImageView = UIImageView(image: agentSlot.type.image)
-//        agentImageView.bounds = MapVC.frame(fromSlot: agentSlot)
-//        agentImageView.contentMode = .scaleAspectFit
-//        view.addSubview(agentImageView)
-//
-//        agentImageView.center = MapVC.center(fromSlot: agentSlot, to: view)
-//
-//        self.agent = agent
-//        self.agentImageView = agentImageView
-//        print("\(#function)\n -\(agentSlot)\n")
-//    }
-
-//    func moveAnimation(to: Slot, completion: @escaping()->()) {
-////        let center = MapVC.center(fromSlot: to, to: view)
-////        UIView.animate(withDuration: speed, animations: {
-////            self.agentImageView.center = center
-////        }) { (check) in
-////            completion()
-////        }
-//    }
-//
-//    func jumpAnimation(to: Slot, completion: @escaping()->()) {
-////        let center = MapVC.center(fromSlot: to, to: view)
-////        UIView.animate(withDuration: speed/2, animations: {
-////            self.agentImageView.center = center
-////        }) { (check) in
-////           completion()
-////        }
-//    }
-
-//    func loadComplete() {
-////        print("\(#function)")
-//        MapVC.loadData()
-////        createAgent()
-//    }
-//
-//    func setImage(with type: ImageType, index: Index) {
-////        let slotView = index.slotView(fromMatriz: MapVC.MatrizSlotView)
-////        slotView.imageView.image = type.image
-//    }
-//
-//    func fadeOut(slot: Slot, speed: Double, completion: @escaping()->()) {
-////        let view = slot.slotView(fromMatriz: MapVC.MatrizSlotView)
-////        fadeOut(view, completion: completion)
-//    }
-
-//    func move(to: Slot, completion: @escaping()->()) {
-////        moveAnimation(to: to, completion: completion)
-//    }
-//
-//    func jump(to: Slot, completion: @escaping()->()) {
-////        jumpAnimation(to: to, completion: completion)
-//    }
-//
-//    func startflip() {
-//        agentImageView.flip(speed: speed*2)
-//    }
-//
-//    func stopflip(completion: @escaping()->()) {
-//        agentImageView.layer.removeAllAnimations()
-//        completion()
-//    }
-//
-//    func goOut(direction: Direction, value: Float) {
-//        agentImageView.goOut(direction: direction, value: CGFloat(value), speed: speed)
-//    }
-
-//}

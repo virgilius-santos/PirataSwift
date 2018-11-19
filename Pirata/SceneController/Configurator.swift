@@ -23,10 +23,14 @@ class Configurator {
     var agent: Agent
     var agentVC: AgentViewController!
 
+    var animations: Animations
+
     init(window: UIWindow?) {
         self.window = window
 
         map = Map(square: 10)
+
+        animations = Animations()
 
         let startLocation = Slot(index: Index(col: 1, row: 1))
         agent = Agent(map: map, startLocation: startLocation)
@@ -35,7 +39,10 @@ class Configurator {
     func start() {
 
         mapVC = MapViewController(map: map)
+        mapVC.animations = animations
+
         agentVC = AgentViewController(agent: agent, mapVC: mapVC)
+        agentVC.animations = animations
 
         rootViewController?.removeFromParent()
         let storyboard = UIStoryboard.init(name: storyboardName, bundle: nil)
@@ -45,6 +52,7 @@ class Configurator {
         rootViewController.MapVC = mapVC
         rootViewController.AgentVC = agentVC
         rootViewController.configurator = self
+        rootViewController.animations = animations
 
         agent.delegate = rootViewController
 
@@ -52,10 +60,11 @@ class Configurator {
     }
 
     func reset() {
-        rootViewController.removeFromParent()
+//        rootViewController.removeFromParent()
         agent.stop()
         agent.reset()
-        start()
+        agent.start()
+//        start()
     }
 
     func next() {
