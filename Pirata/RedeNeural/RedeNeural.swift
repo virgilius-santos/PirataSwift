@@ -91,7 +91,7 @@ class RedeNeural {
         let direcao = Direction(rawValue: direcaoKey!.offset)
 
         print((movimento!, direcao!))
-        return nextAction//(movimento!, direcao!)
+        return (movimento!, direcao!)
 
     }
 }

@@ -48,6 +48,7 @@ extension Agent {
         case .porta:
             isCompleted = true
             stopped = true
+            redeNeural.genetic.setarAptidoes(apt: Double(totalPoints))
             break
         case .buraco:
             faults += 50
