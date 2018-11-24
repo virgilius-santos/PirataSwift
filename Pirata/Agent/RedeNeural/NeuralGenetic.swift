@@ -40,10 +40,15 @@ class NeuralGenetic {
         }
     }
 
+
+    var last: Double = -2
     func getPesosFromNextPopulation() -> [Double] {
         geracao += 1
         populacaoSelected += 1
-        canShow = (populacaoSelected == 0)
+        canShow = (populacaoSelected == 0 && setAptidao != last)
+        if populacaoSelected == 0 {
+            last = setAptidao
+        }
         return populacao[populacaoSelected]
 
     }
@@ -122,6 +127,7 @@ class NeuralGenetic {
         aptidoes = [Double](repeating: -1000, count: populacao.count)
     }
 
+    var setAptidao: Double = -1
     private func elitizar() {
 
         // set (chave, valor) ordenada para pegar o index do menor valor
@@ -132,8 +138,9 @@ class NeuralGenetic {
             })
 
         /// seta o menor valor ao indice zero da populacao intermediarias
-        if let (index, _) = setSorted.first {
+        if let (index, value) = setSorted.first {
             popIntermediaria[0] = populacao[index]
+            setAptidao = value
         }
     }
 }

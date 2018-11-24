@@ -19,6 +19,7 @@ extension Agent {
                 break
             }
             if case .completed = currentEvent {
+                updateValues()
                 break
             }
 

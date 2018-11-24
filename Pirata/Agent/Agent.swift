@@ -78,6 +78,10 @@ class Agent {
         if case .finished = evt {
             next()
         }
+
+        if case .completed = evt, !redeNeural.canShow {
+            next()
+        }
     }
 
     func reset() {

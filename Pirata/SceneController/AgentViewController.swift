@@ -71,16 +71,16 @@ extension AgentViewController: AgentMovementAnimations {
         //animations.append(.speed(startflipAnimation, speed))
     }
 
-    private func startflipAnimation(speed: Double) -> Guarantee<Bool> {
-        return AgentImageView.flip(speed: speed)
-    }
+//    private func startflipAnimation(speed: Double) -> Guarantee<Bool> {
+//        return AgentImageView.flip(speed: speed)
+//    }
 
     func stopflip() {
         //animations.append(.void(stopflipAnimation))
     }
 
-    private func stopflipAnimation() {
-        #warning("implmentar stopflipAnimation()")
-        print("error \(#function)")
-    }
+//    private func stopflipAnimation() {
+//        #warning("implmentar stopflipAnimation()")
+//        print("error \(#function)")
+//    }
 }
