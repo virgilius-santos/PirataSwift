@@ -56,9 +56,9 @@
 		18CF730F2148B976002A1340 /* AgentMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF730E2148B976002A1340 /* AgentMovement.swift */; };
 		18D3A4AC2142854A004A1BB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3A4AB2142854A004A1BB0 /* AppDelegate.swift */; };
 		18D3A4AE2142854A004A1BB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3A4AD2142854A004A1BB0 /* ViewController.swift */; };
-		18D3A4B12142854A004A1BB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4AF2142854A004A1BB0 /* Main.storyboard */; };
 		18D3A4B32142854B004A1BB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4B22142854B004A1BB0 /* Assets.xcassets */; };
 		18D3A4B62142854B004A1BB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4B42142854B004A1BB0 /* LaunchScreen.storyboard */; };
+		18E83CEF21A9E8590036B5ED /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E83CEE21A9E8590036B5ED /* ViewController.xib */; };
 		46D1264F317A464941CF7AF6 /* Pods_Pirata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,10 +113,10 @@
 		18D3A4A82142854A004A1BB0 /* Pirata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pirata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D3A4AB2142854A004A1BB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D3A4AD2142854A004A1BB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		18D3A4B02142854A004A1BB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18D3A4B22142854B004A1BB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D3A4B52142854B004A1BB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18D3A4B72142854B004A1BB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18E83CEE21A9E8590036B5ED /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		1D6F06D336E9F1A84FA19B23 /* Pods-Pirata.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.release.xcconfig"; sourceTree = "<group>"; };
 		546C229865B0836466606D94 /* Pods-Pirata.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pirata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,8 +201,8 @@
 		18A8806221429E0C00B2E027 /* SceneController */ = {
 			isa = PBXGroup;
 			children = (
-				18D3A4AF2142854A004A1BB0 /* Main.storyboard */,
 				1832E6FF21A172C500746AF2 /* Configurator.swift */,
+				18E83CEE21A9E8590036B5ED /* ViewController.xib */,
 				18D3A4AD2142854A004A1BB0 /* ViewController.swift */,
 				1832E6F021A0D8F900746AF2 /* MapViewController.swift */,
 				1832E6FD21A0F67200746AF2 /* AgentViewController.swift */,
@@ -386,10 +386,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E83CEF21A9E8590036B5ED /* ViewController.xib in Resources */,
 				18D3A4B62142854B004A1BB0 /* LaunchScreen.storyboard in Resources */,
 				18D3A4B32142854B004A1BB0 /* Assets.xcassets in Resources */,
 				18A8806121429D8500B2E027 /* SlotView.xib in Resources */,
-				18D3A4B12142854A004A1BB0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,14 +509,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		18D3A4AF2142854A004A1BB0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18D3A4B02142854A004A1BB0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		18D3A4B42142854B004A1BB0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

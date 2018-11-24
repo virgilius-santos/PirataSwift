@@ -33,6 +33,7 @@ final class Animations {
         }
     }
 
+    var redeNeural: RedeNeural?
 
     func startTask(_ promisse: Promise<Void> = Guarantee().asVoid()) -> CancellablePromise<Void> {
         return CancellablePromise(using: promisse, cancel: cancel)
@@ -50,6 +51,10 @@ final class Animations {
 
 
     func append(_ type: AnimationType) {
+
+        if let rd = redeNeural, rd.genetic.geracao % 10 != 0 {
+            return
+        }
         animations.append(type)
     }
 

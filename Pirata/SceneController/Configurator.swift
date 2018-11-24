@@ -12,7 +12,6 @@ class Configurator {
 
     var window: UIWindow?
 
-    let storyboardName = "Main"
     let viewControllerIdentifier = String(describing: ViewController.self)
 
     var rootViewController: ViewController!
@@ -34,6 +33,8 @@ class Configurator {
         animations = Animations()
 
         cerebro = RedeNeural()
+        animations.redeNeural = cerebro
+
         let startLocation = Slot(index: Index(col: 1, row: 1))
         agent = Agent(map: map, startLocation: startLocation, cerebro: cerebro)
     }
@@ -47,9 +48,7 @@ class Configurator {
         agentVC.animations = animations
 
         rootViewController?.removeFromParent()
-        let storyboard = UIStoryboard.init(name: storyboardName, bundle: nil)
-        rootViewController = (storyboard.instantiateViewController(
-            withIdentifier: viewControllerIdentifier) as! ViewController)
+        rootViewController = ViewController(nibName: viewControllerIdentifier, bundle: nil)
 
         rootViewController.MapVC = mapVC
         rootViewController.AgentVC = agentVC
@@ -77,7 +76,7 @@ class Configurator {
         agent.reset()
         agent.moveToDefaultLocation()
         mapVC.restoreData()
-//        setDelegates()
+        //setDelegates()
         agent.start()
     }
 

@@ -21,7 +21,7 @@ class NeuralGenetic {
     /// com uma distribuição aleatória
     func popular(pesos: Int) {
         populacaoSelected = -1
-        let qtd: Int = 10*100
+        let qtd: Int = 10*50
         populacao
             = [[Double]](repeating: [Double](repeating: 0, count: pesos), count: qtd)
         popIntermediaria
@@ -50,7 +50,9 @@ class NeuralGenetic {
         }
     }
 
+    var geracao = 0
     private func processar() {
+        geracao += 1
         populacaoSelected = -1
         elitizar()
         gerar()
@@ -59,10 +61,10 @@ class NeuralGenetic {
 
     /// com probabilidade de 50% ele muta um gene de um elemento da populacao
     private func mutar() {
-        for _ in 0...100 {
+        for _ in 0...50 {
             let fator = Int.randomNumber(100)
             if (fator < 80 ) {
-                let member = Int.randomNumber(populacao.count)
+                let member = Int.randomNumber(populacao.count-1) + 1
                 for i in 0 ..< populacao[member].count {
                     var value: Double = 0
                     repeat {

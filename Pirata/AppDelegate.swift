@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         configurator = Configurator(window: window)
         configurator.configure()
-        
+        window?.makeKeyAndVisible()
         return true
     }
 

@@ -18,6 +18,9 @@ extension Agent {
             if case .error = currentEvent {
                 break
             }
+            if case .completed = currentEvent {
+                break
+            }
 
             switch currentEvent {
             case .start:

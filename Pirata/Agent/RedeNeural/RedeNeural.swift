@@ -127,7 +127,7 @@ class RedeNeural {
         direcao = Direction(rawValue: direcaoKey!.offset)
         _lastDirection = direcao
 
-        return nextAction // (movimento!, direcao!)
+        return (movimento!, direcao!)
 
     }
 }
