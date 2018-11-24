@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow()
         configurator = Configurator(window: window)
-        configurator.start()
+        configurator.configure()
         
         return true
     }

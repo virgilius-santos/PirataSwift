@@ -38,7 +38,7 @@ class Configurator {
         agent = Agent(map: map, startLocation: startLocation, cerebro: cerebro)
     }
 
-    func start() {
+    func configure() {
 
         mapVC = MapViewController(map: map)
         mapVC.animations = animations
@@ -69,10 +69,14 @@ class Configurator {
     }
 
     func next() {
+        let total = agent.agentData.totalPoints
+        cerebro.genetic.setarAptidoes(apt: Double(total))
+        agent.reset()
+        agent.moveToDefaultLocation()
         agent.start()
     }
 
-    func begin() {
+    func start() {
         agent.start()
     }
 

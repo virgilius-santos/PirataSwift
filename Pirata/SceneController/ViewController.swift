@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         if playing {
             configurator.reset()
         } else {
-            configurator.begin()
+            configurator.start()
         }
         playing.toggle()
     }
