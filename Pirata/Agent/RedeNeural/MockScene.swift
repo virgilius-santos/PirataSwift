@@ -76,11 +76,13 @@ var completa: [Agent.Movement] {
 
 var defaultActions: [Agent.Movement] {
     return [
-        bate_parede
-        , pula_parede
-        , anda_buraco
-        , pula_saco_bate_parede
-        , pula_porta
+//        bate_parede
+//        , pula_parede
+//        , anda_buraco
+         pula_saco_bate_parede
+//        , pula_porta
+//        , completa
+        , completa
         , completa
         //        completa
         ]

@@ -18,6 +18,7 @@ final class Animations {
         case speed ((Double)->(Guarantee<Bool>), Double)
         case orientation ((Orientation, Float, Double)->(Guarantee<Bool>),(Orientation, Float, Double))
         case slotSpeed ((Slot, Double)->(Guarantee<Bool>),(Slot, Double))
+        case fadeIn ((SlotView)->(Guarantee<Bool>),(SlotView))
     }
 
     let delay = 0.1
@@ -75,6 +76,8 @@ final class Animations {
         case .slotSpeed(let (f, (s,v))):
             return f(s,v)
         case .speed(let (f, s)):
+            return f(s)
+        case .fadeIn(let (f, s)):
             return f(s)
         }
     }

@@ -37,10 +37,10 @@ extension Agent {
                 move(movement: movement)
                 currentEvent = .analisarPosicaoAtual
                 break
-            case .finished:
-                break
             case .error:
                 print("\n--------Erroor--------\n")
+                break
+            default:
                 break
             }
         }
@@ -64,7 +64,7 @@ extension Agent {
             break
         case .porta:
             agentData.points += Pontuacao.porta
-            currentEvent = .finished
+            currentEvent = .completed
             break
         default: //todos os outros são "empty"
             agentData.points += Pontuacao.empty

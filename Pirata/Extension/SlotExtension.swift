@@ -14,6 +14,7 @@ extension Slot {
         slotView.row = self.index.row
         slotView.col = self.index.col
         slotView.imageView.image = self.type.image
+        slotView.imageType = self.type
         return slotView
     }
 

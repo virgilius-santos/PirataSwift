@@ -48,6 +48,23 @@ class MapViewController {
 
     }
 
+    func restoreData() {
+        let views = self._matrizSlotView
+            .flatMap({$0})
+            .filter({$0.imageType == .saco})
+
+        DispatchQueue.main.async(.promise) {
+            views.forEach { slotView in
+                self.animations.append(.fadeIn(self.appear, (slotView)))
+            }
+        }.wait()
+
+    }
+
+    private func appear(slotView: SlotView) -> Guarantee<Bool> {
+        return slotView.imageView.fadeIn()
+    }
+
     /// converte os modelos de slot presentes no _mapModel
     /// em slotView que serão add na tela
     private func completeMatriz(region: Map.Region) {

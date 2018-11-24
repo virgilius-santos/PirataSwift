@@ -76,7 +76,8 @@ class Configurator {
         cerebro.genetic.setarAptidoes(apt: Double(total))
         agent.reset()
         agent.moveToDefaultLocation()
-        setDelegates()
+        mapVC.restoreData()
+//        setDelegates()
         agent.start()
     }
 

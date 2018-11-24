@@ -39,7 +39,6 @@ extension Map: AgentMap {
     }
 
     func getBag(slot: Slot) -> Bag {
-        self.matriz[slot.index.col][slot.index.row].set(type: .Empty)
         let bag = self.mapData.getBag(fromIndex: slot.index)
         return bag
     }

@@ -20,6 +20,13 @@ extension UIView {
         return first
     }
 
+    func fadeIn(speed: Double = 0.1) -> Guarantee<Bool> {
+        let first: Guarantee<Bool> =  UIView.animate(.promise, duration: speed, delay: delay) {
+            self.alpha = 1
+        }
+        return first
+    }
+
     func growUp(speed: Double) -> Guarantee<Bool> {
         let first: Guarantee<Bool> = UIView.animate(.promise, duration: speed, delay: delay) {
             self.frame.size.height *= 1.2
