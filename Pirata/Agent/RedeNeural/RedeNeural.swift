@@ -10,6 +10,8 @@ import Foundation
 
 class RedeNeural {
 
+    var isShowable: Bool { return true }
+
     var neuronio: Neuronio { return Neuronio() }
 
     var qtdPesos: Int {
@@ -49,6 +51,10 @@ class RedeNeural {
         genetic.popular(pesos: qtdPesos)
     }
 
+    func reset() {
+        genetic.popular(pesos: qtdPesos)
+    }
+    
     func setPesos() {
         let pesos = genetic.getPesosFromNextPopulation()
 

@@ -56,9 +56,7 @@ class Configurator {
         rootViewController.configurator = self
         rootViewController.animations = animations
 
-        agent.delegate = rootViewController
-        agent.mapAnimations = mapVC
-        agent.movementAnimations = agentVC
+        setDelegates()
 
         window?.rootViewController = rootViewController
     }
@@ -78,4 +76,9 @@ class Configurator {
         agent.start()
     }
 
+    func setDelegates() {
+        agent.delegate = cerebro.isShowable ? rootViewController : nil
+        agent.mapAnimations = cerebro.isShowable ? mapVC : nil
+        agent.movementAnimations = cerebro.isShowable ? agentVC : nil
+}
 }
