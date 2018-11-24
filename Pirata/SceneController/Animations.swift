@@ -24,13 +24,6 @@ final class Animations {
 
     lazy var chain: CancellablePromise<Void> = startTask()
 
-
-
-
-    func startTask(_ promisse: Promise<Void> = Guarantee().asVoid()) -> CancellablePromise<Void> {
-        return CancellablePromise(using: promisse, cancel: cancel)
-    }
-
     var animations = [AnimationType]() {
         didSet {
             if oldValue.isEmpty {
@@ -39,10 +32,12 @@ final class Animations {
         }
     }
 
-    var closed = false
+
+    func startTask(_ promisse: Promise<Void> = Guarantee().asVoid()) -> CancellablePromise<Void> {
+        return CancellablePromise(using: promisse, cancel: cancel)
+    }
 
     func reset() {
-        closed = true
         animations.removeAll()
         chain.cancel()
     }
@@ -57,7 +52,7 @@ final class Animations {
     }
 
     func process() {
-        if animations.isEmpty || closed {
+        if animations.isEmpty {
             return
         }
         let type = animations.removeFirst()
