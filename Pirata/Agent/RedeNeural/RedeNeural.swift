@@ -10,7 +10,7 @@ import Foundation
 
 class RedeNeural {
 
-    var isShowable: Bool { return true }
+    var isShowable: Bool { return genetic.populacaoSelected == -1 }
 
     var neuronio: Neuronio { return Neuronio() }
 
@@ -126,9 +126,8 @@ class RedeNeural {
         var direcao: Direction?
         direcao = Direction(rawValue: direcaoKey!.offset)
         _lastDirection = direcao
-        
-//        print((movimento!, direcao!))
-        return nextAction // (movimento!, direcao!)
+
+        return (movimento!, direcao!)
 
     }
 }

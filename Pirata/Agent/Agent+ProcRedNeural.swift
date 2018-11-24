@@ -8,6 +8,16 @@
 
 import Foundation
 
+struct Pontuacao {
+    init() {}
+    static let muro = -100
+    static let buraco = -50
+    static let pulaBuraco = 60
+    static let empty = 20
+    static let saco = 80
+    static let porta = 120
+}
+
 extension Agent {
 
     func switchEvent() {
@@ -50,20 +60,24 @@ extension Agent {
         let position = agentMap.getSlot(fromIndex: location.index)
         switch position.type {
         case .muro:
-            agentData.faults += 100
+            agentData.faults += Pontuacao.muro
+            currentEvent = .finished
+            break
+        case .buraco:
+            agentData.faults += Pontuacao.buraco
             currentEvent = .finished
             break
         case .saco:
             colectBag(slot: location)
             currentEvent = .analisarRegiao
+            agentData.faults += Pontuacao.saco
             break
         case .porta:
+            agentData.faults += Pontuacao.porta
             currentEvent = .finished
             break
-        case .buraco:
-            agentData.faults += 50
-            break
         default: //todos os outros são "empty"
+            agentData.faults += Pontuacao.empty
             currentEvent = .analisarRegiao
             break
         }
@@ -98,19 +112,19 @@ extension Agent {
         switch slot.type {
         case .muro:
             wrongMove(movement: movement)
-            agentData.faults += 100
+            agentData.faults += Pontuacao.buraco
             currentEvent = .finished
             break
         case .buraco where movement.acao == .anda:
             wrongMove(movement: movement)
-            agentData.faults += 100
+            agentData.faults += Pontuacao.buraco
             currentEvent = .finished
             break
         case .buraco where movement.acao == .pula:
-            agentData.holeJumpeds += 1
+            agentData.faults += Pontuacao.pulaBuraco
             currentEvent = .goToSlot(movement)
             break
-        default: //todos os outros são "empty"
+        default:
             currentEvent = .goToSlot(movement)
             break
         }
@@ -143,3 +157,4 @@ extension Agent {
 
     }
 }
+

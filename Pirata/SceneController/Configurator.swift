@@ -56,6 +56,7 @@ class Configurator {
         rootViewController.configurator = self
         rootViewController.animations = animations
 
+        agent.delegate = rootViewController
         setDelegates()
 
         window?.rootViewController = rootViewController
@@ -75,6 +76,7 @@ class Configurator {
         cerebro.genetic.setarAptidoes(apt: Double(total))
         agent.reset()
         agent.moveToDefaultLocation()
+        setDelegates()
         agent.start()
     }
 
@@ -83,8 +85,7 @@ class Configurator {
     }
 
     func setDelegates() {
-        agent.delegate = cerebro.isShowable ? rootViewController : nil
         agent.mapAnimations = cerebro.isShowable ? mapVC : nil
         agent.movementAnimations = cerebro.isShowable ? agentVC : nil
-}
+    }
 }

@@ -12,7 +12,7 @@ class NeuralGenetic {
 
     private var populacao: [[Double]] = []
     private var popIntermediaria: [[Double]] = []
-    private var aptidoes: [Double] = []
+    var aptidoes: [Double] = []
 
     var populacaoSelected = -1
 
