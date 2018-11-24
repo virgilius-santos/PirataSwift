@@ -58,6 +58,7 @@
 		18D3A4B12142854A004A1BB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4AF2142854A004A1BB0 /* Main.storyboard */; };
 		18D3A4B32142854B004A1BB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4B22142854B004A1BB0 /* Assets.xcassets */; };
 		18D3A4B62142854B004A1BB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4B42142854B004A1BB0 /* LaunchScreen.storyboard */; };
+		46D1264F317A464941CF7AF6 /* Pods_Pirata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,9 @@
 		18D3A4B22142854B004A1BB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D3A4B52142854B004A1BB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18D3A4B72142854B004A1BB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D6F06D336E9F1A84FA19B23 /* Pods-Pirata.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.release.xcconfig"; sourceTree = "<group>"; };
+		546C229865B0836466606D94 /* Pods-Pirata.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.debug.xcconfig"; sourceTree = "<group>"; };
+		EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pirata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46D1264F317A464941CF7AF6 /* Pods_Pirata.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +278,8 @@
 			children = (
 				18D3A4AA2142854A004A1BB0 /* Pirata */,
 				18D3A4A92142854A004A1BB0 /* Products */,
+				1EA0CF6E9AA3C85675BBDF9E /* Pods */,
+				7B6F3FE2FB85139D7F4CDE8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -298,6 +305,23 @@
 			path = Pirata;
 			sourceTree = "<group>";
 		};
+		1EA0CF6E9AA3C85675BBDF9E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				546C229865B0836466606D94 /* Pods-Pirata.debug.xcconfig */,
+				1D6F06D336E9F1A84FA19B23 /* Pods-Pirata.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7B6F3FE2FB85139D7F4CDE8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -305,9 +329,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18D3A4BA2142854B004A1BB0 /* Build configuration list for PBXNativeTarget "Pirata" */;
 			buildPhases = (
+				2EC34CBC0967DB807EBC4E64 /* [CP] Check Pods Manifest.lock */,
 				18D3A4A42142854A004A1BB0 /* Sources */,
 				18D3A4A52142854A004A1BB0 /* Frameworks */,
 				18D3A4A62142854A004A1BB0 /* Resources */,
+				907FCF4C2406DB0D8C422C0C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -365,6 +391,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2EC34CBC0967DB807EBC4E64 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pirata-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		907FCF4C2406DB0D8C422C0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Pirata/Pods-Pirata-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pirata/Pods-Pirata-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18D3A4A42142854A004A1BB0 /* Sources */ = {
@@ -559,6 +636,7 @@
 		};
 		18D3A4BB2142854B004A1BB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 546C229865B0836466606D94 /* Pods-Pirata.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -579,6 +657,7 @@
 		};
 		18D3A4BC2142854B004A1BB0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D6F06D336E9F1A84FA19B23 /* Pods-Pirata.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
