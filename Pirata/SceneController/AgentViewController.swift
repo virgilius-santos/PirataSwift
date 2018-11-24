@@ -11,7 +11,7 @@ import PromiseKit
 
 protocol AgentViewControllerDataSource {
     func frame(fromSlot slot: Slot) -> CGRect
-    func center(fromSlot slot: Slot, to view: UIView) -> CGPoint
+    func center(fromSlot slot: Slot, to view: UIView) -> Guarantee<CGPoint>
 }
 
 class AgentViewController {
@@ -35,7 +35,7 @@ class AgentViewController {
         let agentImageView = UIImageView(image: AgentSlot.type.image)
         agentImageView.bounds = AgentDS.frame(fromSlot: AgentSlot)
         agentImageView.contentMode = .scaleAspectFit
-        agentImageView.center = AgentDS.center(fromSlot: AgentSlot, to: RootView)
+        agentImageView.center = AgentDS.center(fromSlot: AgentSlot, to: RootView).value!
         RootView.addSubview(agentImageView)
         AgentImageView = agentImageView
     }
@@ -45,18 +45,7 @@ class AgentViewController {
 extension AgentViewController: AgentMovementAnimations {
 
     func move(to: Slot, speed: Double) {
-        let group = DispatchGroup()
-        group.enter()
-        var center: CGPoint!
-
-        DispatchQueue.main.async {
-            center = self.AgentDS.center(fromSlot: to, to: self.RootView)
-            group.leave()
-        }
-
-        // wait ...
-        group.wait()
-
+        let center = self.AgentDS.center(fromSlot: to, to: self.RootView).wait()
         self.animations.append(.slot(self.moveAnimation, (center, speed)))
     }
 

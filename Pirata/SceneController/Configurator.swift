@@ -65,7 +65,10 @@ class Configurator {
     func reset() {
         animations.reset()
         mapVC.reloadData()
-        rootViewController.loadViewIfNeeded()
+        cerebro.reset()
+        agent.reset()
+        agent.moveToDefaultLocation()
+
     }
 
     func next() {

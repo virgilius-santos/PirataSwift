@@ -54,11 +54,17 @@ class Agent {
     }
 
     func finished() {
-        let total = agentData.totalPoints
-        redeNeural.genetic.setarAptidoes(apt: Double(total))
-        moveView(to: agentData.defaultLocation)
-        agentData.clear()
-        next()
+        if case .finished = currentEvent {
+            next()
+        }
     }
-    
+
+    func reset() {
+        currentEvent = .error
+        agentData.clear()
+    }
+
+    func moveToDefaultLocation() {
+        moveView(to: agentData.defaultLocation)
+    }
 }

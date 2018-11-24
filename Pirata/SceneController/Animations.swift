@@ -44,6 +44,7 @@ final class Animations {
 
     func cancel() {
         print("\(String(describing: Animations.self)) - \(#function)")
+        chain = startTask()
     }
 
 

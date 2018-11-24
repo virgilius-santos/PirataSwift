@@ -104,9 +104,9 @@ extension MapViewController: AgentViewControllerDataSource {
     }
 
     /// retorna a posicao na tela de um slot em relacao a uma View
-    func center(fromSlot slot: Slot, to view: UIView) -> CGPoint {
+    func center(fromSlot slot: Slot, to view: UIView) -> Guarantee<CGPoint> {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
         let center = view.convert(slotView.center, from: slotView.superview)
-        return center
+        return .value(center)
     }
 }
