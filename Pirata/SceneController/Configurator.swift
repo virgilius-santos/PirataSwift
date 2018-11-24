@@ -69,4 +69,8 @@ class Configurator {
         agent.start()
     }
 
+    func begin() {
+        agent.start()
+    }
+
 }

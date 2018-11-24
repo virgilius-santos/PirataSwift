@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         if playing {
             configurator.reset()
         } else {
-//            AgentVC.Agent.start()
+            configurator.begin()
         }
         playing.toggle()
     }

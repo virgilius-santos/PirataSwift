@@ -120,7 +120,7 @@ class RedeNeural {
         lastDirection = direcao
         
 //        print((movimento!, direcao!))
-        return  (movimento!, direcao!)
+        return nextAction // (movimento!, direcao!)
 
     }
 }

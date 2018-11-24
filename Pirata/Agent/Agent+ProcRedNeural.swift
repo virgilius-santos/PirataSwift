@@ -49,6 +49,7 @@ extension Agent {
             break
         case .saco:
             colectBag(slot: location)
+            currentEvent = .analisarRegiao
             break
         case .porta:
             isCompleted = true
@@ -109,15 +110,6 @@ extension Agent {
             currentEvent = .goToSlot(movement)
             break
         }
-    }
-
-    func colectBag(slot: Slot) {
-
-        let bag = agentMap.getBag(slot: slot)
-        
-        bags.append(bag)
-        currentEvent = .analisarRegiao
-
     }
 
     func move(movement: Movement) {

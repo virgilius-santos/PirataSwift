@@ -47,8 +47,11 @@ extension Agent {
         self.mapAnimations?.growUp(slot: slot, speed: self.speed)
     }
 
-    func coletarBag(_ slot: Slot) {
-        self.mapAnimations?.getBag(slot: slot, speed: self.speed)
-    }
+    func colectBag(slot: Slot) {
 
+        let bag = agentMap.getBag(slot: slot)
+        bags.append(bag)
+        self.mapAnimations?.getBag(slot: slot, speed: self.speed)
+
+    }
 }

@@ -20,7 +20,7 @@
 		1832E70D21A1FE3C00746AF2 /* RedeNeural.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70C21A1FE3C00746AF2 /* RedeNeural.swift */; };
 		1832E70F21A20E8C00746AF2 /* Acao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70E21A20E8C00746AF2 /* Acao.swift */; };
 		1832E71121A20ECD00746AF2 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71021A20ECC00746AF2 /* Orientation.swift */; };
-		1832E71321A218FC00746AF2 /* AgentNeuralProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71221A218FC00746AF2 /* AgentNeuralProcess.swift */; };
+		1832E71321A218FC00746AF2 /* Agent+ProcRedNeural.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71221A218FC00746AF2 /* Agent+ProcRedNeural.swift */; };
 		1832E71521A234BC00746AF2 /* NeuralGenetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71421A234BC00746AF2 /* NeuralGenetic.swift */; };
 		1832E71721A235B700746AF2 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71621A235B700746AF2 /* DoubleExtension.swift */; };
 		1832E71921A2B01C00746AF2 /* MockScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71821A2B01C00746AF2 /* MockScene.swift */; };
@@ -73,7 +73,7 @@
 		1832E70C21A1FE3C00746AF2 /* RedeNeural.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeNeural.swift; sourceTree = "<group>"; };
 		1832E70E21A20E8C00746AF2 /* Acao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acao.swift; sourceTree = "<group>"; };
 		1832E71021A20ECC00746AF2 /* Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
-		1832E71221A218FC00746AF2 /* AgentNeuralProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentNeuralProcess.swift; sourceTree = "<group>"; };
+		1832E71221A218FC00746AF2 /* Agent+ProcRedNeural.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Agent+ProcRedNeural.swift"; sourceTree = "<group>"; };
 		1832E71421A234BC00746AF2 /* NeuralGenetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralGenetic.swift; sourceTree = "<group>"; };
 		1832E71621A235B700746AF2 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		1832E71821A2B01C00746AF2 /* MockScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockScene.swift; sourceTree = "<group>"; };
@@ -156,7 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				18CF72F4214455B3002A1340 /* Agent.swift */,
-				1899A17E21A8E8A4001C2277 /* Agent+RedeNeural */,
+				1832E71221A218FC00746AF2 /* Agent+ProcRedNeural.swift */,
+				1832E70921A1FC6200746AF2 /* RedeNeural */,
 				18CF72FE2146098F002A1340 /* AgentDelegateInfo.swift */,
 				1899A17B21A8E680001C2277 /* AgentAnimations.swift */,
 				1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */,
@@ -186,15 +187,6 @@
 				18CF730221461345002A1340 /* AgentCompleted.swift */,
 			);
 			path = "Agente+Reativo-Desativado";
-			sourceTree = "<group>";
-		};
-		1899A17E21A8E8A4001C2277 /* Agent+RedeNeural */ = {
-			isa = PBXGroup;
-			children = (
-				1832E71221A218FC00746AF2 /* AgentNeuralProcess.swift */,
-				1832E70921A1FC6200746AF2 /* RedeNeural */,
-			);
-			path = "Agent+RedeNeural";
 			sourceTree = "<group>";
 		};
 		18A8806221429E0C00B2E027 /* SceneController */ = {
@@ -412,7 +404,7 @@
 				1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */,
 				1832E70B21A1FC7C00746AF2 /* Neuronio.swift in Sources */,
 				1832E71921A2B01C00746AF2 /* MockScene.swift in Sources */,
-				1832E71321A218FC00746AF2 /* AgentNeuralProcess.swift in Sources */,
+				1832E71321A218FC00746AF2 /* Agent+ProcRedNeural.swift in Sources */,
 				1832E71521A234BC00746AF2 /* NeuralGenetic.swift in Sources */,
 				1832E70821A1E18A00746AF2 /* AgentAccessMap.swift in Sources */,
 				18CF72E021433FA3002A1340 /* ImageType.swift in Sources */,

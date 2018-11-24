@@ -14,7 +14,7 @@ class Agent {
 
     var redeNeural = RedeNeural()
 
-    var defaultLocation: Slot
+    let defaultLocation: Slot
 
     var mapAnimations: AgentMapAnimations?
     var movementAnimations: AgentMovementAnimations?
