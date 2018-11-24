@@ -50,7 +50,7 @@ class RedeNeural {
     }
 
     func setPesos() {
-        let pesos = genetic.getPesos()
+        let pesos = genetic.getPesosFromNextPopulation()
 
         if pesos.isEmpty {
             return
@@ -74,9 +74,9 @@ class RedeNeural {
         }
     }
 
-    var lastDirection: Direction?
+    var _lastDirection: Direction?
     func getToogleDirection() -> Direction? {
-        guard let dir = lastDirection else {
+        guard let dir = _lastDirection else {
             return nil
         }
         switch dir {
@@ -90,6 +90,7 @@ class RedeNeural {
             return .down
         }
     }
+
     func entrada(slots: [Slot]) -> Agent.Movement? {
 
         let input = slots.map({Double($0.type.index)})
@@ -117,7 +118,7 @@ class RedeNeural {
 
         var direcao: Direction?
         direcao = Direction(rawValue: direcaoKey!.offset)
-        lastDirection = direcao
+        _lastDirection = direcao
         
 //        print((movimento!, direcao!))
         return nextAction // (movimento!, direcao!)

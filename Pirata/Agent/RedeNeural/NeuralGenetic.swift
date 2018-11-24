@@ -16,11 +16,11 @@ class NeuralGenetic {
 
     var populacaoSelected = -1
 
-
     /// inicia os array com a qtd de pessos passada
     /// para cada item da matrix gera um peso
     /// com uma distribuição aleatória
     func popular(pesos: Int) {
+        populacaoSelected = -1
         let qtd: Int = 10*50
         populacao
             = [[Double]](repeating: [Double](repeating: 0, count: pesos), count: qtd)
@@ -36,12 +36,9 @@ class NeuralGenetic {
         }
     }
 
-    func getPesos() -> [Double] {
+    func getPesosFromNextPopulation() -> [Double] {
 
         populacaoSelected += 1
-        if (populacaoSelected == populacao.count) {
-            return []
-        }
         return populacao[populacaoSelected]
 
     }
