@@ -15,14 +15,14 @@ extension Map {
     public typealias Route = [Slot]
 
     /// representa:
-    /// uma lista sequencial de slots
-    /// o indice do Slot atual
+    /// - route: uma lista sequencial de slots
+    /// - index: o indice do Slot atual
     public typealias RouteData = (route: Route, index: Array<Slot>.Index)
 
     /// representa a matriz de slots
     public typealias Region = [[Slot]]
 
-    /// representa a list de slots
+    /// representa a Regiao de slots em torno de um ponto
     public typealias RegionList = [Slot]
     
 }
@@ -33,13 +33,11 @@ class Map {
     
     var mapSettings: MapSettings
     
-    var sideWallPosition: Direction!
-    var doorLocation: Int!
-    var bags: Bags
-    
+    var mapData: MapData = MapData()
+
     init(square: Int) {
         self.mapSettings = MapSettings(square: square)
-        self.bags = Bags(mapSettings.bagsNumbers)
+        self.mapData.bags = Bags(mapSettings.bagsNumbers)
     }
 
     func generateMatriz(nCols: Int, nRows: Int) -> Region {
@@ -81,10 +79,5 @@ class Map {
             }
         }
     }
-
-    func getBag(slot: Slot) -> Bag {
-        self.matriz[slot.index.col][slot.index.row].set(type: .Empty)
-        let bag = self.bags.data.first(where: {$0.index == slot.index})
-        return bag!
-    }
 }
+

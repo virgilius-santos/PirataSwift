@@ -8,43 +8,21 @@
 
 import Foundation
 
-extension Agent {
+protocol AgentMap {
+    var matrizSize: Int { get }
+    var cheastNumbers: Int { get }
+    var sideWallPosition: Direction { get }
+    var totalSet: Int { get }
 
-    var matrizSize: Int { return map.matriz.count }
+    func getRegion(fromLocation location: Slot) -> Map.RegionList
 
-    var cheastNumbers: Int { return map.mapSettings.cheastNumbers }
+    func getRoute(from: Slot, to: Slot, excludeRole: Bool,
+                  completion: @escaping (Map.Route)->())
 
-    var sideWallPosition: Direction { return map.sideWallPosition }
 
-    func getRegion(completion: @escaping (Map.RegionList)->()) {
-        let regionList = map.getRegion(location)
-        completion(regionList)
-    }
+    func getBag(slot: Slot) -> Bag
 
-    func getRegion() -> Map.RegionList {
-        let regionList = map.getRegion(location)
-        return regionList
-    }
+    func getSlot(fromIndex index: Index) -> Slot
 
-    func getRoute(toBag bag: Slot, excludeRole: Bool = true) {
-        map.getRoute(from: location, to: bag, excludeRole: excludeRole) { (route) in
-            if route.count > 1 {
-                self.switchEvent(.goToRoute((route,0)))
-            } else {
-                self.switchEvent(.start)
-            }
-        }
-    }
-
-    func checkIfisCompleted() {
-        currentEvent = .start
-//        if map.bags.totalSet * 10 == totalCoins {
-//            if self.isCompleted != true {
-//                self.isCompleted = true
-//            }
-//            self.switchEvent(.completed)
-//        } else {
-//            self.switchEvent(.start)
-//        }
-    }
+    func getSlot(fromIndex: Index, withMovement movement: Agent.Movement) -> Slot?
 }

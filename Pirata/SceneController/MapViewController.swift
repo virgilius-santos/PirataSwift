@@ -54,42 +54,12 @@ class MapViewController {
         }
         _rootStackView = rootStackView
     }
-
-    /// retorna o frame de um slot
-    func frame(fromSlot slot: Slot) -> CGRect {
-        let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-        return slotView.imageView.frame
-    }
-
-    /// retorna a posicao na tela de um slot em relacao a uma View
-    func center(fromSlot slot: Slot, to view: UIView) -> CGPoint {
-        let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-        let center = view.convert(slotView.center, from: slotView.superview)
-        return center
-    }
-
-    /// retorna um novo slot a partir de :
-    /// - um slot que sera a referencia inicial
-    /// - acao que indicara a distancia em relacao a referencia
-    /// - e a direcao em relacao a referencia
-    func newSlot(fromSlot slot: Slot, movement: Agent.Movement) -> Slot? {
-        let newSlot = _mapModel.matriz.slot(index: slot.index, movement: movement)
-        return newSlot
-    }
-
-    func getSlot(fromIndex index: Index) -> Slot {
-        let slot = _mapModel.matriz.getSlot(index)
-        return slot
-    }
-
 }
 
-extension MapViewController {
+extension MapViewController: AgentMapAnimations {
     /// some com um slot
-    func getBag(slot: Slot, speed: Double) -> Bag {
+    func getBag(slot: Slot, speed: Double) {
         animations.append(.slotSpeed(getBagAnimation, (slot,speed)))
-        let bag = _mapModel.getBag(slot: slot)
-        return bag
     }
 
     /// faz um slot crescer
@@ -111,5 +81,20 @@ extension MapViewController {
         slotView.imageView.growUp(speed: speed) { [weak self] in
             self?.animations.processAnimation()
         }
+    }
+}
+
+extension MapViewController: AgentViewControllerDataSource {
+    /// retorna o frame de um slot
+    func frame(fromSlot slot: Slot) -> CGRect {
+        let slotView = slot.slotView(fromMatriz: _matrizSlotView)
+        return slotView.imageView.frame
+    }
+
+    /// retorna a posicao na tela de um slot em relacao a uma View
+    func center(fromSlot slot: Slot, to view: UIView) -> CGPoint {
+        let slotView = slot.slotView(fromMatriz: _matrizSlotView)
+        let center = view.convert(slotView.center, from: slotView.superview)
+        return center
     }
 }

@@ -13,22 +13,22 @@ extension Map {
     /// gera o muro lateral
     func makeSideWall() {
         // gera a direcao do paredao e seta a parede no jogo
-        sideWallPosition = Direction.down
+        mapData.sideWallPosition = Direction.down
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             matriz.setSlot(index, type: .muro)
         }
-        sideWallPosition = Direction.left
+        mapData.sideWallPosition = Direction.left
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             matriz.setSlot(index, type: .muro)
         }
-        sideWallPosition = Direction.up
+        mapData.sideWallPosition = Direction.up
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             matriz.setSlot(index, type: .muro)
         }
-        sideWallPosition = Direction.right
+        mapData.sideWallPosition = Direction.right
         for aux in 0 ..< mapSettings.square {
             let index = sideWallPosition.sideWall(limit: mapSettings.square, value: aux)
             matriz.setSlot(index, type: .muro)
@@ -109,23 +109,23 @@ extension Map {
     func makeBags() {
 
         var index = Index(col: 3, row: 3)
-        bags.data[4].index = index
+        mapData.bags.data[4].index = index
         matriz.setSlot(index, type: .saco)
 
         index = Index(col: 2, row: 8)
-        bags.data[3].index = index
+        mapData.bags.data[3].index = index
         matriz.setSlot(index, type: .saco)
 
         index = Index(col: 1, row: 6)
-        bags.data[2].index = index
+        mapData.bags.data[2].index = index
         matriz.setSlot(index, type: .saco)
 
         index = Index(col: 3, row: 6)
-        bags.data[1].index = index
+        mapData.bags.data[1].index = index
         matriz.setSlot(index, type: .saco)
 
         index = Index(col: 3, row: 4)
-        bags.data[0].index = index
+        mapData.bags.data[0].index = index
         matriz.setSlot(index, type: .saco)
         
 //        print("\(#function) - completo")

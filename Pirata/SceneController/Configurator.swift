@@ -41,7 +41,7 @@ class Configurator {
         mapVC = MapViewController(map: map)
         mapVC.animations = animations
 
-        agentVC = AgentViewController(agent: agent, mapVC: mapVC)
+        agentVC = AgentViewController(agentDS: mapVC, agentSlot: agent.location)
         agentVC.animations = animations
 
         rootViewController?.removeFromParent()
@@ -55,16 +55,14 @@ class Configurator {
         rootViewController.animations = animations
 
         agent.delegate = rootViewController
+        agent.mapAnimations = mapVC
+        agent.movementAnimations = agentVC
 
         window?.rootViewController = rootViewController
     }
 
     func reset() {
         agent.reset()
-//        rootViewController.removeFromParent()
-//        agent.stop()
-//        agent.reset()
-//        start()
     }
 
     func next() {

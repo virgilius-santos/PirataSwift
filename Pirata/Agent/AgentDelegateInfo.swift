@@ -8,14 +8,11 @@
 
 import Foundation
 
-protocol AgentDelegate {
+protocol AgentDelegateInfo {
     func update(coins: Int, general: Int)
-    func growUp(_ slot: Slot)
     func bauLocalizado(qtd: Int)
     func portaLocalizada(_ status: Bool)
     func divisaoDeSacolas(_ div: String)
-    func getBag(slot: Slot, speed: Double) -> Bag
-    func getSlot(fromIndex index: Index) -> Slot
     func next()
 }
 
@@ -43,15 +40,4 @@ extension Agent {
         self.delegate?.divisaoDeSacolas(div)
     }
 
-    func growUp(_ slot: Slot) {
-        self.delegate?.growUp(slot)
-    }
-
-    func coletarBag(_ slot: Slot) -> Bag {
-        return delegate!.getBag(slot: slot, speed: self.speed)
-    }
-
-    func mapSlot() -> Slot {
-        return delegate!.getSlot(fromIndex: location.index)
-    }
 }

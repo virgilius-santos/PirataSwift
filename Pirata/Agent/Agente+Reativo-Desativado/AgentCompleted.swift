@@ -8,19 +8,19 @@
 
 import Foundation
 
-var lastCheastVisited = 0
-extension Agent {
-    func completedAction() {
-        let genetic = Genetic(sacolas: bags, baus: cheastNumbers)
-        startflip()
-        genetic.start { (distributedBags) in
-            self.divisaoDeSacolas("\(distributedBags.map({$0.reduce(0, {$0+$1.valor})}))")
-            self.stopflip()
-            print("\(#function) - completed\n")
-            self.distributedBags = distributedBags
-            self.switchEvent(.distributedBags)
-        }
-    }
+//var lastCheastVisited = 0
+//extension Agent {
+//    func completedAction() {
+//        let genetic = Genetic(sacolas: bags, baus: cheastNumbers)
+//        startflip()
+//        genetic.start { (distributedBags) in
+//            self.divisaoDeSacolas("\(distributedBags.map({$0.reduce(0, {$0+$1.valor})}))")
+//            self.stopflip()
+//            print("\(#function) - completed\n")
+//            self.distributedBags = distributedBags
+//            self.switchEvent(.distributedBags)
+//        }
+//    }
     
 //    func distributedBagsInCheasts() {
 //        if door == nil || cheasts.count != map.mapSettings.cheastNumbers {
@@ -52,4 +52,4 @@ extension Agent {
 //    }
     
     
-}
+//}

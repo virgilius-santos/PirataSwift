@@ -74,6 +74,22 @@ class RedeNeural {
         }
     }
 
+    var lastDirection: Direction?
+    func getToogleDirection() -> Direction? {
+        guard let dir = lastDirection else {
+            return nil
+        }
+        switch dir {
+        case .left:
+            return .right
+        case .right:
+            return .left
+        case .down:
+            return .up
+        case .up:
+            return .down
+        }
+    }
     func entrada(slots: [Slot]) -> Agent.Movement? {
 
         let input = slots.map({Double($0.type.index)})
@@ -91,11 +107,18 @@ class RedeNeural {
         }
 
         let movimentoKey = movimentos.enumerated().max(by: {$0.element < $1.element})
-        let direcaoKey = direcoes.enumerated().max(by: {$0.element < $1.element})
+        let direcaoKey = direcoes
+            .enumerated()
+            .filter({$0.offset != getToogleDirection()?.rawValue})
+            .max(by: {$0.element < $1.element})
 
         let movimento = Acao(rawValue: movimentoKey!.offset)
-        let direcao = Direction(rawValue: direcaoKey!.offset)
 
+
+        var direcao: Direction?
+        direcao = Direction(rawValue: direcaoKey!.offset)
+        lastDirection = direcao
+        
 //        print((movimento!, direcao!))
         return  (movimento!, direcao!)
 

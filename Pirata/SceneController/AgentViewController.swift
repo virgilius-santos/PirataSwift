@@ -8,45 +8,74 @@
 
 import UIKit
 
+protocol AgentViewControllerDataSource {
+    func frame(fromSlot slot: Slot) -> CGRect
+    func center(fromSlot slot: Slot, to view: UIView) -> CGPoint
+}
+
 class AgentViewController {
 
-    weak var Agent: Agent!
-
     weak var animations: Animations!
-    
-    private weak var _rootView: UIView!
-    private weak var _agentImageView: UIImageView!
-    private weak var _mapVC: MapViewController!
 
-    init(agent: Agent, mapVC: MapViewController) {
-        Agent = agent
-        _mapVC = mapVC
-        
-        agent.movementDelegate = self
+    let AgentSlot: Slot
+
+    private(set) weak var RootView: UIView!
+    private(set) weak var AgentImageView: UIImageView!
+    private(set) var AgentDS: AgentViewControllerDataSource!
+
+    init(agentDS: AgentViewControllerDataSource, agentSlot: Slot) {
+        AgentSlot = agentSlot
+        AgentDS = agentDS
     }
 
     func insertAgent(inView view: UIView) {
-        _rootView = view
-        _agentImageView?.layer.removeAllAnimations()
-        let agentSlot = Agent.location
-        let agentImageView = UIImageView(image: agentSlot.type.image)
-        agentImageView.bounds = _mapVC.frame(fromSlot: agentSlot)
+        RootView = view
+        AgentImageView?.layer.removeAllAnimations()
+        let agentImageView = UIImageView(image: AgentSlot.type.image)
+        agentImageView.bounds = AgentDS.frame(fromSlot: AgentSlot)
         agentImageView.contentMode = .scaleAspectFit
-        agentImageView.center = _mapVC.center(fromSlot: agentSlot, to: _rootView)
-        _rootView.addSubview(agentImageView)
-        _agentImageView = agentImageView
-//        print("\(#function)\n -\(agentSlot)\n")
+        agentImageView.center = AgentDS.center(fromSlot: AgentSlot, to: RootView)
+        RootView.addSubview(agentImageView)
+        AgentImageView = agentImageView
+    }
+
+}
+
+extension AgentViewController: AgentMovementAnimations {
+
+    func move(to: Slot, speed: Double) {
+        let group = DispatchGroup()
+        group.enter()
+        var center: CGPoint!
+
+        DispatchQueue.main.async {
+            center = self.AgentDS.center(fromSlot: to, to: self.RootView)
+            group.leave()
+        }
+
+        // wait ...
+        group.wait()
+
+        self.animations.append(.slot(self.moveAnimation, (center, speed)))
     }
 
     private func moveAnimation(center: CGPoint, speed: Double) {
-        _agentImageView.moveAnimation(center: center, speed: speed) {
+        AgentImageView.moveAnimation(center: center, speed: speed) {
             self.animations.processAnimation()
         }
     }
 
-    private func startflipAnimation() {
-        _agentImageView.flip(speed: Agent.speed*2)
+    func startflip(speed: Double) {
+        animations.append(.speed(startflipAnimation, speed))
+    }
+
+    private func startflipAnimation(speed: Double) {
+        AgentImageView.flip(speed: speed)
         self.animations.processAnimation()
+    }
+
+    func stopflip() {
+        animations.append(.void(stopflipAnimation))
     }
 
     private func stopflipAnimation() {
@@ -55,68 +84,13 @@ class AgentViewController {
         self.animations.processAnimation()
     }
 
-    private func goOutAnimation(direction: Orientation, value: Float) {
-        _agentImageView.goOut(direction: direction, value: CGFloat(value), speed: Agent.speed) {
+    func goOut(direction: Orientation, value: Float, speed: Double) {
+        animations.append(.orientation(goOutAnimation, (direction, value, speed)))
+    }
+
+    private func goOutAnimation(direction: Orientation, value: Float, speed: Double) {
+        AgentImageView.goOut(direction: direction, value: CGFloat(value), speed: speed) {
             self.animations.processAnimation()
         }
     }
-
-}
-
-extension AgentViewController: AgentMovementDelegate {
-
-    func slot(movement: Agent.Movement) -> Slot? {
-
-        guard let newSlot = _mapVC.newSlot(fromSlot: Agent.location, movement: movement) else {
-            return nil
-        }
-        return newSlot
-    }
-
-    func move(to: Slot) {
-        let group = DispatchGroup()
-        group.enter()
-        var center: CGPoint!
-
-        DispatchQueue.main.async {
-            center = self._mapVC.center(fromSlot: to, to: self._rootView)
-            group.leave()
-        }
-
-        // wait ...
-        group.wait()
-
-        let speed = self.Agent.speed
-        self.animations.append(.slot(self.moveAnimation, (center, speed)))
-    }
-
-    func jump(to: Slot) {
-        let group = DispatchGroup()
-        group.enter()
-        var center: CGPoint!
-
-        DispatchQueue.main.async {
-            center = self._mapVC.center(fromSlot: to, to: self._rootView)
-            group.leave()
-        }
-
-        // wait ...
-        group.wait()
-
-        let speed = self.Agent.speed/2
-        self.animations.append(.slot(self.moveAnimation, (center, speed)))
-    }
-
-    func startflip() {
-        animations.append(.void(startflipAnimation))
-    }
-
-    func stopflip() {
-        animations.append(.void(stopflipAnimation))
-    }
-
-    func goOut(direction: Orientation, value: Float) {
-        animations.append(.orientation(goOutAnimation, (direction, value)))
-    }
-    
 }

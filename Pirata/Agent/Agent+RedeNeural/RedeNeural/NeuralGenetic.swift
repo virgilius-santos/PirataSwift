@@ -21,7 +21,7 @@ class NeuralGenetic {
     /// para cada item da matrix gera um peso
     /// com uma distribuição aleatória
     func popular(pesos: Int) {
-        let qtd: Int = 10
+        let qtd: Int = 10*50
         populacao
             = [[Double]](repeating: [Double](repeating: 0, count: pesos), count: qtd)
         popIntermediaria

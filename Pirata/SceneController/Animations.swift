@@ -13,7 +13,8 @@ class Animations {
     enum AnimationType {
         case slot ((CGPoint, Double)->(), (CGPoint, Double))
         case void (()->())
-        case orientation ((Orientation, Float)->(),(Orientation, Float))
+        case speed ((Double)->(), Double)
+        case orientation ((Orientation, Float, Double)->(),(Orientation, Float, Double))
         case slotSpeed ((Slot, Double)->(),(Slot, Double))
     }
 
@@ -34,17 +35,18 @@ class Animations {
             if self.animations.isEmpty {
                 return
             }
-//            sleep(1)
             let type = self.animations.removeFirst()
             switch type {
             case .slot(let (f, (p,s))):
                 f(p,s)
             case .void(let void):
                 void()
-            case .orientation(let (f, (o,v))):
-                f(o,v)
+            case .orientation(let (f, (o,v,s))):
+                f(o,v,s)
             case .slotSpeed(let (f, (s,v))):
                 f(s,v)
+            case .speed(let (f, s)):
+                f(s)
             }
         }
     }

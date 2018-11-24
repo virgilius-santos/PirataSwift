@@ -28,6 +28,7 @@ extension Agent {
                 break
             case .goToSlot(let movement):
                 move(movement: movement)
+                currentEvent = .analisarPosicaoAtual
                 break
             case .finished:
                 stopped = true
@@ -40,7 +41,7 @@ extension Agent {
     }
 
     func analisePosicaoAtual() {
-        let position = mapSlot()
+        let position = agentMap.getSlot(fromIndex: location.index)
         switch position.type {
         case .muro:
             faults += 100
@@ -64,7 +65,7 @@ extension Agent {
     }
 
     func analiseRegion() {
-        let regionList = getRegion()
+        let regionList = agentMap.getRegion(fromLocation: location)
         guard let movement = redeNeural.entrada(slots: regionList) else {
             return
         }
@@ -90,7 +91,12 @@ extension Agent {
 
     func analisarMovimentoEscolhido(slot: Slot, movement: Movement) {
         switch slot.type {
-        case .muro where movement.acao == .pula:
+        case .muro:
+            wrongMove(movement: movement)
+            faults += 100
+            currentEvent = .finished
+            break
+        case .buraco where movement.acao == .anda:
             wrongMove(movement: movement)
             faults += 100
             currentEvent = .finished
@@ -107,14 +113,17 @@ extension Agent {
 
     func colectBag(slot: Slot) {
 
-        let bag = self.coletarBag(slot)
+        let bag = agentMap.getBag(slot: slot)
+        
         bags.append(bag)
         currentEvent = .analisarRegiao
 
     }
 
     func move(movement: Movement) {
-        let newSlot = slot(movement: movement)!
+        guard let newSlot = agentMap.getSlot(fromIndex: location.index, withMovement: movement) else {
+            return
+        }
 
         location = newSlot
         if movement.acao == .anda {
@@ -122,12 +131,10 @@ extension Agent {
         } else {
             jumpView(to: newSlot)
         }
-
-       currentEvent = .analisarPosicaoAtual
     }
 
     func wrongMove(movement: Movement) {
-        guard let newSlot = slot(movement: movement) else {
+        guard let newSlot = agentMap.getSlot(fromIndex: location.index, withMovement: movement) else {
             return
         }
 

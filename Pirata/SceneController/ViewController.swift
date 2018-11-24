@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         if playing {
             configurator.reset()
         } else {
-            AgentVC.Agent.start()
+//            AgentVC.Agent.start()
         }
         playing.toggle()
     }
@@ -56,10 +56,8 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: AgentDelegate {
-    func getSlot(fromIndex index: Index) -> Slot {
-        return MapVC.getSlot(fromIndex: index)
-    }
+extension ViewController: AgentDelegateInfo {
+    
 
     func next() {
 //        animations.append(.void({
@@ -91,14 +89,6 @@ extension ViewController: AgentDelegate {
         DispatchQueue.main.async {
             self.divisaoSacolas.text = div
         }
-    }
-
-    func growUp(_ slot: Slot) {
-        MapVC.growUp(slot: slot, speed: 0.2)
-    }
-
-    func getBag(slot: Slot, speed: Double) -> Bag {
-        return MapVC.getBag(slot: slot, speed: speed)
     }
 }
 

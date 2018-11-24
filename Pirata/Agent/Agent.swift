@@ -16,10 +16,12 @@ class Agent {
 
     var defaultLocation: Slot
 
-    var movementDelegate: AgentMovementDelegate?
-    var delegate: AgentDelegate?
+    var mapAnimations: AgentMapAnimations?
+    var movementAnimations: AgentMovementAnimations?
 
-    var map: Map
+    var delegate: AgentDelegateInfo?
+
+    var agentMap: AgentMap
 
     var location: Slot {
         get {
@@ -70,8 +72,8 @@ class Agent {
 
     var speed: Double = 0.5
     
-    init(map: Map, startLocation location: Slot) {
-        self.map = map
+    init(map: AgentMap, startLocation location: Slot) {
+        agentMap = map
 
         bags = []
         cheasts = []
@@ -104,10 +106,12 @@ class Agent {
         next()
     }
 
-    func colectBag() {
-        let bag = coletarBag(location)
-        self.bags.append(bag)
-        self.checkIfisCompleted()
+    func checkIfisCompleted() {
+        if agentMap.totalSet * 10 == totalCoins {
+            if self.isCompleted != true {
+                self.isCompleted = true
+            }
+        }
     }
     
 }

@@ -12,7 +12,7 @@ extension Map {
     func getLargeRegion(_ slot: Slot) -> RegionList {
 
         let index = slot.index
-        var region = getRegion(slot)
+        var region = getRegion(fromLocation: slot)
         var aux: Index
 
         aux = Index(col: index.col, row: index.row-1)
@@ -38,7 +38,7 @@ extension Map {
         return region
     }
 
-    func getRegion(_ slot: Slot) -> RegionList {
+    func getRegion(fromLocation slot: Slot) -> RegionList {
 
         let index = slot.index
         var region = RegionList()
