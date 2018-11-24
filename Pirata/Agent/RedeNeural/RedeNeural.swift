@@ -53,6 +53,7 @@ class RedeNeural {
 
     func reset() {
         genetic.popular(pesos: qtdPesos)
+        actions = defaultActions
     }
     
     func setPesos() {

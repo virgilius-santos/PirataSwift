@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 class Agent {
 
@@ -32,7 +33,22 @@ class Agent {
 
     var agentData: AgentData
 
-    var currentEvent: EventNeuralType = .start
+    var currentEvent: EventNeuralType {
+        get { return _currentEvent }
+        set {
+            switch (_currentEvent, newValue) {
+            case (.error, .start):
+                _currentEvent = newValue
+                break
+            case (.error, _):
+                return
+            default:
+                _currentEvent = newValue
+                break
+            }
+        }
+    }
+    private var _currentEvent: EventNeuralType = .start
 
     init(map: AgentMap, startLocation location: Slot, cerebro: RedeNeural) {
         redeNeural = cerebro
@@ -42,7 +58,7 @@ class Agent {
         agentData = AgentData()
         agentData.location = location
         agentData.location.set(type: .pirate)
-        agentData.defaultLocation = location
+        agentData.defaultLocation = agentData.location
     }
 
     func start() {
@@ -54,7 +70,11 @@ class Agent {
     }
 
     func finished() {
-        if case .finished = currentEvent {
+        let evt: EventNeuralType = DispatchQueue.main.async(.promise) {
+            return self.currentEvent
+        }.wait()
+
+        if case .finished = evt {
             next()
         }
     }
