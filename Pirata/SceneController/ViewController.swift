@@ -29,8 +29,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     
     @IBOutlet weak var testButton: UIButton!
-    
+
     @IBOutlet weak var divisaoSacolas: UILabel!
+
+    @IBOutlet weak var geracoesLabel: UILabel!
 
     @IBOutlet weak var rootStackView: UIStackView!
 
@@ -67,10 +69,12 @@ extension ViewController: AgentDelegateInfo {
 //        }))
     }
 
-    func update(coins: Int = 0, general: Int = 0) {
+    func update(coins: Int = 0, general: Int = 0, geracoes: Int) {
         DispatchQueue.main.async {
             self.coinsLabel.text = "Moedas Coletadas: \(coins)"
             self.totalLabel.text = "Pontuação Geral: \(general)"
+            self.geracoesLabel.text = "Numero de Geraçoes: \(geracoes)"
+
         }
     }
 

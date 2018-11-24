@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AgentDelegateInfo {
-    func update(coins: Int, general: Int)
+    func update(coins: Int, general: Int, geracoes: Int)
     func bauLocalizado(qtd: Int)
     func portaLocalizada(_ status: Bool)
     func divisaoDeSacolas(_ div: String)
@@ -25,7 +25,8 @@ extension Agent {
     func updateValues() {
         let coins = agentData.totalCoins
         let general = agentData.totalPoints
-        self.delegate?.update(coins: coins, general: general)
+        let geracoes = redeNeural.genetic.geracao
+        self.delegate?.update(coins: coins, general: general, geracoes: geracoes)
     }
     
     func bauLocalizado() {

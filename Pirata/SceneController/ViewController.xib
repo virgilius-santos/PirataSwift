@@ -15,6 +15,7 @@
                 <outlet property="coinsLabel" destination="DeI-e7-LgE" id="QHq-AF-9av"/>
                 <outlet property="divisaoSacolas" destination="VxV-IV-Ivt" id="4hf-cx-NR8"/>
                 <outlet property="doorLocLabel" destination="EX5-c8-GCX" id="swk-Ci-e9O"/>
+                <outlet property="geracoesLabel" destination="AOk-gw-I2a" id="CFB-qV-sej"/>
                 <outlet property="qtdBauLabel" destination="bys-jr-sxd" id="rzm-vk-VWR"/>
                 <outlet property="rootStackView" destination="oyS-v0-GY5" id="QaK-1N-78S"/>
                 <outlet property="testButton" destination="M4x-FZ-b0k" id="0ja-SP-A0s"/>
@@ -103,6 +104,12 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOk-gw-I2a">
+                    <rect key="frame" x="679" y="932" width="8" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
             <constraints>
@@ -111,8 +118,10 @@
                 <constraint firstItem="bys-jr-sxd" firstAttribute="centerY" secondItem="eVm-b0-ecY" secondAttribute="centerY" id="3Wq-ng-MSu"/>
                 <constraint firstItem="70B-Cn-b5O" firstAttribute="top" secondItem="fh7-at-eqL" secondAttribute="top" constant="2" id="4KT-6Y-1sa"/>
                 <constraint firstItem="fh7-at-eqL" firstAttribute="bottom" secondItem="yPL-PM-SCo" secondAttribute="bottom" constant="20" id="57p-OU-8Fz"/>
+                <constraint firstItem="AOk-gw-I2a" firstAttribute="top" secondItem="70B-Cn-b5O" secondAttribute="bottom" constant="30" id="6Zj-Sh-bhK"/>
                 <constraint firstItem="EX5-c8-GCX" firstAttribute="leading" secondItem="bys-jr-sxd" secondAttribute="leading" id="9Ma-tc-svp"/>
                 <constraint firstItem="M4x-FZ-b0k" firstAttribute="leading" secondItem="ioB-JO-CSO" secondAttribute="trailing" constant="20" id="9wX-aB-2XN"/>
+                <constraint firstItem="AOk-gw-I2a" firstAttribute="centerX" secondItem="TU6-1x-Kzw" secondAttribute="centerX" id="C3Q-jC-GUD"/>
                 <constraint firstItem="fh7-at-eqL" firstAttribute="trailing" secondItem="M4x-FZ-b0k" secondAttribute="trailing" constant="8" id="Ecr-3u-2bV"/>
                 <constraint firstItem="VxV-IV-Ivt" firstAttribute="leading" secondItem="EX5-c8-GCX" secondAttribute="trailing" constant="20" id="Gh4-Og-DQA"/>
                 <constraint firstItem="EX5-c8-GCX" firstAttribute="leading" secondItem="yPL-PM-SCo" secondAttribute="trailing" constant="20" id="NXM-Va-Lif"/>
