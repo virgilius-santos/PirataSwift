@@ -33,16 +33,17 @@ class MapViewController {
     }
 
     func reloadData() {
-        _mapModel.matriz
-            .lazy
-            .flatMap({$0})
-            .forEach { slot in
-                let index = slot.index
-                let imgView = self._matrizSlotView[index.col][index.row].imageView
-                imgView?.image = slot.type.image
-                imgView?.alpha = 1
+        _mapModel.loadData() { matriz in
+            matriz
+                .lazy
+                .flatMap({$0})
+                .forEach { slot in
+                    let index = slot.index
+                    let imgView = self._matrizSlotView[index.col][index.row].imageView
+                    imgView?.image = slot.type.image
+                    imgView?.alpha = 1.0
+            }
         }
-
 
     }
 
