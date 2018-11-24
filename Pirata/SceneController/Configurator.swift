@@ -61,8 +61,11 @@ class Configurator {
         window?.rootViewController = rootViewController
     }
 
+
     func reset() {
-        agent.reset()
+        mapVC.reloadData()
+        rootViewController.loadViewIfNeeded()
+        //agent.reset()
     }
 
     func next() {

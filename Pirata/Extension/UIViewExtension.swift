@@ -12,7 +12,8 @@ extension UIView {
 
     func fadeOut(speed: Double, completion: @escaping()->()) {
         UIView.animate(withDuration: speed, animations: {
-            self.frame.size = .zero
+
+            self.alpha = 0
         }) { [weak self] (check) in
             if self != nil {
                 completion()

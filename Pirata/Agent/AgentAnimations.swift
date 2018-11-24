@@ -51,7 +51,7 @@ extension Agent {
 
         let bag = agentMap.getBag(slot: slot)
         bags.append(bag)
-        self.mapAnimations?.getBag(slot: slot, speed: self.speed)
+        self.mapAnimations?.getBag(slot: slot, speed: self.speed*2)
 
     }
 }

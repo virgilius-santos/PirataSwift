@@ -32,6 +32,20 @@ class MapViewController {
         }
     }
 
+    func reloadData() {
+        _mapModel.matriz
+            .lazy
+            .flatMap({$0})
+            .forEach { slot in
+                let index = slot.index
+                let imgView = self._matrizSlotView[index.col][index.row].imageView
+                imgView?.image = slot.type.image
+                imgView?.alpha = 1
+        }
+
+
+    }
+
     /// converte os modelos de slot presentes no _mapModel
     /// em slotView que serão add na tela
     private func completeMatriz(region: Map.Region) {
@@ -62,17 +76,17 @@ extension MapViewController: AgentMapAnimations {
         animations.append(.slotSpeed(getBagAnimation, (slot,speed)))
     }
 
-    /// faz um slot crescer
-    func growUp(slot: Slot, speed: Double) {
-        animations.append(.slotSpeed(growUpAnimation, (slot,speed)))
-    }
-
     /// some com um slot
     private func getBagAnimation(slot: Slot, speed: Double) {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
         slotView.imageView.fadeOut(speed: speed) { [weak self] in
             self?.animations.processAnimation()
         }
+    }
+
+    /// faz um slot crescer
+    func growUp(slot: Slot, speed: Double) {
+        animations.append(.slotSpeed(growUpAnimation, (slot,speed)))
     }
 
     /// faz um slot crescer
