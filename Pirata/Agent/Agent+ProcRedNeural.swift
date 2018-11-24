@@ -23,8 +23,8 @@ extension Agent {
             }
 
             switch currentEvent {
-            case .start:
-                redeNeural.setPesos()
+            case .start(let pesos):
+                redeNeural.setPesos(pesos: pesos)
                 currentEvent = .analisarPosicaoAtual
                 break
             case .analisarPosicaoAtual:

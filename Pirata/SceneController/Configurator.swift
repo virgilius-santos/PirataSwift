@@ -19,24 +19,26 @@ class Configurator {
     var map: Map
     var mapVC: MapViewController!
 
-    var agent: Agent
+    var agent: Agent!
+    var startLocation: Slot
     var agentVC: AgentViewController!
     var cerebro: RedeNeural
+
 
     var animations: Animations
 
     init(window: UIWindow?) {
         self.window = window
 
+        startLocation = Slot(index: Index(col: 1, row: 1))
+        startLocation.set(type: .pirate)
+
         map = Map(square: 10)
 
-        animations = Animations()
-
         cerebro = RedeNeural()
-        animations.redeNeural = cerebro
 
-        let startLocation = Slot(index: Index(col: 1, row: 1))
-        agent = Agent(map: map, startLocation: startLocation, cerebro: cerebro)
+        animations = Animations(filter: cerebro)
+
     }
 
     func configure() {
@@ -44,7 +46,7 @@ class Configurator {
         mapVC = MapViewController(map: map)
         mapVC.animations = animations
 
-        agentVC = AgentViewController(agentDS: mapVC, agentSlot: agent.location)
+        agentVC = AgentViewController(agentDS: mapVC, agentSlot: startLocation)
         agentVC.animations = animations
 
         rootViewController?.removeFromParent()
@@ -55,12 +57,33 @@ class Configurator {
         rootViewController.configurator = self
         rootViewController.animations = animations
 
-        agent.delegate = rootViewController
-        setDelegates()
-
         window?.rootViewController = rootViewController
     }
 
+    func next() {
+        let total = agent.agentData.totalPoints
+        cerebro.genetic.setarAptidoes(apt: Double(total))
+
+        agent.reset()
+        agent.moveToDefaultLocation()
+        mapVC.restoreData()
+
+        start()
+    }
+
+    func start() {
+        let pesos = cerebro.genetic.getPesosFromNextPopulation()
+        agent = Agent(map: map, startLocation: startLocation, cerebro: cerebro, pesos: pesos)
+
+        setDelegates()
+        agent.start()
+    }
+
+    func setDelegates() {
+        agent.delegate = rootViewController
+        agent.mapAnimations = mapVC
+        agent.movementAnimations = agentVC
+    }
 
     func reset() {
         animations.reset()
@@ -68,24 +91,5 @@ class Configurator {
         cerebro.reset()
         agent.reset()
         agentVC.reset()
-    }
-
-    func next() {
-        let total = agent.agentData.totalPoints
-        cerebro.genetic.setarAptidoes(apt: Double(total))
-        agent.reset()
-        agent.moveToDefaultLocation()
-        mapVC.restoreData()
-        //setDelegates()
-        agent.start()
-    }
-
-    func start() {
-        agent.start()
-    }
-
-    func setDelegates() {
-        agent.mapAnimations = mapVC
-        agent.movementAnimations = agentVC
     }
 }

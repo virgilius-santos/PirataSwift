@@ -10,6 +10,10 @@ import UIKit
 import PromiseKit
 import CancellablePromiseKit
 
+protocol FilterAnimation {
+    var canShow: Bool { get }
+}
+
 final class Animations {
 
     enum AnimationType {
@@ -33,7 +37,11 @@ final class Animations {
         }
     }
 
-    var redeNeural: RedeNeural?
+    private var _filter: FilterAnimation
+
+    init(filter: FilterAnimation) {
+        _filter = filter
+    }
 
     func startTask(_ promisse: Promise<Void> = Guarantee().asVoid()) -> CancellablePromise<Void> {
         return CancellablePromise(using: promisse, cancel: cancel)
@@ -52,7 +60,7 @@ final class Animations {
 
     func append(_ type: AnimationType) {
 
-        if !redeNeural!.genetic.canShow {
+        if !_filter.canShow {
             return
         }
         animations.append(type)

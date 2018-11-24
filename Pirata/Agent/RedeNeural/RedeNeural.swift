@@ -54,12 +54,7 @@ class RedeNeural {
         actions = defaultActions
     }
     
-    func setPesos() {
-        let pesos = genetic.getPesosFromNextPopulation()
-
-        if pesos.isEmpty {
-            return
-        }
+    func setPesos(pesos: [Double]) {
 
         var start = 0
         var end = 0
@@ -128,4 +123,8 @@ class RedeNeural {
         return (movimento!, direcao!)
 
     }
+}
+
+extension RedeNeural: FilterAnimation {
+    var canShow: Bool { return genetic.canShow }
 }

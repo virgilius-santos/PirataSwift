@@ -48,12 +48,14 @@ class Agent {
             }
         }
     }
-    private var _currentEvent: EventNeuralType = .start
+    private var _currentEvent: EventNeuralType
 
-    init(map: AgentMap, startLocation location: Slot, cerebro: RedeNeural) {
+    init(map: AgentMap, startLocation location: Slot, cerebro: RedeNeural, pesos: [Double]) {
         redeNeural = cerebro
 
         agentMap = map
+
+        _currentEvent = .start(pesos)
 
         agentData = AgentData()
         agentData.location = location
@@ -62,8 +64,7 @@ class Agent {
     }
 
     func start() {
-        DispatchQueue(label: "Agent").async {
-            self.currentEvent = .start
+       DispatchQueue.global(qos: .utility).async {
             self.switchEvent()
             self.finished()
         }
