@@ -67,8 +67,7 @@ class Configurator {
         mapVC.reloadData()
         cerebro.reset()
         agent.reset()
-        agent.moveToDefaultLocation()
-
+        agentVC.reset()
     }
 
     func next() {
