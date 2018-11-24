@@ -37,7 +37,7 @@ extension Agent {
     }
 
     func checkIfisCompleted() {
-        switchEvent(evt: .start)
+        currentEvent = .start
 //        if map.bags.totalSet * 10 == totalCoins {
 //            if self.isCompleted != true {
 //                self.isCompleted = true

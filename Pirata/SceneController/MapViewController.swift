@@ -77,6 +77,11 @@ class MapViewController {
         return newSlot
     }
 
+    func getSlot(fromIndex index: Index) -> Slot {
+        let slot = _mapModel.matriz.getSlot(index)
+        return slot
+    }
+
 }
 
 extension MapViewController {

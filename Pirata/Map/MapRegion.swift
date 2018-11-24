@@ -43,9 +43,9 @@ extension Map {
         let index = slot.index
         var region = RegionList()
 
-        if let slot = self.matriz.upSlot(fromIndex: index) {
-            region.append(slot)
-        }
+//        if let slot = self.matriz.upSlot(fromIndex: index) {
+//            region.append(slot)
+//        }
 
         if let slot = self.matriz.downSlot(fromIndex: index) {
             region.append(slot)

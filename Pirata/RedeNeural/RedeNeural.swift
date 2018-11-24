@@ -13,7 +13,7 @@ class RedeNeural {
     var neuronio: Neuronio { return Neuronio() }
 
     var qtdPesos: Int {
-        let qtd = [neuronios,
+        let qtd = [neuroniosIntermediarios,
                    neuroniosMovimento,
                    neuroniosDirecao
             ].lazy
@@ -22,7 +22,7 @@ class RedeNeural {
             .reduce(0, +)
         return qtd
     }
-    private var neuronios: [Neuronio] = []
+    private var neuroniosIntermediarios: [Neuronio] = []
 
     private var neuroniosMovimento: [Neuronio] = []
 
@@ -31,15 +31,21 @@ class RedeNeural {
     var genetic = NeuralGenetic()
 
     init() {
-        for _ in 0...3 {
-            neuronios.append(neuronio)
+
+        // 3 neuronios de entrada (dir, esq, baixo)
+        for _ in 0..<3 {
+            neuroniosIntermediarios.append(neuronio)
         }
-        for _ in 0...1 {
+
+        // dois neuronios de movimento (anda pula)
+        for _ in 0..<2 {
             neuroniosMovimento.append(neuronio)
         }
-        for _ in 0...3 {
+        // tres neuronios de saida (dir, esq, baixo)
+        for _ in 0..<3 {
             neuroniosDirecao.append(neuronio)
         }
+
         genetic.popular(pesos: qtdPesos)
     }
 
@@ -54,7 +60,7 @@ class RedeNeural {
         var end = 0
 
         [
-            neuronios,
+            neuroniosIntermediarios,
             neuroniosMovimento,
             neuroniosDirecao
             ]
@@ -72,7 +78,7 @@ class RedeNeural {
 
         let input = slots.map({Double($0.type.index)})
 
-        let rede1 = neuronios.map { (neuronio) -> Double in
+        let rede1 = neuroniosIntermediarios.map { (neuronio) -> Double in
             return neuronio.calculaPesos(parametros: input)
         }
 
@@ -91,7 +97,7 @@ class RedeNeural {
         let direcao = Direction(rawValue: direcaoKey!.offset)
 
 //        print((movimento!, direcao!))
-        return nextAction //(movimento!, direcao!)
+        return  (movimento!, direcao!)
 
     }
 }

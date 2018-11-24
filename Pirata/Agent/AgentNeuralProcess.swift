@@ -10,49 +10,55 @@ import Foundation
 
 extension Agent {
 
-    func switchEvent(evt: EventNeuralType) {
-        switch evt {
-        case .start:
-            redeNeural.setPesos()
-            switchEvent(evt: .analisarPosicaoAtual)
-            break
-        case .analisarPosicaoAtual:
-            analisePosicaoAtual()
-            break
-        case .analisarRegiao:
-            analiseRegion()
-            break
-        case .analisar(let (slot, movement)):
-            analisarMovimentoEscolhido(slot: slot, movement: movement)
-            break
-        case .goToSlot(let movement):
-            move(movement: movement)
-            break
-        case .error:
-            print("\n--------Erroor--------\n")
-            break
+    func switchEvent() {
+        while !stopped {
+            switch currentEvent! {
+            case .start:
+                redeNeural.setPesos()
+                currentEvent = .analisarPosicaoAtual
+                break
+            case .analisarPosicaoAtual:
+                analisePosicaoAtual()
+                break
+            case .analisarRegiao:
+                analiseRegion()
+                break
+            case .analisar(let (slot, movement)):
+                analisarMovimentoEscolhido(slot: slot, movement: movement)
+                break
+            case .goToSlot(let movement):
+                move(movement: movement)
+                break
+            case .finished:
+                stopped = true
+                break
+            case .error:
+                print("\n--------Erroor--------\n")
+                break
+            }
         }
     }
 
     func analisePosicaoAtual() {
-        switch location.type {
+        let position = mapSlot()
+        switch position.type {
         case .muro:
             faults += 100
-            reset()
+            currentEvent = .finished
             break
         case .saco:
             colectBag(slot: location)
             break
         case .porta:
             isCompleted = true
-            reset()
+            currentEvent = .finished
             break
         case .buraco:
             faults += 50
-            reset()
+            currentEvent = .finished
             break
         default: //todos os outros são "empty"
-            switchEvent(evt: .analisarRegiao)
+            currentEvent = .analisarRegiao
             break
         }
     }
@@ -73,25 +79,28 @@ extension Agent {
         case .down: rowOffset = 1
         }
 
+        let checkIndex = Index(col: location.index.col + cowOffset,
+                               row: location.index.row + rowOffset)
         let slot = regionList.first(where: {
-            $0.index.col == location.index.col + cowOffset
-                && $0.index.row == location.index.row + rowOffset
-        })!
+            $0.index == checkIndex
+        })
 
-        switchEvent(evt: .analisar(slot, movement))
+        currentEvent = .analisar(slot!, movement)
     }
 
     func analisarMovimentoEscolhido(slot: Slot, movement: Movement) {
         switch slot.type {
         case .muro where movement.acao == .pula:
             wrongMove(movement: movement)
+            faults += 100
+            currentEvent = .finished
             break
         case .buraco where movement.acao == .pula:
             holeJumpeds += 1
-            switchEvent(evt: .goToSlot(movement))
+            currentEvent = .goToSlot(movement)
             break
         default: //todos os outros são "empty"
-            switchEvent(evt: .goToSlot(movement))
+            currentEvent = .goToSlot(movement)
             break
         }
     }
@@ -100,34 +109,34 @@ extension Agent {
 
         let bag = self.coletarBag(slot)
         bags.append(bag)
-        switchEvent(evt: .analisarRegiao)
+        currentEvent = .analisarRegiao
 
     }
 
     func move(movement: Movement) {
-        let newSlot = slot(movement: movement)
-        if newSlot != nil {
-            location = newSlot!
-            if movement.acao == .anda {
-                moveView(to: newSlot!)
-            } else {
-                jumpView(to: newSlot!)
-            }
+        let newSlot = slot(movement: movement)!
+
+        location = newSlot
+        if movement.acao == .anda {
+            moveView(to: newSlot)
+        } else {
+            jumpView(to: newSlot)
         }
-        self.switchEvent(evt: .analisarPosicaoAtual)
+
+       currentEvent = .analisarPosicaoAtual
     }
 
     func wrongMove(movement: Movement) {
-        let newSlot = slot(movement: movement)
-        if newSlot != nil {
-            self.location = newSlot!
-            if movement.acao == .anda {
-                moveView(to: newSlot!)
-            } else {
-                jumpView(to: newSlot!)
-            }
+        guard let newSlot = slot(movement: movement) else {
+            return
         }
-        self.faults += 100
-        reset()
+
+        location = newSlot
+        if movement.acao == .anda {
+            moveView(to: newSlot)
+        } else {
+            jumpView(to: newSlot)
+        }
+
     }
 }

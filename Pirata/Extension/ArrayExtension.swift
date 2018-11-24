@@ -159,6 +159,10 @@ extension Array where Array == Map.Region {
         //busySlots.insert(matriz[index.col][index.row].index)
     }
 
+    func getSlot(_ index: Pirata.Index) -> Slot {
+        return self[index.col][index.row]
+    }
+
     /// busca todos os index nao ocupados
     func getEmptyIndex(_ indexExcludeds: Set<Pirata.Index> = Set(),
                        _ typeExcludeds: [ImageType] = []) -> [Slot] {

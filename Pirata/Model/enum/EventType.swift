@@ -27,5 +27,6 @@ enum EventNeuralType {
     case analisarRegiao
     case analisar(Slot, Agent.Movement)
     case goToSlot(Agent.Movement)
+    case finished
     case error
 }

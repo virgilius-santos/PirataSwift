@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum Direction: Int {
-    case left, right, up, down
+enum Direction: Int, CaseIterable {
+    case left, right, down, up
     
     func sideWall(limit: Int, value: Int) -> Index {
         switch self {

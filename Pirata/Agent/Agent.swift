@@ -26,13 +26,15 @@ class Agent {
             return _location
         }
         set {
-            _location = newValue
+            _location.index = newValue.index
         }
     }
     private var _location: Slot
     
     var cheasts: [Cheast]
     var door: Slot?
+
+    var currentEvent: EventNeuralType!
 
     var faults: Int = 0 {
         didSet {
@@ -83,7 +85,9 @@ class Agent {
     func start() {
         stopped = false
         DispatchQueue(label: "Agent").async {
-            self.switchEvent(evt: .start)
+            self.currentEvent = .start
+            self.switchEvent()
+            self.reset()
         }
     }
 
@@ -96,6 +100,7 @@ class Agent {
         cheasts.removeAll()
         door = nil
         distributedBags.removeAll()
+        faults = 0
         next()
     }
 

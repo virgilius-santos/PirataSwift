@@ -11,7 +11,7 @@ import Foundation
 struct Slot: Hashable, Equatable {
     
     private(set) var type: ImageType
-    private(set) var index: Index
+    var index: Index
     private(set) var isBusy: Bool = false
     
     init(index: Index, type: ImageType = .Empty) {

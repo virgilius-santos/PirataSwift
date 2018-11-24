@@ -57,6 +57,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: AgentDelegate {
+    func getSlot(fromIndex index: Index) -> Slot {
+        return MapVC.getSlot(fromIndex: index)
+    }
+
     func next() {
 //        animations.append(.void({
             self.configurator.next()
