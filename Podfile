@@ -9,6 +9,7 @@ def rx_pods
 end
 
 target 'Pirata' do
- rx_pods
-
+    rx_pods
+    pod 'PromiseKit', '~> 6.0'
+    pod 'CancellablePromiseKit'
 end

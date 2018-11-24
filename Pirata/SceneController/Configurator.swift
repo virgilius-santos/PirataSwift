@@ -63,6 +63,7 @@ class Configurator {
 
 
     func reset() {
+        animations.reset()
         mapVC.reloadData()
         rootViewController.loadViewIfNeeded()
     }

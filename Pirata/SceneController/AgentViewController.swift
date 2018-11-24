@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 protocol AgentViewControllerDataSource {
     func frame(fromSlot slot: Slot) -> CGRect
@@ -59,38 +60,33 @@ extension AgentViewController: AgentMovementAnimations {
         self.animations.append(.slot(self.moveAnimation, (center, speed)))
     }
 
-    private func moveAnimation(center: CGPoint, speed: Double) {
-        AgentImageView.moveAnimation(center: center, speed: speed) {
-            self.animations.processAnimation()
-        }
-    }
-
-    func startflip(speed: Double) {
-        animations.append(.speed(startflipAnimation, speed))
-    }
-
-    private func startflipAnimation(speed: Double) {
-        AgentImageView.flip(speed: speed)
-        self.animations.processAnimation()
-    }
-
-    func stopflip() {
-        animations.append(.void(stopflipAnimation))
-    }
-
-    private func stopflipAnimation() {
-        #warning("implmentar stopflipAnimation()")
-        print("error \(#function)")
-        self.animations.processAnimation()
+    private func moveAnimation(center: CGPoint, speed: Double) -> Guarantee<Bool> {
+        return AgentImageView.moveAnimation(center: center, speed: speed)
     }
 
     func goOut(direction: Orientation, value: Float, speed: Double) {
         animations.append(.orientation(goOutAnimation, (direction, value, speed)))
     }
 
-    private func goOutAnimation(direction: Orientation, value: Float, speed: Double) {
-        AgentImageView.goOut(direction: direction, value: CGFloat(value), speed: speed) {
-            self.animations.processAnimation()
-        }
+    private func goOutAnimation(direction: Orientation, value: Float, speed: Double) -> Guarantee<Bool> {
+        return AgentImageView
+            .goOut(direction: direction, value: CGFloat(value), speed: speed)
+    }
+
+    func startflip(speed: Double) {
+        //animations.append(.speed(startflipAnimation, speed))
+    }
+
+    private func startflipAnimation(speed: Double) -> Guarantee<Bool> {
+        return AgentImageView.flip(speed: speed)
+    }
+
+    func stopflip() {
+        //animations.append(.void(stopflipAnimation))
+    }
+
+    private func stopflipAnimation() {
+        #warning("implmentar stopflipAnimation()")
+        print("error \(#function)")
     }
 }

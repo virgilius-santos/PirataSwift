@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class MapViewController {
 
@@ -78,11 +79,9 @@ extension MapViewController: AgentMapAnimations {
     }
 
     /// some com um slot
-    private func getBagAnimation(slot: Slot, speed: Double) {
+    private func getBagAnimation(slot: Slot, speed: Double) -> Guarantee<Bool> {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-        slotView.imageView.fadeOut(speed: speed) { [weak self] in
-            self?.animations.processAnimation()
-        }
+        return slotView.imageView.fadeOut(speed: speed)
     }
 
     /// faz um slot crescer
@@ -91,11 +90,9 @@ extension MapViewController: AgentMapAnimations {
     }
 
     /// faz um slot crescer
-    private func growUpAnimation(slot: Slot, speed: Double) {
+    private func growUpAnimation(slot: Slot, speed: Double) -> Guarantee<Bool> {
         let slotView = slot.slotView(fromMatriz: _matrizSlotView)
-        slotView.imageView.growUp(speed: speed) { [weak self] in
-            self?.animations.processAnimation()
-        }
+        return slotView.imageView.growUp(speed: speed)
     }
 }
 

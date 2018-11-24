@@ -7,47 +7,79 @@
 //
 
 import UIKit
+import PromiseKit
+import CancellablePromiseKit
 
-class Animations {
+final class Animations {
 
     enum AnimationType {
-        case slot ((CGPoint, Double)->(), (CGPoint, Double))
-        case void (()->())
-        case speed ((Double)->(), Double)
-        case orientation ((Orientation, Float, Double)->(),(Orientation, Float, Double))
-        case slotSpeed ((Slot, Double)->(),(Slot, Double))
+        case slot ((CGPoint, Double)->(Guarantee<Bool>), (CGPoint, Double))
+        case void (()->(Guarantee<Bool>))
+        case speed ((Double)->(Guarantee<Bool>), Double)
+        case orientation ((Orientation, Float, Double)->(Guarantee<Bool>),(Orientation, Float, Double))
+        case slotSpeed ((Slot, Double)->(Guarantee<Bool>),(Slot, Double))
+    }
+
+    let delay = 0.1
+
+    lazy var chain: CancellablePromise<Void> = startTask()
+
+
+
+
+    func startTask(_ promisse: Promise<Void> = Guarantee().asVoid()) -> CancellablePromise<Void> {
+        return CancellablePromise(using: promisse, cancel: cancel)
     }
 
     var animations = [AnimationType]() {
         didSet {
             if oldValue.isEmpty {
-                processAnimation()
+                process()
             }
         }
     }
+
+    var closed = false
+
+    func reset() {
+        closed = true
+        animations.removeAll()
+        chain.cancel()
+    }
+
+    func cancel() {
+        print("\(String(describing: Animations.self)) - \(#function)")
+    }
+
 
     func append(_ type: AnimationType) {
         animations.append(type)
     }
 
-    func processAnimation() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            if self.animations.isEmpty {
-                return
-            }
-            let type = self.animations.removeFirst()
-            switch type {
-            case .slot(let (f, (p,s))):
-                f(p,s)
-            case .void(let void):
-                void()
-            case .orientation(let (f, (o,v,s))):
-                f(o,v,s)
-            case .slotSpeed(let (f, (s,v))):
-                f(s,v)
-            case .speed(let (f, s)):
-                f(s)
-            }
+    func process() {
+        if animations.isEmpty || closed {
+            return
+        }
+        let type = animations.removeFirst()
+
+        chain = chain.then {
+            let promisses = self.process(type).asVoid()
+            return self.startTask(promisses.asVoid())
+        }
+    }
+
+    func process(_ type: AnimationType) -> Guarantee<Bool> {
+        switch type {
+        case .slot(let (f, (p,s))):
+            return f(p,s)
+        case .void(let void):
+            return void()
+        case .orientation(let (f, (o,v,s))):
+            return f(o,v,s)
+        case .slotSpeed(let (f, (s,v))):
+            return f(s,v)
+        case .speed(let (f, s)):
+            return f(s)
         }
     }
 }
