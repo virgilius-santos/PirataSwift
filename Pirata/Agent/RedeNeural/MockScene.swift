@@ -76,13 +76,13 @@ var completa: [Agent.Movement] {
 
 var actions: [Agent.Movement] = {
     return [
-//        bate_parede
-//        , pula_parede
-//        , anda_buraco
-//        , pula_saco_bate_parede
-//        , pula_porta
-//        , completa
-        completa
+        bate_parede
+        , pula_parede
+        , anda_buraco
+        , pula_saco_bate_parede
+        , pula_porta
+        , completa
+//        completa
         ]
         .flatMap({$0})
 }()
