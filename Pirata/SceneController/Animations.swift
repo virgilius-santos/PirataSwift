@@ -52,7 +52,7 @@ final class Animations {
 
     func append(_ type: AnimationType) {
 
-        if let rd = redeNeural, rd.genetic.geracao % 10 != 0 {
+        if !redeNeural!.genetic.canShow {
             return
         }
         animations.append(type)

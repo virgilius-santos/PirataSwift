@@ -10,8 +10,6 @@ import Foundation
 
 class RedeNeural {
 
-    var isShowable: Bool { return genetic.populacaoSelected == -1 }
-
     var neuronio: Neuronio { return Neuronio() }
 
     var qtdPesos: Int {

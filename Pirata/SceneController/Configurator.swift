@@ -85,7 +85,7 @@ class Configurator {
     }
 
     func setDelegates() {
-        agent.mapAnimations = cerebro.isShowable ? mapVC : nil
-        agent.movementAnimations = cerebro.isShowable ? agentVC : nil
+        agent.mapAnimations = mapVC
+        agent.movementAnimations = agentVC
     }
 }

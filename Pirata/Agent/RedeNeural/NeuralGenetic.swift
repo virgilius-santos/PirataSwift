@@ -10,11 +10,15 @@ import Foundation
 
 class NeuralGenetic {
 
+    var canShow = false
+
     private var populacao: [[Double]] = []
     private var popIntermediaria: [[Double]] = []
     var aptidoes: [Double] = []
 
     var populacaoSelected = -1
+
+    var geracao = -1
 
     /// inicia os array com a qtd de pessos passada
     /// para cada item da matrix gera um peso
@@ -37,8 +41,9 @@ class NeuralGenetic {
     }
 
     func getPesosFromNextPopulation() -> [Double] {
-
+        geracao += 1
         populacaoSelected += 1
+        canShow = (populacaoSelected == 0)
         return populacao[populacaoSelected]
 
     }
@@ -50,9 +55,7 @@ class NeuralGenetic {
         }
     }
 
-    var geracao = 0
     private func processar() {
-        geracao += 1
         populacaoSelected = -1
         elitizar()
         gerar()
@@ -61,10 +64,10 @@ class NeuralGenetic {
 
     /// com probabilidade de 50% ele muta um gene de um elemento da populacao
     private func mutar() {
-        for _ in 0...50 {
+        for _ in 0...populacao.count/2 {
             let fator = Int.randomNumber(100)
             if (fator < 80 ) {
-                let member = Int.randomNumber(populacao.count-1) + 1
+                let member = max(Int.randomNumber(populacao.count),1)
                 for i in 0 ..< populacao[member].count {
                     var value: Double = 0
                     repeat {
