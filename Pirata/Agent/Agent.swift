@@ -49,15 +49,16 @@ class Agent {
         DispatchQueue(label: "Agent").async {
             self.currentEvent = .start
             self.switchEvent()
-            self.reset()
+            self.finished()
         }
     }
 
-    func reset() {
+    func finished() {
         let total = agentData.totalPoints
         redeNeural.genetic.setarAptidoes(apt: Double(total))
         moveView(to: agentData.defaultLocation)
         agentData.clear()
+        next()
     }
     
 }
