@@ -19,21 +19,16 @@ struct AgentData {
     let speed: Double = 0.5
 
 
-    var faults: Int = 0
-    var holeJumpeds: Int = 0
-    var bags: [Bag] = []
+    var points: Int = 0
 
+    var bags: [Bag] = []
 
     var totalCoins: Int {
         return self.bags.reduce(0, { $0 + $1.valor}) * 10
     }
 
     var totalPoints: Int {
-        let coins = self.totalCoins
-        let general = coins
-            + self.holeJumpeds * 30
-            - self.faults
-        return general
+        return totalCoins + points
     }
 
     mutating func clear() {
@@ -43,8 +38,7 @@ struct AgentData {
         location = defaultLocation
         door = nil
 
-        faults = 0
-        holeJumpeds = 0
+        points = 0
         bags.removeAll()
 
     }

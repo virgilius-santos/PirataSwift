@@ -8,16 +8,6 @@
 
 import Foundation
 
-struct Pontuacao {
-    init() {}
-    static let muro = -100
-    static let buraco = -50
-    static let pulaBuraco = 60
-    static let empty = 20
-    static let saco = 80
-    static let porta = 120
-}
-
 extension Agent {
 
     func switchEvent() {
@@ -60,24 +50,24 @@ extension Agent {
         let position = agentMap.getSlot(fromIndex: location.index)
         switch position.type {
         case .muro:
-            agentData.faults += Pontuacao.muro
+            agentData.points += Pontuacao.muro
             currentEvent = .finished
             break
         case .buraco:
-            agentData.faults += Pontuacao.buraco
+            agentData.points += Pontuacao.buraco
             currentEvent = .finished
             break
         case .saco:
             colectBag(slot: location)
             currentEvent = .analisarRegiao
-            agentData.faults += Pontuacao.saco
+            agentData.points += Pontuacao.saco
             break
         case .porta:
-            agentData.faults += Pontuacao.porta
+            agentData.points += Pontuacao.porta
             currentEvent = .finished
             break
         default: //todos os outros são "empty"
-            agentData.faults += Pontuacao.empty
+            agentData.points += Pontuacao.empty
             currentEvent = .analisarRegiao
             break
         }
@@ -112,16 +102,16 @@ extension Agent {
         switch slot.type {
         case .muro:
             wrongMove(movement: movement)
-            agentData.faults += Pontuacao.buraco
+            agentData.points += Pontuacao.buraco
             currentEvent = .finished
             break
         case .buraco where movement.acao == .anda:
             wrongMove(movement: movement)
-            agentData.faults += Pontuacao.buraco
+            agentData.points += Pontuacao.buraco
             currentEvent = .finished
             break
         case .buraco where movement.acao == .pula:
-            agentData.faults += Pontuacao.pulaBuraco
+            agentData.points += Pontuacao.pulaBuraco
             currentEvent = .goToSlot(movement)
             break
         default:

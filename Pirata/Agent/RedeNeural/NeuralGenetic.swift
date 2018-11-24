@@ -21,7 +21,7 @@ class NeuralGenetic {
     /// com uma distribuição aleatória
     func popular(pesos: Int) {
         populacaoSelected = -1
-        let qtd: Int = 10*50
+        let qtd: Int = 10*100
         populacao
             = [[Double]](repeating: [Double](repeating: 0, count: pesos), count: qtd)
         popIntermediaria
@@ -59,17 +59,21 @@ class NeuralGenetic {
 
     /// com probabilidade de 50% ele muta um gene de um elemento da populacao
     private func mutar() {
-        let fator = Int.randomNumber(100)
-        let member = Int.randomNumber(populacao.count)
-        let gene = Int.randomNumber(populacao[member].count)
-        if (fator < 50 ) {
-            var value = populacao[member][gene]
-            while value == populacao[member][gene] {
-                value = Double.randomDouble
+        for _ in 0...100 {
+            let fator = Int.randomNumber(100)
+            if (fator < 80 ) {
+                let member = Int.randomNumber(populacao.count)
+                for i in 0 ..< populacao[member].count {
+                    var value: Double = 0
+                    repeat {
+                        value = Double.randomDouble
+                    } while value == populacao[member][i]
+                    populacao[member][i] = value
+                }
             }
-            populacao[member][gene] = value
         }
     }
+
 
     /// gera dois possiveis pais
     /// retorna o index do pai com o menor valor
@@ -84,7 +88,7 @@ class NeuralGenetic {
         let apt1 = aptidoes[linha1]
         let apt2 = aptidoes[linha2]
 
-        return (apt1 < apt2) ? linha1 : linha2
+        return (apt1 < apt2) ? linha2 : linha1
     }
 
     private func gerar() {
@@ -110,6 +114,7 @@ class NeuralGenetic {
         }
 
         populacao = popIntermediaria
+        aptidoes = [Double](repeating: -1000, count: populacao.count)
     }
 
     private func elitizar() {
@@ -118,7 +123,7 @@ class NeuralGenetic {
         let setSorted = aptidoes
             .enumerated()
             .sorted(by: { (set1, set2) -> Bool in
-                return set1.element < set2.element
+                return set1.element > set2.element
             })
 
         /// seta o menor valor ao indice zero da populacao intermediarias
