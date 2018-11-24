@@ -12,7 +12,7 @@ class Agent {
 
     public typealias Movement = (acao: Acao, direcao: Direction)
 
-    var redeNeural = RedeNeural()
+    var redeNeural: RedeNeural
 
     var mapAnimations: AgentMapAnimations?
     var movementAnimations: AgentMovementAnimations?
@@ -34,7 +34,9 @@ class Agent {
 
     var currentEvent: EventNeuralType = .start
 
-    init(map: AgentMap, startLocation location: Slot) {
+    init(map: AgentMap, startLocation location: Slot, cerebro: RedeNeural) {
+        redeNeural = cerebro
+
         agentMap = map
 
         agentData = AgentData()

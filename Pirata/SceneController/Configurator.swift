@@ -22,6 +22,7 @@ class Configurator {
 
     var agent: Agent
     var agentVC: AgentViewController!
+    var cerebro: RedeNeural
 
     var animations: Animations
 
@@ -32,8 +33,9 @@ class Configurator {
 
         animations = Animations()
 
+        cerebro = RedeNeural()
         let startLocation = Slot(index: Index(col: 1, row: 1))
-        agent = Agent(map: map, startLocation: startLocation)
+        agent = Agent(map: map, startLocation: startLocation, cerebro: cerebro)
     }
 
     func start() {
