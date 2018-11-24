@@ -23,15 +23,15 @@ protocol AgentMapAnimations {
 extension Agent {
 
     func moveView(to: Slot) {
-        self.movementAnimations?.move(to: to, speed: self.speed)
+        self.movementAnimations?.move(to: to, speed: agentData.speed)
     }
 
     func jumpView(to: Slot) {
-        self.movementAnimations?.move(to: to, speed: self.speed/2)
+        self.movementAnimations?.move(to: to, speed: agentData.speed/2)
     }
 
     func startflip() {
-        self.movementAnimations?.startflip(speed: self.speed*2)
+        self.movementAnimations?.startflip(speed: agentData.speed*2)
     }
 
     func stopflip() {
@@ -40,18 +40,18 @@ extension Agent {
 
     func goOut(direction: Orientation, value: Float) {
         self.movementAnimations?
-            .goOut(direction: direction, value: value, speed: self.speed)
+            .goOut(direction: direction, value: value, speed: agentData.speed)
     }
 
     func growUp(_ slot: Slot) {
-        self.mapAnimations?.growUp(slot: slot, speed: self.speed)
+        self.mapAnimations?.growUp(slot: slot, speed: agentData.speed)
     }
 
     func colectBag(slot: Slot) {
 
         let bag = agentMap.getBag(slot: slot)
-        bags.append(bag)
-        self.mapAnimations?.getBag(slot: slot, speed: self.speed*2)
+        agentData.bags.append(bag)
+        self.mapAnimations?.getBag(slot: slot, speed: agentData.speed*2)
 
     }
 }

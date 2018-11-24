@@ -23,13 +23,13 @@ extension Agent {
     }
     
     func updateValues() {
-        let coins = self.totalCoins
-        let general = self.totalPoints
+        let coins = agentData.totalCoins
+        let general = agentData.totalPoints
         self.delegate?.update(coins: coins, general: general)
     }
     
     func bauLocalizado() {
-        self.delegate?.bauLocalizado(qtd: self.cheasts.count)
+        self.delegate?.bauLocalizado(qtd: agentData.cheasts.count)
     }
     
     func portaLocalizada() {

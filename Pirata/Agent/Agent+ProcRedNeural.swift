@@ -11,8 +11,12 @@ import Foundation
 extension Agent {
 
     func switchEvent() {
-        while !stopped {
-            switch currentEvent! {
+        while true {
+            if case .finished = currentEvent {
+                break
+            }
+
+            switch currentEvent {
             case .start:
                 redeNeural.setPesos()
                 currentEvent = .analisarPosicaoAtual
@@ -31,7 +35,6 @@ extension Agent {
                 currentEvent = .analisarPosicaoAtual
                 break
             case .finished:
-                stopped = true
                 break
             case .error:
                 print("\n--------Erroor--------\n")
@@ -44,7 +47,7 @@ extension Agent {
         let position = agentMap.getSlot(fromIndex: location.index)
         switch position.type {
         case .muro:
-            faults += 100
+            agentData.faults += 100
             currentEvent = .finished
             break
         case .saco:
@@ -52,12 +55,10 @@ extension Agent {
             currentEvent = .analisarRegiao
             break
         case .porta:
-            isCompleted = true
             currentEvent = .finished
             break
         case .buraco:
-            faults += 50
-            currentEvent = .finished
+            agentData.faults += 50
             break
         default: //todos os outros são "empty"
             currentEvent = .analisarRegiao
@@ -94,16 +95,16 @@ extension Agent {
         switch slot.type {
         case .muro:
             wrongMove(movement: movement)
-            faults += 100
+            agentData.faults += 100
             currentEvent = .finished
             break
         case .buraco where movement.acao == .anda:
             wrongMove(movement: movement)
-            faults += 100
+            agentData.faults += 100
             currentEvent = .finished
             break
         case .buraco where movement.acao == .pula:
-            holeJumpeds += 1
+            agentData.holeJumpeds += 1
             currentEvent = .goToSlot(movement)
             break
         default: //todos os outros são "empty"
