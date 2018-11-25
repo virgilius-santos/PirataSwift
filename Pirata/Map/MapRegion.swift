@@ -10,27 +10,27 @@ import Foundation
 
 extension Map {
 
-    func getRegion(fromLocation slot: Slot) -> RegionList {
+//    func getRegion(fromLocation slot: Slot) -> RegionList {
+//
+//        let index = slot.index
+//        var region = RegionList()
+//
+//        if let slot = self.matriz.downSlot(fromIndex: index) {
+//            region.append(slot)
+//        }
+//
+//        if let slot = self.matriz.leftSlot(fromIndex: index) {
+//            region.append(slot)
+//        }
+//
+//        if let slot = self.matriz.rightSlot(fromIndex: index) {
+//            region.append(slot)
+//        }
+//
+//        return region
+//    }
 
-        let index = slot.index
-        var region = RegionList()
-
-        if let slot = self.matriz.downSlot(fromIndex: index) {
-            region.append(slot)
-        }
-
-        if let slot = self.matriz.leftSlot(fromIndex: index) {
-            region.append(slot)
-        }
-
-        if let slot = self.matriz.rightSlot(fromIndex: index) {
-            region.append(slot)
-        }
-
-        return region
-    }
-
-    func getLargeRegion(fromLocation slot: Slot, offset: Int) -> RegionList {
+    func getRegion(fromLocation slot: Slot, offset: Int) -> RegionList {
 
         if offset < 0 {
             return RegionList()
@@ -55,7 +55,7 @@ extension Map {
             region.append(slot)
         }
 
-        let nextRegion = getLargeRegion(fromLocation: slot, offset: offset-1)
+        let nextRegion = getRegion(fromLocation: slot, offset: offset-1)
         region.append(contentsOf: nextRegion)
         return region
     }

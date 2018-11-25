@@ -10,6 +10,10 @@ import Foundation
 
 extension Map: AgentMap {
 
+    func getRegion(fromLocation location: Slot) -> Map.RegionList {
+        return getRegion(fromLocation: location, offset: 0)
+    }
+
     var matrizSize: Int {
         return matriz.count
     }
