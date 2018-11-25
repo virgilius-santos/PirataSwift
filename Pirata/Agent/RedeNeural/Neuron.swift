@@ -12,23 +12,23 @@ class Neuron {
 
     var qtdWeights: Int { return 1 + _weights.count}
 
-    private var _weightZero: Double = 0
-    private var _weights: [Double] = []
+    private var _weightZero: NeuralNet.Weight = 0
+    private var _weights: NeuralNet.Weights = []
 
     init() {
         randomComplete()
     }
 
     func randomComplete() {
-        _weightZero = Double.randomDouble
+        _weightZero = NeuralNet.Weight.randomDouble
         _weights.removeAll()
         // 3 pesos (dir, esq, baixo)
         for _ in 0..<3 {
-            _weights.append(Double.randomDouble)
+            _weights.append(NeuralNet.Weight.randomDouble)
         }
     }
 
-    func setWeights(_ weights: [Double]) {
+    func setWeights(_ weights: NeuralNet.Weights) {
         var p = weights
         _weightZero = p.removeFirst()
         _weights = p

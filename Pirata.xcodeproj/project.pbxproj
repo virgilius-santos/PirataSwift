@@ -167,9 +167,7 @@
 				18CF72F4214455B3002A1340 /* Agent.swift */,
 				1832E71221A218FC00746AF2 /* Agent+ProcRedNeural.swift */,
 				1832E70921A1FC6200746AF2 /* RedeNeural */,
-				18CF72FE2146098F002A1340 /* AgentDelegateInfo.swift */,
-				1899A17B21A8E680001C2277 /* AgentAnimations.swift */,
-				1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */,
+				18819F3121AA24960077A2F9 /* Delegates */,
 				1899A17D21A8E829001C2277 /* Agente+Reativo-Desativado */,
 			);
 			path = Agent;
@@ -184,6 +182,16 @@
 				1832E71821A2B01C00746AF2 /* MockScene.swift */,
 			);
 			path = RedeNeural;
+			sourceTree = "<group>";
+		};
+		18819F3121AA24960077A2F9 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				18CF72FE2146098F002A1340 /* AgentDelegateInfo.swift */,
+				1899A17B21A8E680001C2277 /* AgentAnimations.swift */,
+				1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		1899A17D21A8E829001C2277 /* Agente+Reativo-Desativado */ = {

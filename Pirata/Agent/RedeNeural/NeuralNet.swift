@@ -10,6 +10,9 @@ import Foundation
 
 class NeuralNet {
 
+    public typealias Weights = [Weight]
+    public typealias Weight = Double
+
     var neuron: Neuron { return Neuron() }
 
     var qtdWeights: Int {
@@ -54,7 +57,7 @@ class NeuralNet {
         actions = defaultActions
     }
     
-    func setWeights(_ weights: [Double]) {
+    func setWeights(_ weights: Weights) {
 
         var start = 0
         var end = 0
@@ -91,7 +94,7 @@ class NeuralNet {
         }
     }
 
-    func getMovement(fromSlots slots: [Slot]) -> Agent.Movement? {
+    func getMovement(fromSlots slots: Map.RegionList) -> Agent.Movement? {
 
         let input = slots.map({Double($0.type.index)})
 

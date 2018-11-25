@@ -12,8 +12,8 @@ class NeuralGenetic {
 
     var canShow = false
 
-    private var weights: [[Double]] = []
-    private var intermediateWeights: [[Double]] = []
+    private var weights: [NeuralNet.Weights] = []
+    private var intermediateWeights: [NeuralNet.Weights] = []
     var aptitudes: [Double] = []
 
     var genesis = -1
@@ -30,10 +30,17 @@ class NeuralGenetic {
     func popular(weight: Int) {
         weightSelected = -1
         let qtd: Int = 10*50
-        weights
-            = [[Double]](repeating: [Double](repeating: 0, count: weight), count: qtd)
-        intermediateWeights
-            = [[Double]](repeating: [Double](repeating: 0, count: weight), count: qtd)
+
+        weights = [NeuralNet.Weights](
+            repeating: NeuralNet.Weights(repeating: 0, count: weight),
+            count: qtd
+        )
+
+        intermediateWeights = [NeuralNet.Weights](
+            repeating: NeuralNet.Weights(repeating: 0, count: weight),
+            count: qtd
+        )
+
         aptitudes
             = [Double](repeating: -1000, count: qtd)
 
@@ -44,7 +51,7 @@ class NeuralGenetic {
         }
     }
 
-    func getNextWeights() -> [Double] {
+    func getNextWeights() -> NeuralNet.Weights {
         genesis += 1
         weightSelected += 1
         canShow = (weightSelected == 0 && setAptitude != lastptitude)

@@ -72,8 +72,8 @@ class Configurator {
     }
 
     func start() {
-        let pesos = brain.genetic.getNextWeights()
-        agent = Agent(map: map, startLocation: startLocation, cerebro: brain, pesos: pesos)
+        let weights = brain.genetic.getNextWeights()
+        agent = Agent(map: map, startLocation: startLocation, cerebro: brain, weights: weights)
 
         setDelegates()
         agent.start()

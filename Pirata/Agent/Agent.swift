@@ -50,12 +50,12 @@ class Agent {
     }
     private var _eventoAtual: EventNeuralType
 
-    init(map: AgentMap, startLocation location: Slot, cerebro: NeuralNet, pesos: [Double]) {
+    init(map: AgentMap, startLocation location: Slot, cerebro: NeuralNet, weights: NeuralNet.Weights) {
         neuralNet = cerebro
 
         agentMap = map
 
-        _eventoAtual = .comecar(pesos)
+        _eventoAtual = .comecar(weights)
 
         agentData = AgentData()
         agentData.location = location
