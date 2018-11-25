@@ -18,30 +18,30 @@ class AgentViewController {
 
     weak var animations: Animations!
 
-    let AgentSlot: Slot
+    let agentSlot: Slot
 
-    private(set) weak var RootView: UIView!
-    private(set) weak var AgentImageView: UIImageView!
-    private(set) var AgentDS: AgentViewControllerDataSource!
+    private(set) weak var rootView: UIView!
+    private(set) weak var agentImageView: UIImageView!
+    private(set) var agentDS: AgentViewControllerDataSource!
 
     init(agentDS: AgentViewControllerDataSource, agentSlot: Slot) {
-        AgentSlot = agentSlot
-        AgentDS = agentDS
+        self.agentSlot = agentSlot
+        self.agentDS = agentDS
     }
 
     func insertAgent(inView view: UIView) {
-        RootView = view
-        AgentImageView?.layer.removeAllAnimations()
-        let agentImageView = UIImageView(image: AgentSlot.type.image)
-        agentImageView.bounds = AgentDS.frame(fromSlot: AgentSlot)
-        agentImageView.contentMode = .scaleAspectFit
-        agentImageView.center = AgentDS.center(fromSlot: AgentSlot, to: RootView)
-        RootView.addSubview(agentImageView)
-        AgentImageView = agentImageView
+        rootView = view
+        agentImageView?.layer.removeAllAnimations()
+        let agentIV = UIImageView(image: agentSlot.type.image)
+        agentIV.bounds = agentDS.frame(fromSlot: agentSlot)
+        agentIV.contentMode = .scaleAspectFit
+        agentIV.center = agentDS.center(fromSlot: agentSlot, to: rootView)
+        rootView.addSubview(agentIV)
+        agentImageView = agentIV
     }
 
     func reset() {
-        AgentImageView.center = AgentDS.center(fromSlot: AgentSlot, to: RootView)
+        agentImageView.center = agentDS.center(fromSlot: agentSlot, to: rootView)
     }
 }
 
@@ -49,13 +49,13 @@ extension AgentViewController: AgentMovementAnimations {
 
     func move(to: Slot, speed: Double) {
         let center = DispatchQueue.main.async(.promise) {
-            return self.AgentDS.center(fromSlot: to, to: self.RootView)
+            return self.agentDS.center(fromSlot: to, to: self.rootView)
         }.wait()
         self.animations.append(.slot(self.moveAnimation, (center, speed)))
     }
 
     private func moveAnimation(center: CGPoint, speed: Double) -> Guarantee<Bool> {
-        return AgentImageView.moveAnimation(center: center, speed: speed)
+        return agentImageView.moveAnimation(center: center, speed: speed)
     }
 
     func goOut(direction: Orientation, value: Float, speed: Double) {
@@ -63,7 +63,7 @@ extension AgentViewController: AgentMovementAnimations {
     }
 
     private func goOutAnimation(direction: Orientation, value: Float, speed: Double) -> Guarantee<Bool> {
-        return AgentImageView
+        return agentImageView
             .goOut(direction: direction, value: CGFloat(value), speed: speed)
     }
 

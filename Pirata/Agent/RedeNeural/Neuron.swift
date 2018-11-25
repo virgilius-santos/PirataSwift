@@ -31,9 +31,8 @@ class Neuron {
     }
 
     func setWeights(_ weights: NeuralNet.Weights) {
-        var p = weights
-        _weightZero = p.removeFirst()
-        _weights = p
+        _weightZero = weights.first!
+        _weights = Array(weights.dropFirst())
     }
 
     func weightsCalc(parameters: Parameters) -> Double {

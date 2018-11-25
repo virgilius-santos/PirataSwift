@@ -37,12 +37,12 @@ class Agent {
             switch (_eventoAtual, newValue) {
             case (.erro, .comecar):
                 _eventoAtual = newValue
-                break
+
             case (.erro, _):
                 return
+                
             default:
                 _eventoAtual = newValue
-                break
             }
         }
     }

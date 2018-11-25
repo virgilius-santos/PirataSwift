@@ -11,7 +11,7 @@ import Foundation
 extension Double {
 
     static var randomDouble: Double {
-        let gen = ClosedRange<Double>(uncheckedBounds: (-1,1))
+        let gen = ClosedRange<Double>(uncheckedBounds: (-1, 1))
         let val = Double.random(in: gen)
         return val
     }

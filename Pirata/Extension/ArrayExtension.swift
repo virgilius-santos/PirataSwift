@@ -177,6 +177,3 @@ extension Array where Array == Map.Region {
     }
 
 }
-
-
-

@@ -12,13 +12,13 @@ extension Map {
 
     /// metodo que calcula e retorna a roda entre dois quadrados
     /// usando o Algoritmo A*
-    func getRoute(from: Slot, to: Slot, excludeRole: Bool = true, completion: @escaping (Route)->()) {
+    func getRoute(from: Slot, to: Slot, excludeRole: Bool = true, completion: @escaping (Route) -> Void) {
         
         /// verifica se a distancia entre os dois slots é 1
         /// se sim, retorna apenas os dois slots
         let distance = from.index.calcDistance(to: to.index)
         if distance == 1 {
-            completion([from,to])
+            completion([from, to])
             return
         }
         
@@ -30,7 +30,6 @@ extension Map {
             
             let first = DataNode(slot: from)
             open.append(first)
-            
             
             /// enquanto a lista aberta tiver um DataNode
             while !open.isEmpty {
@@ -82,7 +81,7 @@ extension Map {
             /// usando os parents do DataNode
             var way = Route()
             var current: DataNode? = route.first(where: {$0.slot == to})
-            while ( current != nil ) {
+            while current != nil {
                 way.insert(current!.slot, at: 0)
                 current = current?.parent
             }

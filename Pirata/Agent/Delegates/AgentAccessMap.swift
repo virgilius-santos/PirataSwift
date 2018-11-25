@@ -17,8 +17,7 @@ protocol AgentMap: class {
     func getRegion(fromLocation location: Slot) -> Map.RegionList
 
     func getRoute(from: Slot, to: Slot, excludeRole: Bool,
-                  completion: @escaping (Map.Route)->())
-
+                  completion: @escaping (Map.Route) -> Void)
 
     func getBag(slot: Slot) -> Bag
 

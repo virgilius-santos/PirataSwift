@@ -13,7 +13,7 @@ class NeuralNet {
     public typealias Weights = [Weight]
     public typealias Weight = Double
 
-    var _lastDirection: Direction?
+    private var lastDirection: Direction?
 
     var neuron: Neuron { return Neuron() }
 
@@ -105,14 +105,14 @@ class NeuralNet {
         let movement = Action(rawValue: movementKey!.offset)
 
         let direction = Direction(rawValue: directionKey!.offset)
-        _lastDirection = direction
+        lastDirection = direction
 
         return (movement!, direction!)
 
     }
 
     func getToogleDirection() -> Direction? {
-        guard let dir = _lastDirection else {
+        guard let dir = lastDirection else {
             return nil
         }
         switch dir {

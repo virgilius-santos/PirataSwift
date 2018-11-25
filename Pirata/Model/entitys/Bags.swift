@@ -20,7 +20,6 @@ struct Bags {
          makePackage()
     }
     
-    
     mutating func makePackage() {
         //var padrao = self.defaultValue
         for _ in 0 ..< (qtd) {

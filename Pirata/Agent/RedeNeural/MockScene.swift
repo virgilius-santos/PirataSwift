@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 var bate_parede: [Agent.Movement] {
     return [
         (Action.walk, Direction.left)
@@ -47,43 +46,43 @@ var pula_saco_bate_parede: [Agent.Movement] {
 
 var chega_porta: [Agent.Movement] {
     return [
-        (Action.walk, Direction.down)
-        ,(Action.jump, Direction.right)
-        ,(Action.walk, Direction.down)
-        ,(Action.walk, Direction.down)
-        ,(Action.jump, Direction.left)
-        ,(Action.jump, Direction.down)
-        ,(Action.walk, Direction.right)
-        ,(Action.walk, Direction.right)
-        ,(Action.jump, Direction.down)
-        ,(Action.walk, Direction.left)
+        (Action.walk, Direction.down),
+        (Action.jump, Direction.right),
+        (Action.walk, Direction.down),
+        (Action.walk, Direction.down),
+        (Action.jump, Direction.left),
+        (Action.jump, Direction.down),
+        (Action.walk, Direction.right),
+        (Action.walk, Direction.right),
+        (Action.jump, Direction.down),
+        (Action.walk, Direction.left)
     ]
 }
 
 var pula_porta: [Agent.Movement] {
     return [
-        chega_porta
-        , [(Action.jump, Direction.left)]
+        chega_porta,
+        [(Action.jump, Direction.left)]
         ].flatMap({$0})
 }
 
 var completa: [Agent.Movement] {
     return [
-        chega_porta
-        , [(Action.walk, Direction.left)]
+        chega_porta,
+        [(Action.walk, Direction.left)]
         ].flatMap({$0})
 }
 
 var defaultActions: [Agent.Movement] {
     return [
-//        bate_parede
-//        , pula_parede
-//        , anda_buraco
-         pula_saco_bate_parede
-//        , pula_porta
-//        , completa
-        , completa
-        , completa
+//        bate_parede,
+//        pula_parede,
+//        anda_buraco,
+         pula_saco_bate_parede,
+//        pula_porta,
+//        completa,
+        completa,
+        completa
         //        completa
         ]
         .flatMap({$0})

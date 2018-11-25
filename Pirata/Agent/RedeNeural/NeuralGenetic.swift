@@ -74,8 +74,8 @@ class NeuralGenetic {
     private func mutar() {
         for _ in 0...weights.count/2 {
             let coeficiente = Int.randomNumber(100)
-            if (coeficiente < 80 ) {
-                let member = max(Int.randomNumber(weights.count),1)
+            if coeficiente < 80 {
+                let member = max(Int.randomNumber(weights.count), 1)
                 for i in 0 ..< weights[member].count {
                     var value: Double = 0
                     repeat {
@@ -111,7 +111,7 @@ class NeuralGenetic {
 
             let mother = tornetizar()
             var father = tornetizar()
-            while (father == mother) {
+            while father == mother {
                 father = tornetizar()
             }
 

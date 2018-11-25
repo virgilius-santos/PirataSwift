@@ -30,7 +30,7 @@ class Genetic {
             repeating: [Int](repeating: 0, count: sacolas.count),
             count: qtdPopulacao
         )
-        self.popIntermediaria =  [[Int]] (
+        self.popIntermediaria = [[Int]] (
             repeating: [Int](repeating: 0, count: sacolas.count),
             count: qtdPopulacao
         )
@@ -43,10 +43,10 @@ class Genetic {
         self.generation = 0
     }
     
-    func start(completion:@escaping([[Bag]])->()) {
+    func start(completion:@escaping([[Bag]]) -> Void) {
         DispatchQueue(label: "genetic").async {
             var repeatTimes = 100
-            var index: Int? = nil
+            var index: Int?
             repeat {
                 self.generation = 0
                 
@@ -97,7 +97,7 @@ class Genetic {
         let fator = Int.randomNumber(100)
         let member = Int.randomNumber(populacao.count)
         let gene = Int.randomNumber(populacao[member].count)
-        if (fator < 50 ) {
+        if fator < 50 {
             var value = populacao[member][gene]
             while value == populacao[member][gene] {
                 value = Int.randomNumber(baus)
@@ -153,7 +153,7 @@ class Genetic {
         populacao = popIntermediaria
     }
     
-    private func elitizar(){
+    private func elitizar() {
         
         // set (chave, valor) ordenada para pegar o index do menor valor
         let setSorted = aptidoes

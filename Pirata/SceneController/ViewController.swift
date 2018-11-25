@@ -12,9 +12,9 @@ class ViewController: UIViewController {
 
     var playing = false
 
-    weak var AgentVC: AgentViewController!
+    weak var agentVC: AgentViewController!
 
-    weak var MapVC: MapViewController!
+    weak var mapVC: MapViewController!
 
     weak var configurator: Configurator!
 
@@ -48,19 +48,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         rootStackView.spacing = 5
-        MapVC.loadData() {
-            self.MapVC.addStackViews(rootStackView: self.rootStackView)
+        mapVC.loadData {
+            self.mapVC.addStackViews(rootStackView: self.rootStackView)
             self.view.layoutIfNeeded()
-            self.AgentVC.insertAgent(inView: self.view)
+            self.agentVC.insertAgent(inView: self.view)
         }
     }
-    
 
-    
 }
 
 extension ViewController: AgentDelegateInfo {
-    
 
     func next() {
 //        animations.append(.void({
@@ -96,4 +93,3 @@ extension ViewController: AgentDelegateInfo {
         }
     }
 }
-

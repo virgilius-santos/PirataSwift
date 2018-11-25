@@ -20,9 +20,9 @@ final class Animations {
         case slot ((CGPoint, Double)->(Guarantee<Bool>), (CGPoint, Double))
         case void (()->(Guarantee<Bool>))
         case speed ((Double)->(Guarantee<Bool>), Double)
-        case orientation ((Orientation, Float, Double)->(Guarantee<Bool>),(Orientation, Float, Double))
-        case slotSpeed ((Slot, Double)->(Guarantee<Bool>),(Slot, Double))
-        case fadeIn ((SlotView)->(Guarantee<Bool>),(SlotView))
+        case orientation ((Orientation, Float, Double)->(Guarantee<Bool>), (Orientation, Float, Double))
+        case slotSpeed ((Slot, Double)->(Guarantee<Bool>), (Slot, Double))
+        case fadeIn ((SlotView)->(Guarantee<Bool>), SlotView)
     }
 
     let delay = 0.1
@@ -57,7 +57,6 @@ final class Animations {
         chain = startTask()
     }
 
-
     func append(_ type: AnimationType) {
 
         if !_filter.canShow {
@@ -80,14 +79,14 @@ final class Animations {
 
     func process(_ type: AnimationType) -> Guarantee<Bool> {
         switch type {
-        case .slot(let (f, (p,s))):
-            return f(p,s)
+        case .slot(let (f, (p, s))):
+            return f(p, s)
         case .void(let void):
             return void()
-        case .orientation(let (f, (o,v,s))):
-            return f(o,v,s)
-        case .slotSpeed(let (f, (s,v))):
-            return f(s,v)
+        case .orientation(let (f, (o, v, s))):
+            return f(o, v, s)
+        case .slotSpeed(let (f, (s, v))):
+            return f(s, v)
         case .speed(let (f, s)):
             return f(s)
         case .fadeIn(let (f, s)):

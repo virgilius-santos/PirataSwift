@@ -59,7 +59,7 @@ class Map {
                                           nRows: self.mapSettings.square)
     }
     
-    func loadData(completion: @escaping(Region)->()) {
+    func loadData(completion: @escaping(Region) -> Void) {
         DispatchQueue(label: "background").async {
 
             self.makeSideWall()
@@ -80,4 +80,3 @@ class Map {
         }
     }
 }
-

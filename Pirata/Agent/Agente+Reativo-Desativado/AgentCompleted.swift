@@ -50,6 +50,4 @@ import Foundation
 //        
 //        moveOut()
 //    }
-    
-    
 //}

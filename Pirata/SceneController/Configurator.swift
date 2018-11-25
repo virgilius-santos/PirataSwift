@@ -24,7 +24,6 @@ class Configurator {
     var agentVC: AgentViewController!
     var brain: NeuralNet
 
-
     var animations: Animations
 
     init(window: UIWindow?) {
@@ -52,8 +51,8 @@ class Configurator {
         rootViewController?.removeFromParent()
         rootViewController = ViewController(nibName: viewControllerIdentifier, bundle: nil)
 
-        rootViewController.MapVC = mapVC
-        rootViewController.AgentVC = agentVC
+        rootViewController.mapVC = mapVC
+        rootViewController.agentVC = agentVC
         rootViewController.configurator = self
         rootViewController.animations = animations
 

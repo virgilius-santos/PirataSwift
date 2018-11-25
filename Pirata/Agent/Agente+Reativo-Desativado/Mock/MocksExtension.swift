@@ -12,17 +12,15 @@ var mock: Bool { return false }
 
 extension Map {
 
-
-    
-    var mockCheast: [Int] { return [9,8,7,6,5,4,3,2]}
+    var mockCheast: [Int] { return [9, 8, 7, 6, 5, 4, 3, 2]}
     
     var mockDir: [Orientation?] { return [.vertical, .vertical, .vertical, .vertical] }
     var mockCol: [Int] { return [4, 5, 6, 7] }
     var mockRow: [Int] { return [1, 1, 1, 1] }
     
     func mockHole(_ data: [Slot], aux: Int) -> Int {
-        let mockCol = [5,5,4,5,5]
-        let mockRow = [4,6,9,8,0]
+        let mockCol = [5, 5, 4, 5, 5]
+        let mockRow = [4, 6, 9, 8, 0]
         let index = data.index(where: { (slot) -> Bool in
             return (slot.index.col == mockCol[aux] && slot.index.row == mockRow[aux])
         }) ?? 0
@@ -31,8 +29,8 @@ extension Map {
         
     }
     
-    var mockBagsIndex: [Int] { return [0,1,2,3,4,5,6,7,8,
-                                       9,10,11,12,13,14,15] }
+    var mockBagsIndex: [Int] { return [0, 1, 2, 3, 4, 5, 6, 7, 8,
+                                       9, 10, 11, 12, 13, 14, 15] }
     func mockBags(_ empty: [Slot]) -> [Slot] {
         let mocksEmptys = [empty.first(where: {$0.index.col==7 && $0.index.row==9}), //1
             empty.first(where: {$0.index.col==8 && $0.index.row==9}), //2
@@ -53,6 +51,5 @@ extension Map {
         
         return mocksEmptys.compactMap({$0})
     }
-    
     
 }

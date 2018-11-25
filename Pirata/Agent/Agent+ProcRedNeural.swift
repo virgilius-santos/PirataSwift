@@ -17,20 +17,20 @@ extension Agent {
             case .comecar(let weights):
                 neuralNet.setWeights(weights)
                 eventoAtual = .analisarPosicaoAtual
-                break
+
             case .analisarPosicaoAtual:
                 analisePosicaoAtual()
-                break
+
             case .analisarRegiao:
                 gerarProximoMovimento()
-                break
+
             case .analisarMovimento(let (slot, movement)):
                 analisarMovimentoEscolhido(slot: slot, movement: movement)
-                break
+
             case .irParaSlot(let movement):
                 move(movement: movement)
                 eventoAtual = .analisarPosicaoAtual
-                break
+
             case .completar:
                 updateValues()
                 break mainLoop
@@ -49,24 +49,24 @@ extension Agent {
         case .wall:
             agentData.points += Point.wall
             eventoAtual = .terminar
-            break
+
         case .hole:
             agentData.points += Point.hole
             eventoAtual = .terminar
-            break
+
         case .bag:
             colectBag(slot: location)
             eventoAtual = .analisarRegiao
             agentData.points += Point.bag
-            break
+
         case .door:
             agentData.points += Point.door
             eventoAtual = .completar
-            break
+
         default: //todos os outros são "empty"
             agentData.points += Point.empty
             eventoAtual = .analisarRegiao
-            break
+
         }
     }
 
@@ -89,19 +89,19 @@ extension Agent {
             move(movement: movement)
             agentData.points += Point.hole
             eventoAtual = .terminar
-            break
+
         case .hole where movement.action == .walk:
             move(movement: movement)
             agentData.points += Point.hole
             eventoAtual = .terminar
-            break
+
         case .hole where movement.action == .jump:
             agentData.points += Point.jumpHole
             eventoAtual = .irParaSlot(movement)
-            break
+
         default:
             eventoAtual = .irParaSlot(movement)
-            break
+
         }
     }
 
@@ -144,4 +144,3 @@ extension Agent {
     }
 
 }
-

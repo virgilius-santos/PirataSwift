@@ -17,8 +17,7 @@ struct AgentData {
     var location: Slot!
     var door: Slot?
     let speed: Double = 0.5
-
-
+    
     var points: Int = 0
 
     var bags: [Bag] = []

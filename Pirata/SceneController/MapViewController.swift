@@ -25,16 +25,16 @@ class MapViewController {
     }
 
     /// le todas as imagens que foram setadas no modelo
-    func loadData(completion: @escaping()->()) {
+    func loadData(completion: @escaping() -> Void) {
         _mapModel.completeMatriz()
-        _mapModel.loadData() { matriz in
+        _mapModel.loadData { matriz in
             self.completeMatriz(region: matriz)
             completion()
         }
     }
 
     func reloadData() {
-        _mapModel.loadData() { matriz in
+        _mapModel.loadData { matriz in
             matriz
                 .lazy
                 .flatMap({$0})
@@ -92,7 +92,7 @@ class MapViewController {
 extension MapViewController: AgentMapAnimations {
     /// some com um slot
     func getBag(slot: Slot, speed: Double) {
-        animations.append(.slotSpeed(getBagAnimation, (slot,speed)))
+        animations.append(.slotSpeed(getBagAnimation, (slot, speed)))
     }
 
     /// some com um slot
@@ -103,7 +103,7 @@ extension MapViewController: AgentMapAnimations {
 
     /// faz um slot crescer
     func growUp(slot: Slot, speed: Double) {
-        animations.append(.slotSpeed(growUpAnimation, (slot,speed)))
+        animations.append(.slotSpeed(growUpAnimation, (slot, speed)))
     }
 
     /// faz um slot crescer
