@@ -22,7 +22,7 @@ extension Agent {
                 analisePosicaoAtual()
                 break
             case .analisarRegiao:
-                analiseRegiaoParaProximoMovimento()
+                gerarProximoMovimento()
                 break
             case .analisarMovimento(let (slot, movement)):
                 analisarMovimentoEscolhido(slot: slot, movement: movement)
@@ -70,7 +70,7 @@ extension Agent {
         }
     }
 
-    func analiseRegiaoParaProximoMovimento() {
+    func gerarProximoMovimento() {
 
         let regionList = agentMap.getRegion(fromLocation: location)
 

@@ -14,13 +14,11 @@ class Agent {
     public typealias Movement = (action: Action, direction: Direction)
 
     weak var neuralNet: NeuralNet!
-
-    weak var mapAnimations: AgentMapAnimations?
-    weak var movementAnimations: AgentMovementAnimations?
+    weak var agentMap: AgentMap!
 
     weak var delegate: AgentDelegateInfo?
-
-    weak var agentMap: AgentMap!
+    weak var mapAnimations: AgentMapAnimations?
+    weak var movementAnimations: AgentMovementAnimations?
 
     var location: Slot {
         get {
@@ -50,8 +48,8 @@ class Agent {
     }
     private var _eventoAtual: EventNeuralType
 
-    init(map: AgentMap, startLocation location: Slot, cerebro: NeuralNet, weights: NeuralNet.Weights) {
-        neuralNet = cerebro
+    init(map: AgentMap, startLocation location: Slot, brain: NeuralNet, weights: NeuralNet.Weights) {
+        neuralNet = brain
 
         agentMap = map
 

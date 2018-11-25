@@ -10,6 +10,8 @@ import Foundation
 
 class Neuron {
 
+    public typealias Parameters = [Double]
+
     var qtdWeights: Int { return 1 + _weights.count}
 
     private var _weightZero: NeuralNet.Weight = 0
@@ -34,8 +36,8 @@ class Neuron {
         _weights = p
     }
 
-    func weightsCalc(parametros: [Double]) -> Double {
-        var value = parametros
+    func weightsCalc(parameters: Parameters) -> Double {
+        var value = parameters
             .lazy
             .enumerated()
             .reduce(0) { (result, data) -> Double in

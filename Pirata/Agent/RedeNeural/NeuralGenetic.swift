@@ -12,21 +12,27 @@ class NeuralGenetic {
 
     var canShow = false
 
-    private var weights: [NeuralNet.Weights] = []
-    private var intermediateWeights: [NeuralNet.Weights] = []
-    var aptitudes: [Double] = []
-
     var genesis = -1
 
-    var weightSelected = -1
+    var nextWeights: NeuralNet.Weights {
+        genesis += 1
+        weightSelected += 1
+        canShow = (weightSelected == 0 && setAptitude != lastAptitude)
+        if weightSelected == 0 {
+            lastAptitude = setAptitude
+        }
+        return weights[weightSelected]
+    }
 
-    var lastptitude: Double = -2
+    private var weights: [NeuralNet.Weights] = []
+    private var intermediateWeights: [NeuralNet.Weights] = []
+    private var aptitudes: [Double] = []
 
-    var setAptitude: Double = -1
+    private var weightSelected = -1
 
-    /// inicia os array com a qtd de pessos passada
-    /// para cada item da matrix gera um peso
-    /// com uma distribuição aleatória
+    private var lastAptitude: Double = -2
+    private var setAptitude: Double = -1
+
     func popular(weight: Int) {
         weightSelected = -1
         let qtd: Int = 10*50
@@ -51,17 +57,6 @@ class NeuralGenetic {
         }
     }
 
-    func getNextWeights() -> NeuralNet.Weights {
-        genesis += 1
-        weightSelected += 1
-        canShow = (weightSelected == 0 && setAptitude != lastptitude)
-        if weightSelected == 0 {
-            lastptitude = setAptitude
-        }
-        return weights[weightSelected]
-
-    }
-
     func setarAptidoes(apt: Double) {
         aptitudes[weightSelected] = apt
         if weightSelected+1 == aptitudes.count {
@@ -76,7 +71,6 @@ class NeuralGenetic {
         mutar()
     }
 
-    /// com probabilidade de 80% ele muta um gene de um elemento da populacao
     private func mutar() {
         for _ in 0...weights.count/2 {
             let coeficiente = Int.randomNumber(100)
@@ -93,9 +87,6 @@ class NeuralGenetic {
         }
     }
 
-
-    /// gera dois possiveis pais
-    /// retorna o index do pai com o menor valor
     private func tornetizar() -> Int {
 
         let line1 = Int.randomNumber(weights.count)

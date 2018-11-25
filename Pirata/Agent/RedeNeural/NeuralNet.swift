@@ -13,6 +13,8 @@ class NeuralNet {
     public typealias Weights = [Weight]
     public typealias Weight = Double
 
+    var _lastDirection: Direction?
+
     var neuron: Neuron { return Neuron() }
 
     var qtdWeights: Int {
@@ -25,6 +27,7 @@ class NeuralNet {
             .reduce(0, +)
         return qtd
     }
+
     private var intermediateNeuron: [Neuron] = []
 
     private var movementeNeurons: [Neuron] = []
@@ -77,37 +80,20 @@ class NeuralNet {
         }
     }
 
-    var _lastDirection: Direction?
-    func getToogleDirection() -> Direction? {
-        guard let dir = _lastDirection else {
-            return nil
-        }
-        switch dir {
-        case .left:
-            return .right
-        case .right:
-            return .left
-        case .down:
-            return .up
-        case .up:
-            return .down
-        }
-    }
-
     func getMovement(fromSlots slots: Map.RegionList) -> Agent.Movement? {
 
         let input = slots.map({Double($0.type.index)})
 
         let net1 = intermediateNeuron.map { (neuron) -> Double in
-            return neuron.weightsCalc(parametros: input)
+            return neuron.weightsCalc(parameters: input)
         }
 
         let movements = movementeNeurons.map { (neuron) -> Double in
-            return neuron.weightsCalc(parametros: net1)
+            return neuron.weightsCalc(parameters: net1)
         }
 
         let directions = directionNeurons.map { (neuron) -> Double in
-            return neuron.weightsCalc(parametros: net1)
+            return neuron.weightsCalc(parameters: net1)
         }
 
         let movementKey = movements.enumerated().max(by: {$0.element < $1.element})
@@ -123,6 +109,22 @@ class NeuralNet {
 
         return (movement!, direction!)
 
+    }
+
+    func getToogleDirection() -> Direction? {
+        guard let dir = _lastDirection else {
+            return nil
+        }
+        switch dir {
+        case .left:
+            return .right
+        case .right:
+            return .left
+        case .down:
+            return .up
+        case .up:
+            return .down
+        }
     }
 }
 
