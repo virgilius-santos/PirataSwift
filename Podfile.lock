@@ -10,33 +10,20 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.5.3):
     - PromiseKit/CorePromise
-  - RxAtomic (4.4.0)
-  - RxCocoa (4.4.0):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.4.0):
-    - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
   - CancellablePromiseKit
   - PromiseKit (~> 6.0)
-  - RxCocoa (~> 4.0)
-  - RxSwift (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CancellablePromiseKit
     - PromiseKit
-    - RxAtomic
-    - RxCocoa
-    - RxSwift
 
 SPEC CHECKSUMS:
   CancellablePromiseKit: 93a2bb6aa997f02950081039d773fb75cf76cb84
   PromiseKit: c609029bdd801f792551a504c695c7d3098b42cd
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: d4860812d4f49e97826ebf7b4c58f18ac8fc0016
+PODFILE CHECKSUM: a3b16690865859cd12b8e7d6374f52c4830c34dc
 
 COCOAPODS: 1.5.3
