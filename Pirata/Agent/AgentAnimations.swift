@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol AgentMovementAnimations {
+protocol AgentMovementAnimations: class {
     func move(to: Slot, speed: Double)
     func startflip(speed: Double)
     func stopflip()
     func goOut(direction: Orientation, value: Float, speed: Double)
 }
 
-protocol AgentMapAnimations {
+protocol AgentMapAnimations: class {
     func growUp(slot: Slot, speed: Double)
     func getBag(slot: Slot, speed: Double)
 }
@@ -42,6 +42,10 @@ extension Agent {
         self.movementAnimations?
             .goOut(direction: direction, value: value, speed: agentData.speed)
     }
+    
+}
+
+extension Agent {
 
     func growUp(_ slot: Slot) {
         self.mapAnimations?.growUp(slot: slot, speed: agentData.speed)

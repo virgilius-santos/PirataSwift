@@ -11,16 +11,16 @@ import PromiseKit
 
 class Agent {
 
-    public typealias Movement = (acao: Acao, direcao: Direction)
+    public typealias Movement = (action: Action, direction: Direction)
 
-    var redeNeural: RedeNeural
+    weak var neuralNet: NeuralNet!
 
-    var mapAnimations: AgentMapAnimations?
-    var movementAnimations: AgentMovementAnimations?
+    weak var mapAnimations: AgentMapAnimations?
+    weak var movementAnimations: AgentMovementAnimations?
 
-    var delegate: AgentDelegateInfo?
+    weak var delegate: AgentDelegateInfo?
 
-    var agentMap: AgentMap
+    weak var agentMap: AgentMap!
 
     var location: Slot {
         get {
@@ -33,29 +33,29 @@ class Agent {
 
     var agentData: AgentData
 
-    var currentEvent: EventNeuralType {
-        get { return _currentEvent }
+    var eventoAtual: EventNeuralType {
+        get { return _eventoAtual }
         set {
-            switch (_currentEvent, newValue) {
-            case (.error, .start):
-                _currentEvent = newValue
+            switch (_eventoAtual, newValue) {
+            case (.erro, .comecar):
+                _eventoAtual = newValue
                 break
-            case (.error, _):
+            case (.erro, _):
                 return
             default:
-                _currentEvent = newValue
+                _eventoAtual = newValue
                 break
             }
         }
     }
-    private var _currentEvent: EventNeuralType
+    private var _eventoAtual: EventNeuralType
 
-    init(map: AgentMap, startLocation location: Slot, cerebro: RedeNeural, pesos: [Double]) {
-        redeNeural = cerebro
+    init(map: AgentMap, startLocation location: Slot, cerebro: NeuralNet, pesos: [Double]) {
+        neuralNet = cerebro
 
         agentMap = map
 
-        _currentEvent = .start(pesos)
+        _eventoAtual = .comecar(pesos)
 
         agentData = AgentData()
         agentData.location = location
@@ -72,20 +72,20 @@ class Agent {
 
     func finished() {
         let evt: EventNeuralType = DispatchQueue.main.async(.promise) {
-            return self.currentEvent
+            return self.eventoAtual
         }.wait()
 
-        if case .finished = evt {
+        if case .terminar = evt {
             next()
         }
 
-        if case .completed = evt, !redeNeural.canShow {
+        if case .completar = evt, !neuralNet.canShow {
             next()
         }
     }
 
     func reset() {
-        currentEvent = .error
+        eventoAtual = .erro
         agentData.clear()
     }
 

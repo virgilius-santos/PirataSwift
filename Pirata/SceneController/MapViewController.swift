@@ -51,7 +51,7 @@ class MapViewController {
     func restoreData() {
         let views = self._matrizSlotView
             .flatMap({$0})
-            .filter({$0.imageType == .saco})
+            .filter({$0.imageType == .bag})
 
         DispatchQueue.main.async(.promise) {
             views.forEach { slotView in

@@ -10,7 +10,7 @@ import Foundation
 
 struct Bag {
     private(set) var valor: Int
-    private(set) var imageType: ImageType = .saco
+    private(set) var imageType: ImageType = .bag
     var index: Index?
     
     init(valor: Int) {

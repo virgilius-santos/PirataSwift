@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol AgentDelegateInfo {
-    func update(coins: Int, general: Int, geracoes: Int)
-    func bauLocalizado(qtd: Int)
-    func portaLocalizada(_ status: Bool)
-    func divisaoDeSacolas(_ div: String)
+protocol AgentDelegateInfo: class {
+    func update(coins: Int, general: Int, genesis: Int)
+    func locateCheast(qtd: Int)
+    func locateDoor(_ status: Bool)
+    func splitBags(_ div: String)
     func next()
 }
 
@@ -25,20 +25,20 @@ extension Agent {
     func updateValues() {
         let coins = agentData.totalCoins
         let general = agentData.totalPoints
-        let geracoes = redeNeural.genetic.geracao
-        self.delegate?.update(coins: coins, general: general, geracoes: geracoes)
+        let genesis = neuralNet.genetic.genesis
+        self.delegate?.update(coins: coins, general: general, genesis: genesis)
     }
     
-    func bauLocalizado() {
-        self.delegate?.bauLocalizado(qtd: agentData.cheasts.count)
+    func locateCheast() {
+        self.delegate?.locateCheast(qtd: agentData.cheasts.count)
     }
     
-    func portaLocalizada() {
-        self.delegate?.portaLocalizada(true)
+    func locateDoor() {
+        self.delegate?.locateDoor(true)
     }
     
-    func divisaoDeSacolas(_ div: String) {
-        self.delegate?.divisaoDeSacolas(div)
+    func splitBags(_ div: String) {
+        self.delegate?.splitBags(div)
     }
 
 }

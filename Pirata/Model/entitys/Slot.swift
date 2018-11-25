@@ -14,12 +14,12 @@ struct Slot: Hashable, Equatable {
     var index: Index
     private(set) var isBusy: Bool = false
     
-    init(index: Index, type: ImageType = .Empty) {
+    init(index: Index, type: ImageType = .empty) {
         self.type = type
         self.index = index
     }
 
-    mutating func set(type: ImageType = .Empty) {
+    mutating func set(type: ImageType = .empty) {
         self.type = type
     }
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol AgentMap {
+protocol AgentMap: class {
     var matrizSize: Int { get }
     var cheastNumbers: Int { get }
     var sideWallPosition: Direction { get }

@@ -22,7 +22,7 @@ class Configurator {
     var agent: Agent!
     var startLocation: Slot
     var agentVC: AgentViewController!
-    var cerebro: RedeNeural
+    var brain: NeuralNet
 
 
     var animations: Animations
@@ -35,9 +35,9 @@ class Configurator {
 
         map = Map(square: 10)
 
-        cerebro = RedeNeural()
+        brain = NeuralNet()
 
-        animations = Animations(filter: cerebro)
+        animations = Animations(filter: brain)
 
     }
 
@@ -62,7 +62,7 @@ class Configurator {
 
     func next() {
         let total = agent.agentData.totalPoints
-        cerebro.genetic.setarAptidoes(apt: Double(total))
+        brain.genetic.setarAptidoes(apt: Double(total))
 
         agent.reset()
         agent.moveToDefaultLocation()
@@ -72,8 +72,8 @@ class Configurator {
     }
 
     func start() {
-        let pesos = cerebro.genetic.getPesosFromNextPopulation()
-        agent = Agent(map: map, startLocation: startLocation, cerebro: cerebro, pesos: pesos)
+        let pesos = brain.genetic.getNextWeights()
+        agent = Agent(map: map, startLocation: startLocation, cerebro: brain, pesos: pesos)
 
         setDelegates()
         agent.start()
@@ -88,7 +88,7 @@ class Configurator {
     func reset() {
         animations.reset()
         mapVC.reloadData()
-        cerebro.reset()
+        brain.reset()
         agent.reset()
         agentVC.reset()
     }

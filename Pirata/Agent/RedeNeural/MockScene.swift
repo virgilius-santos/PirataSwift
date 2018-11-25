@@ -11,66 +11,66 @@ import Foundation
 
 var bate_parede: [Agent.Movement] {
     return [
-        (Acao.anda, Direction.left)
+        (Action.walk, Direction.left)
     ]
 }
 
 var pula_parede: [Agent.Movement] {
     return [
-        (Acao.anda, Direction.down),
-        (Acao.pula, Direction.down)
+        (Action.walk, Direction.down),
+        (Action.jump, Direction.down)
     ]
 }
 
 var anda_buraco: [Agent.Movement] {
     return [
-        (Acao.anda, Direction.down),
-        (Acao.anda, Direction.right)
+        (Action.walk, Direction.down),
+        (Action.walk, Direction.right)
     ]
 }
 
 var pula_buraco: [Agent.Movement] {
     return [
-        (Acao.anda, Direction.down),
-        (Acao.pula, Direction.right)
+        (Action.walk, Direction.down),
+        (Action.jump, Direction.right)
     ]
 }
 
 var pula_saco_bate_parede: [Agent.Movement] {
     return [
-        (Acao.anda, Direction.down),
-        (Acao.pula, Direction.right),
-        (Acao.anda, Direction.down),
-        (Acao.pula, Direction.down)
+        (Action.walk, Direction.down),
+        (Action.jump, Direction.right),
+        (Action.walk, Direction.down),
+        (Action.jump, Direction.down)
     ]
 }
 
 var chega_porta: [Agent.Movement] {
     return [
-        (Acao.anda, Direction.down)
-        ,(Acao.pula, Direction.right)
-        ,(Acao.anda, Direction.down)
-        ,(Acao.anda, Direction.down)
-        ,(Acao.pula, Direction.left)
-        ,(Acao.pula, Direction.down)
-        ,(Acao.anda, Direction.right)
-        ,(Acao.anda, Direction.right)
-        ,(Acao.pula, Direction.down)
-        ,(Acao.anda, Direction.left)
+        (Action.walk, Direction.down)
+        ,(Action.jump, Direction.right)
+        ,(Action.walk, Direction.down)
+        ,(Action.walk, Direction.down)
+        ,(Action.jump, Direction.left)
+        ,(Action.jump, Direction.down)
+        ,(Action.walk, Direction.right)
+        ,(Action.walk, Direction.right)
+        ,(Action.jump, Direction.down)
+        ,(Action.walk, Direction.left)
     ]
 }
 
 var pula_porta: [Agent.Movement] {
     return [
         chega_porta
-        , [(Acao.pula, Direction.left)]
+        , [(Action.jump, Direction.left)]
         ].flatMap({$0})
 }
 
 var completa: [Agent.Movement] {
     return [
         chega_porta
-        , [(Acao.anda, Direction.left)]
+        , [(Action.walk, Direction.left)]
         ].flatMap({$0})
 }
 

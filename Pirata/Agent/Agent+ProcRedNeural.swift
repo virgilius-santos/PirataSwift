@@ -11,41 +11,34 @@ import Foundation
 extension Agent {
 
     func switchEvent() {
-        while true {
-            if case .finished = currentEvent {
-                break
-            }
-            if case .error = currentEvent {
-                break
-            }
-            if case .completed = currentEvent {
-                updateValues()
-                break
-            }
+        mainLoop: while true {
 
-            switch currentEvent {
-            case .start(let pesos):
-                redeNeural.setPesos(pesos: pesos)
-                currentEvent = .analisarPosicaoAtual
+            switch eventoAtual {
+            case .comecar(let weights):
+                neuralNet.setWeights(weights)
+                eventoAtual = .analisarPosicaoAtual
                 break
             case .analisarPosicaoAtual:
                 analisePosicaoAtual()
                 break
             case .analisarRegiao:
-                analiseRegion()
+                analiseRegiaoParaProximoMovimento()
                 break
-            case .analisar(let (slot, movement)):
+            case .analisarMovimento(let (slot, movement)):
                 analisarMovimentoEscolhido(slot: slot, movement: movement)
                 break
-            case .goToSlot(let movement):
+            case .irParaSlot(let movement):
                 move(movement: movement)
-                currentEvent = .analisarPosicaoAtual
+                eventoAtual = .analisarPosicaoAtual
                 break
-            case .error:
+            case .completar:
+                updateValues()
+                break mainLoop
+            case .erro:
                 print("\n--------Erroor--------\n")
-                break
+                break mainLoop
             default:
-                break
+                break mainLoop
             }
         }
     }
@@ -53,73 +46,61 @@ extension Agent {
     func analisePosicaoAtual() {
         let position = agentMap.getSlot(fromIndex: location.index)
         switch position.type {
-        case .muro:
-            agentData.points += Pontuacao.muro
-            currentEvent = .finished
+        case .wall:
+            agentData.points += Point.wall
+            eventoAtual = .terminar
             break
-        case .buraco:
-            agentData.points += Pontuacao.buraco
-            currentEvent = .finished
+        case .hole:
+            agentData.points += Point.hole
+            eventoAtual = .terminar
             break
-        case .saco:
+        case .bag:
             colectBag(slot: location)
-            currentEvent = .analisarRegiao
-            agentData.points += Pontuacao.saco
+            eventoAtual = .analisarRegiao
+            agentData.points += Point.bag
             break
-        case .porta:
-            agentData.points += Pontuacao.porta
-            currentEvent = .completed
+        case .door:
+            agentData.points += Point.door
+            eventoAtual = .completar
             break
         default: //todos os outros são "empty"
-            agentData.points += Pontuacao.empty
-            currentEvent = .analisarRegiao
+            agentData.points += Point.empty
+            eventoAtual = .analisarRegiao
             break
         }
     }
 
-    func analiseRegion() {
+    func analiseRegiaoParaProximoMovimento() {
+
         let regionList = agentMap.getRegion(fromLocation: location)
-        guard let movement = redeNeural.entrada(slots: regionList) else {
+
+        guard let movement = neuralNet.getMovement(fromSlots: regionList) else {
             return
         }
 
-        var rowOffset = 0
-        var cowOffset = 0
+        let slot = getSlot(fromRegion: regionList, fromMovement: movement)
 
-        switch movement.direcao {
-        case .left: cowOffset = -1
-        case .right: cowOffset = 1
-        case .up: rowOffset = -1
-        case .down: rowOffset = 1
-        }
-
-        let checkIndex = Index(col: location.index.col + cowOffset,
-                               row: location.index.row + rowOffset)
-        let slot = regionList.first(where: {
-            $0.index == checkIndex
-        })
-
-        currentEvent = .analisar(slot!, movement)
+        eventoAtual = .analisarMovimento(slot, movement)
     }
 
     func analisarMovimentoEscolhido(slot: Slot, movement: Movement) {
         switch slot.type {
-        case .muro:
-            wrongMove(movement: movement)
-            agentData.points += Pontuacao.buraco
-            currentEvent = .finished
+        case .wall:
+            move(movement: movement)
+            agentData.points += Point.hole
+            eventoAtual = .terminar
             break
-        case .buraco where movement.acao == .anda:
-            wrongMove(movement: movement)
-            agentData.points += Pontuacao.buraco
-            currentEvent = .finished
+        case .hole where movement.action == .walk:
+            move(movement: movement)
+            agentData.points += Point.hole
+            eventoAtual = .terminar
             break
-        case .buraco where movement.acao == .pula:
-            agentData.points += Pontuacao.pulaBuraco
-            currentEvent = .goToSlot(movement)
+        case .hole where movement.action == .jump:
+            agentData.points += Point.jumpHole
+            eventoAtual = .irParaSlot(movement)
             break
         default:
-            currentEvent = .goToSlot(movement)
+            eventoAtual = .irParaSlot(movement)
             break
         }
     }
@@ -130,25 +111,37 @@ extension Agent {
         }
 
         location = newSlot
-        if movement.acao == .anda {
+
+        switch movement.action {
+        case .walk:
             moveView(to: newSlot)
-        } else {
+        case .jump:
             jumpView(to: newSlot)
         }
     }
 
-    func wrongMove(movement: Movement) {
-        guard let newSlot = agentMap.getSlot(fromIndex: location.index, withMovement: movement) else {
-            return
+    func getSlot(fromRegion regionList: Map.RegionList,
+                 fromMovement movement: Movement) -> Slot {
+
+        var rowOffset = 0
+        var cowOffset = 0
+
+        switch movement.direction {
+        case .left: cowOffset = -1
+        case .right: cowOffset = 1
+        case .up: rowOffset = -1
+        case .down: rowOffset = 1
         }
 
-        location = newSlot
-        if movement.acao == .anda {
-            moveView(to: newSlot)
-        } else {
-            jumpView(to: newSlot)
-        }
+        let checkIndex = Index(col: location.index.col + cowOffset,
+                               row: location.index.row + rowOffset)
 
+        let slot = regionList.first(where: {
+            $0.index == checkIndex
+        })
+
+        return slot!
     }
+
 }
 

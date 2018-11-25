@@ -120,8 +120,8 @@ extension Map {
     /// atualiza o array de vizinhos se o slot nao representa um muro
     /// e se o vizinho é diferente de um buraco, caso o filtro esteja ativado
     private func updateVizinhos(vizinhos: inout [Slot], slot: Slot, excludeRole: Bool) {
-        if slot.type != .muro
-            && (slot.type != .buraco || excludeRole) {
+        if slot.type != .wall
+            && (slot.type != .hole || excludeRole) {
             vizinhos.append(slot)
         }
     }

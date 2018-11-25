@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Acao: Int {
-    case anda = 0
-    case pula = 1
+enum Action: Int {
+    case walk = 0
+    case jump = 1
 }

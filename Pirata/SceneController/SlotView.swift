@@ -16,7 +16,7 @@ class SlotView: UIView {
     
     var col = -1
     var row = -1
-    var imageType: ImageType = .Empty
+    var imageType: ImageType = .empty
     
     override init(frame: CGRect) {
         super.init(frame: frame)

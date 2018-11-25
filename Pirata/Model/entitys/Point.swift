@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Pontuacao {
+struct Point {
     init() {}
-    static let muro = -1000
-    static let buraco = -500
+    static let wall = -1000
+    static let hole = -500
     static let empty = 700
-    static let pulaBuraco = 250
-    static let saco = 500
-    static let porta = 1200
+    static let jumpHole = 250
+    static let bag = 500
+    static let door = 1200
 }

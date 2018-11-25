@@ -36,7 +36,7 @@ extension Array where Array == [Slot] {
 
         // converte a matriz em um array
         var typeSet = Set<ImageType>(typeExcludeds)
-        typeSet.insert(.muro)
+        typeSet.insert(.wall)
 
         // filtra os slots
         let filtered = self.filter { (slot) -> Bool in
@@ -93,7 +93,7 @@ extension Array where Array == Map.Region {
         repeat {
             let index = Int.randomNumber(slots.count)
             slot = slots[index]
-        } while (slot == nil || slot!.type != .Empty)
+        } while (slot == nil || slot!.type != .empty)
         return slot!
     }
 
@@ -131,8 +131,8 @@ extension Array where Array == Map.Region {
 
     /// slot abaixo do index
     func slot(index: Pirata.Index, movement: Agent.Movement) -> Slot? {
-        let offset = movement.acao == .anda ? 1 : 2
-        switch movement.direcao {
+        let offset = movement.action == .walk ? 1 : 2
+        switch movement.direction {
         case .left:
             return leftSlot(fromIndex: index, offset: offset)
         case .right:

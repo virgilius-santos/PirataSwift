@@ -9,7 +9,7 @@
 import UIKit
 
 enum ImageType: String {
-    case bau, blank, Empty, pirate, buraco, porta, muro, saco
+    case chest, blank, empty, pirate, hole, door, wall, bag
     
     var image: UIImage {
         return UIImage(named: self.rawValue) ?? #imageLiteral(resourceName: "Empty")
@@ -17,13 +17,13 @@ enum ImageType: String {
 
     var index: Int {
         switch self {
-        case .buraco:
+        case .hole:
             return 1
-        case .porta:
+        case .door:
             return 2
-        case .saco:
+        case .bag:
             return 3
-        case .muro:
+        case .wall:
             return 4
         default:
             return 0

@@ -12,73 +12,75 @@ class NeuralGenetic {
 
     var canShow = false
 
-    private var populacao: [[Double]] = []
-    private var popIntermediaria: [[Double]] = []
-    var aptidoes: [Double] = []
+    private var weights: [[Double]] = []
+    private var intermediateWeights: [[Double]] = []
+    var aptitudes: [Double] = []
 
-    var populacaoSelected = -1
+    var genesis = -1
 
-    var geracao = -1
+    var weightSelected = -1
+
+    var lastptitude: Double = -2
+
+    var setAptitude: Double = -1
 
     /// inicia os array com a qtd de pessos passada
     /// para cada item da matrix gera um peso
     /// com uma distribuição aleatória
-    func popular(pesos: Int) {
-        populacaoSelected = -1
+    func popular(weight: Int) {
+        weightSelected = -1
         let qtd: Int = 10*50
-        populacao
-            = [[Double]](repeating: [Double](repeating: 0, count: pesos), count: qtd)
-        popIntermediaria
-            = [[Double]](repeating: [Double](repeating: 0, count: pesos), count: qtd)
-        aptidoes
+        weights
+            = [[Double]](repeating: [Double](repeating: 0, count: weight), count: qtd)
+        intermediateWeights
+            = [[Double]](repeating: [Double](repeating: 0, count: weight), count: qtd)
+        aptitudes
             = [Double](repeating: -1000, count: qtd)
 
         for i in 0 ..< qtd {
-            for j in 0 ..< pesos {
-                populacao[i][j] = (Double.randomDouble)
+            for j in 0 ..< weight {
+                weights[i][j] = (Double.randomDouble)
             }
         }
     }
 
-
-    var last: Double = -2
-    func getPesosFromNextPopulation() -> [Double] {
-        geracao += 1
-        populacaoSelected += 1
-        canShow = (populacaoSelected == 0 && setAptidao != last)
-        if populacaoSelected == 0 {
-            last = setAptidao
+    func getNextWeights() -> [Double] {
+        genesis += 1
+        weightSelected += 1
+        canShow = (weightSelected == 0 && setAptitude != lastptitude)
+        if weightSelected == 0 {
+            lastptitude = setAptitude
         }
-        return populacao[populacaoSelected]
+        return weights[weightSelected]
 
     }
 
     func setarAptidoes(apt: Double) {
-        aptidoes[populacaoSelected] = apt
-        if populacaoSelected+1 == aptidoes.count {
+        aptitudes[weightSelected] = apt
+        if weightSelected+1 == aptitudes.count {
             processar()
         }
     }
 
     private func processar() {
-        populacaoSelected = -1
+        weightSelected = -1
         elitizar()
         gerar()
         mutar()
     }
 
-    /// com probabilidade de 50% ele muta um gene de um elemento da populacao
+    /// com probabilidade de 80% ele muta um gene de um elemento da populacao
     private func mutar() {
-        for _ in 0...populacao.count/2 {
-            let fator = Int.randomNumber(100)
-            if (fator < 80 ) {
-                let member = max(Int.randomNumber(populacao.count),1)
-                for i in 0 ..< populacao[member].count {
+        for _ in 0...weights.count/2 {
+            let coeficiente = Int.randomNumber(100)
+            if (coeficiente < 80 ) {
+                let member = max(Int.randomNumber(weights.count),1)
+                for i in 0 ..< weights[member].count {
                     var value: Double = 0
                     repeat {
                         value = Double.randomDouble
-                    } while value == populacao[member][i]
-                    populacao[member][i] = value
+                    } while value == weights[member][i]
+                    weights[member][i] = value
                 }
             }
         }
@@ -89,16 +91,16 @@ class NeuralGenetic {
     /// retorna o index do pai com o menor valor
     private func tornetizar() -> Int {
 
-        let linha1 = Int.randomNumber(populacao.count)
-        var linha2 = 0
+        let line1 = Int.randomNumber(weights.count)
+        var line2 = 0
         repeat {
-            linha2 = Int.randomNumber(populacao.count)
-        } while (linha2 == linha1)
+            line2 = Int.randomNumber(weights.count)
+        } while (line2 == line1)
 
-        let apt1 = aptidoes[linha1]
-        let apt2 = aptidoes[linha2]
+        let apt1 = aptitudes[line1]
+        let apt2 = aptitudes[line2]
 
-        return (apt1 < apt2) ? linha2 : linha1
+        return (apt1 < apt2) ? line2 : line1
     }
 
     private func gerar() {
@@ -106,41 +108,40 @@ class NeuralGenetic {
         // funcao similiar a for (int i=0, i<16; i+=4)
         // para avançar de quatro em quatro nas linhas da populacao
         // a partir da linha 1, ex. 1,5,9
-        let total = populacao.count
-        for linha in 1..<total {
+        let total = weights.count
+        for line in 1..<total {
 
-            let mae = tornetizar()
-            var pai = tornetizar()
-            while (pai == mae) {
-                pai = tornetizar()
+            let mother = tornetizar()
+            var father = tornetizar()
+            while (father == mother) {
+                father = tornetizar()
             }
 
-            let final = populacao[linha].count
+            let final = weights[line].count
             for index in 0..<final {
-                let vPai = populacao[pai][index]
-                let vMae = populacao[mae][index]
-                popIntermediaria[linha][index] = (vPai + vMae) / 2
+                let vFather = weights[father][index]
+                let vMother = weights[mother][index]
+                intermediateWeights[line][index] = (vFather + vMother) / 2
             }
         }
 
-        populacao = popIntermediaria
-        aptidoes = [Double](repeating: -1000, count: populacao.count)
+        weights = intermediateWeights
+        aptitudes = [Double](repeating: -1000, count: weights.count)
     }
 
-    var setAptidao: Double = -1
     private func elitizar() {
 
         // set (chave, valor) ordenada para pegar o index do menor valor
-        let setSorted = aptidoes
+        let sortedSet = aptitudes
             .enumerated()
             .sorted(by: { (set1, set2) -> Bool in
                 return set1.element > set2.element
             })
 
         /// seta o menor valor ao indice zero da populacao intermediarias
-        if let (index, value) = setSorted.first {
-            popIntermediaria[0] = populacao[index]
-            setAptidao = value
+        if let (index, value) = sortedSet.first {
+            intermediateWeights[0] = weights[index]
+            setAptitude = value
         }
     }
 }

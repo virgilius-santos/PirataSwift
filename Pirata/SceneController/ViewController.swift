@@ -69,28 +69,28 @@ extension ViewController: AgentDelegateInfo {
 //        }))
     }
 
-    func update(coins: Int = 0, general: Int = 0, geracoes: Int) {
+    func update(coins: Int = 0, general: Int = 0, genesis: Int) {
         DispatchQueue.main.async {
             self.coinsLabel.text = "Moedas Coletadas: \(coins)"
             self.totalLabel.text = "Pontuação Geral: \(general)"
-            self.geracoesLabel.text = "Numero de Geraçoes: \(geracoes)"
+            self.geracoesLabel.text = "Numero de Geraçoes: \(genesis)"
 
         }
     }
 
-    func bauLocalizado(qtd: Int = 0) {
+    func locateCheast(qtd: Int = 0) {
         DispatchQueue.main.async {
             self.qtdBauLabel.text = "\(qtd) bau(s)"
         }
     }
 
-    func portaLocalizada(_ status: Bool = false) {
+    func locateDoor(_ status: Bool = false) {
         DispatchQueue.main.async {
             self.doorLocLabel.text = status ? "Sim" : "Não"
         }
     }
 
-    func divisaoDeSacolas(_ div: String = String()) {
+    func splitBags(_ div: String = String()) {
         DispatchQueue.main.async {
             self.divisaoSacolas.text = div
         }
