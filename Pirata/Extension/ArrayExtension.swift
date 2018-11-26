@@ -22,10 +22,9 @@ extension Array where Array == [SlotView] {
 
 extension Array where Array == [Slot] {
 
+    /// verifica se os slots estao conectados
     mutating func isConnected() -> Bool {
-
         if isEmpty { return false }
-
         var indexs = self.map({$0.index})
         return indexs.isConnected()
     }
@@ -34,14 +33,13 @@ extension Array where Array == [Slot] {
     func getEmptyIndex(_ indexExcludeds: Set<Pirata.Index> = Set(),
                        _ typeExcludeds: [ImageType] = []) -> [Slot] {
 
-        // converte a matriz em um array
-        var typeSet = Set<ImageType>(typeExcludeds)
-        typeSet.insert(.wall)
+        var typeExcludeds = Set<ImageType>(typeExcludeds)
+        typeExcludeds.insert(.wall)
 
         // filtra os slots
         let filtered = self.filter { (slot) -> Bool in
             if indexExcludeds.contains(slot.index) { return false }
-            if typeSet.contains(slot.type) { return false }
+            if typeExcludeds.contains(slot.type) { return false }
             return true
         }
 
@@ -51,35 +49,36 @@ extension Array where Array == [Slot] {
 
 extension Array where Array == [Pirata.Index] {
 
-    /// verifica se a matriz é um grafo conexo
-    mutating func isConnected() -> Bool {
+    /// verifica se os index estao conectados
+    func isConnected() -> Bool {
 
-        if self.isEmpty { return false }
+        var dataList = self
+        if dataList.isEmpty { return false }
 
         var fila = [Pirata.Index]()
-        fila.append(removeFirst())
+        fila.append(dataList.removeFirst())
 
         while !fila.isEmpty {
             let current = fila.removeFirst()
-            if let index = index(where: {$0.col == current.col+1 && $0.row == current.row}) {
-                let data = remove(at: index)
+            if let index = dataList.index(where: {$0.col == current.col+1 && $0.row == current.row}) {
+                let data = dataList.remove(at: index)
                 fila.append(data)
             }
-            if let index = index(where: {$0.col == current.col-1 && $0.row == current.row}) {
-                let data = remove(at: index)
+            if let index = dataList.index(where: {$0.col == current.col-1 && $0.row == current.row}) {
+                let data = dataList.remove(at: index)
                 fila.append(data)
             }
-            if let index = index(where: {$0.row == current.row+1 && $0.col == current.col}) {
-                let data = remove(at: index)
+            if let index = dataList.index(where: {$0.row == current.row+1 && $0.col == current.col}) {
+                let data = dataList.remove(at: index)
                 fila.append(data)
             }
-            if let index = index(where: {$0.row == current.row-1 && $0.col == current.col}) {
-                let data = remove(at: index)
+            if let index = dataList.index(where: {$0.row == current.row-1 && $0.col == current.col}) {
+                let data = dataList.remove(at: index)
                 fila.append(data)
             }
         }
 
-        return isEmpty
+        return dataList.isEmpty
     }
 
 }
@@ -129,7 +128,7 @@ extension Array where Array == Map.Region {
         return self[index.col][index.row+offset]
     }
 
-    /// slot abaixo do index
+    /// slot de acordo com o index e o movimento
     func slot(index: Pirata.Index, movement: Agent.Movement) -> Slot? {
         let offset = movement.action == .walk ? 1 : 2
         switch movement.direction {
@@ -144,12 +143,13 @@ extension Array where Array == Map.Region {
         }
     }
 
+    /// verifica se o index esta livre
     func isIndexIdle(_ index: Pirata.Index?) -> Bool {
         guard let idx = index else { return false }
         return !self[idx.col][idx.row].isBusy
     }
 
-    /// set um tipo em um slot espeficico
+    /// seta um tipo em um slot espeficico
     mutating func setSlot(_ index: Pirata.Index?, type: ImageType) {
         guard let index = index else {
             return

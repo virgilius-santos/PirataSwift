@@ -184,6 +184,27 @@
 			path = RedeNeural;
 			sourceTree = "<group>";
 		};
+		1855626021ABCCBF0002A833 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18E83CEE21A9E8590036B5ED /* ViewController.xib */,
+				18A8806021429D8500B2E027 /* SlotView.xib */,
+				18A8806321429E2200B2E027 /* SlotView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1855626121ABCD100002A833 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1832E71A21A3266A00746AF2 /* Animations.swift */,
+				18D3A4AD2142854A004A1BB0 /* ViewController.swift */,
+				1832E6F021A0D8F900746AF2 /* MapViewController.swift */,
+				1832E6FD21A0F67200746AF2 /* AgentViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		18819F3121AA24960077A2F9 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,13 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				1832E6FF21A172C500746AF2 /* Configurator.swift */,
-				18E83CEE21A9E8590036B5ED /* ViewController.xib */,
-				18D3A4AD2142854A004A1BB0 /* ViewController.swift */,
-				1832E6F021A0D8F900746AF2 /* MapViewController.swift */,
-				1832E6FD21A0F67200746AF2 /* AgentViewController.swift */,
-				18A8806021429D8500B2E027 /* SlotView.xib */,
-				18A8806321429E2200B2E027 /* SlotView.swift */,
-				1832E71A21A3266A00746AF2 /* Animations.swift */,
 			);
 			path = SceneController;
 			sourceTree = "<group>";
@@ -312,6 +326,8 @@
 				1832E70121A1734900746AF2 /* Map */,
 				1832E70421A19F9500746AF2 /* Agent */,
 				18CF72DE21433F5C002A1340 /* Model */,
+				1855626021ABCCBF0002A833 /* View */,
+				1855626121ABCD100002A833 /* Controller */,
 			);
 			path = Pirata;
 			sourceTree = "<group>";
