@@ -143,3 +143,5 @@ class NeuralGenetic {
         }
     }
 }
+
+extension NeuralGenetic: FilterAnimation { }

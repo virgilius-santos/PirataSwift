@@ -22,7 +22,7 @@ enum EventType {
 }
 
 enum EventNeuralType {
-    case comecar(NeuralNet.Weights)
+    case comecar
     case analisarPosicaoAtual
     case analisarRegiao
     case analisarMovimento(Slot, Agent.Movement)

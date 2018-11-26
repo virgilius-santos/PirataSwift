@@ -23,7 +23,9 @@ class Configurator {
     var agent: Agent!
     var startLocation: Slot
     var agentVC: AgentViewController!
+
     var brain: NeuralNet
+    var genetic: NeuralGenetic
 
     var animations: Animations
 
@@ -36,8 +38,11 @@ class Configurator {
         map = Map(square: 10)
 
         brain = NeuralNet()
+        
+        genetic = NeuralGenetic()
+        genetic.popular(weight: brain.qtdWeights)
 
-        animations = Animations(filter: brain)
+        animations = Animations(filter: genetic)
 
     }
 
@@ -62,7 +67,7 @@ class Configurator {
 
     func next() {
         let total = agent.agentData.totalPoints
-        brain.genetic.setarAptidoes(apt: Double(total))
+        genetic.setarAptidoes(apt: Double(total))
 
         agent.reset()
         agent.moveToDefaultLocation()
@@ -72,16 +77,28 @@ class Configurator {
     }
 
     func start() {
-        let weights = brain.genetic.nextWeights
-        agent = Agent(map: map, startLocation: startLocation, brain: brain, weights: weights)
+        let weights = genetic.nextWeights
+        let genesis = genetic.genesis
+        brain.setWeights(weights)
+        agent = Agent(map: map,
+                      startLocation: startLocation,
+                      brain: brain,
+                      genesis: genesis)
+        
         setDelegates()
         
         agent
             .start()
-            .done { hasNext in
-                if hasNext {
+            .done { evt in
+
+                if case .terminar = evt {
                     self.next()
                 }
+
+                if case .completar = evt, !self.genetic.canShow {
+                    self.next()
+                }
+
         }
     }
 
@@ -94,7 +111,10 @@ class Configurator {
     func reset() {
         animations.reset()
         mapVC.reloadData()
+
         brain.reset()
+        genetic.popular(weight: brain.qtdWeights)
+
         agent.reset()
         agentVC.reset()
     }

@@ -20,7 +20,7 @@ extension Agent {
     func updateValues() {
         let coins = agentData.totalCoins
         let general = agentData.totalPoints
-        let genesis = neuralNet.genetic.genesis
+        let genesis = agentData.genesis
         self.delegate?.update(coins: coins, general: general, genesis: genesis)
     }
     

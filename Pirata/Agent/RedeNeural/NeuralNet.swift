@@ -34,8 +34,6 @@ class NeuralNet {
 
     private var directionNeurons: [Neuron] = []
 
-    var genetic = NeuralGenetic()
-
     init() {
 
         // 3 neuronios de entrada (dir, esq, baixo)
@@ -51,12 +49,9 @@ class NeuralNet {
         for _ in 0..<3 {
             directionNeurons.append(neuron)
         }
-
-        genetic.popular(weight: qtdWeights)
     }
 
     func reset() {
-        genetic.popular(weight: qtdWeights)
         actions = defaultActions
     }
     
@@ -126,8 +121,4 @@ class NeuralNet {
             return .down
         }
     }
-}
-
-extension NeuralNet: FilterAnimation {
-    var canShow: Bool { return genetic.canShow }
 }

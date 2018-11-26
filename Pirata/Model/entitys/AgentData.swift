@@ -30,6 +30,12 @@ struct AgentData {
         return totalCoins + points
     }
 
+    let genesis: Int
+
+    init(genesis: Int) {
+        self.genesis = genesis
+    }
+    
     mutating func clear() {
         cheasts.removeAll()
         distributedBags.removeAll()

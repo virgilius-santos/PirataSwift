@@ -14,8 +14,7 @@ extension Agent {
         mainLoop: while true {
 
             switch eventoAtual {
-            case .comecar(let weights):
-                neuralNet.setWeights(weights)
+            case .comecar:
                 eventoAtual = .analisarPosicaoAtual
 
             case .analisarPosicaoAtual:

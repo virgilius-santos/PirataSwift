@@ -48,38 +48,28 @@ class Agent {
     }
     private var _eventoAtual: EventNeuralType
 
-    init(map: AgentMap, startLocation location: Slot, brain: NeuralNet, weights: NeuralNet.Weights) {
+    init(map: AgentMap, startLocation location: Slot, brain: NeuralNet, genesis: Int) {
         neuralNet = brain
 
         agentMap = map
 
-        _eventoAtual = .comecar(weights)
+        _eventoAtual = .comecar
 
-        agentData = AgentData()
+        agentData = AgentData(genesis: genesis)
         agentData.location = location
         agentData.location.set(type: .pirate)
         agentData.defaultLocation = agentData.location
     }
 
-    func start() -> Guarantee<Bool> {
+    func start() -> Guarantee<EventNeuralType> {
        return DispatchQueue.global(qos: .utility).async(.promise) {
             self.switchEvent()
             return self.finished()
         }
     }
 
-    func finished() -> Bool {
-        let evt = self.eventoAtual
-
-        if case .terminar = evt {
-            return true
-        }
-
-        if case .completar = evt, !neuralNet.canShow {
-            return true
-        }
-
-        return false
+    func finished() -> EventNeuralType {
+        return self.eventoAtual
     }
 
     func reset() {
