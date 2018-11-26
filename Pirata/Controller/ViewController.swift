@@ -59,13 +59,6 @@ class ViewController: UIViewController {
 
 extension ViewController: AgentDelegateInfo {
 
-    func next() {
-//        animations.append(.void({
-            self.configurator.next()
-//            self.animations.processAnimation()
-//        }))
-    }
-
     func update(coins: Int = 0, general: Int = 0, genesis: Int) {
         DispatchQueue.main.async {
             self.coinsLabel.text = "Moedas Coletadas: \(coins)"

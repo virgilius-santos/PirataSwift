@@ -13,14 +13,9 @@ protocol AgentDelegateInfo: class {
     func locateCheast(qtd: Int)
     func locateDoor(_ status: Bool)
     func splitBags(_ div: String)
-    func next()
 }
 
 extension Agent {
-
-    func next() {
-        self.delegate?.next()
-    }
     
     func updateValues() {
         let coins = agentData.totalCoins

@@ -48,9 +48,14 @@ class AgentViewController {
 extension AgentViewController: AgentMovementAnimations {
 
     func move(to: Slot, speed: Double) {
-        let center = DispatchQueue.main.async(.promise) {
-            return self.agentDS.center(fromSlot: to, to: self.rootView)
-        }.wait()
+        var center: CGPoint
+        if Thread.isMainThread {
+            center = self.agentDS.center(fromSlot: to, to: self.rootView)
+        } else {
+            center = DispatchQueue.main.async(.promise) {
+                return self.agentDS.center(fromSlot: to, to: self.rootView)
+            }.wait()
+        }
         self.animations.append(.slot(self.moveAnimation, (center, speed)))
     }
 

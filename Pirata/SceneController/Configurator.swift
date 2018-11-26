@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class Configurator {
 
@@ -73,9 +74,15 @@ class Configurator {
     func start() {
         let weights = brain.genetic.nextWeights
         agent = Agent(map: map, startLocation: startLocation, brain: brain, weights: weights)
-
         setDelegates()
-        agent.start()
+        
+        agent
+            .start()
+            .done { hasNext in
+                if hasNext {
+                    self.next()
+                }
+        }
     }
 
     func setDelegates() {

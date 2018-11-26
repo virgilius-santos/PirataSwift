@@ -23,9 +23,9 @@ extension Array where Array == [SlotView] {
 extension Array where Array == [Slot] {
 
     /// verifica se os slots estao conectados
-    mutating func isConnected() -> Bool {
+    func isConnected() -> Bool {
         if isEmpty { return false }
-        var indexs = self.map({$0.index})
+        let indexs = self.map({$0.index})
         return indexs.isConnected()
     }
 

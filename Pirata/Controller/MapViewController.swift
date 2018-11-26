@@ -53,11 +53,9 @@ class MapViewController {
             .flatMap({$0})
             .filter({$0.imageType == .bag})
 
-        DispatchQueue.main.async(.promise) {
-            views.forEach { slotView in
-                self.animations.append(.fadeIn(self.appear, (slotView)))
-            }
-        }.wait()
+        views.forEach { slotView in
+            self.animations.append(.fadeIn(self.appear, (slotView)))
+        }
 
     }
 

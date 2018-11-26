@@ -61,25 +61,25 @@ class Agent {
         agentData.defaultLocation = agentData.location
     }
 
-    func start() {
-       DispatchQueue.global(qos: .utility).async {
+    func start() -> Guarantee<Bool> {
+       return DispatchQueue.global(qos: .utility).async(.promise) {
             self.switchEvent()
-            self.finished()
+            return self.finished()
         }
     }
 
-    func finished() {
-        let evt: EventNeuralType = DispatchQueue.main.async(.promise) {
-            return self.eventoAtual
-        }.wait()
+    func finished() -> Bool {
+        let evt = self.eventoAtual
 
         if case .terminar = evt {
-            next()
+            return true
         }
 
         if case .completar = evt, !neuralNet.canShow {
-            next()
+            return true
         }
+
+        return false
     }
 
     func reset() {
