@@ -1,0 +1,29 @@
+PODS:
+  - CancellablePromiseKit (0.3.0):
+    - PromiseKit (~> 6)
+  - PromiseKit (6.18.1):
+    - PromiseKit/CorePromise (= 6.18.1)
+    - PromiseKit/Foundation (= 6.18.1)
+    - PromiseKit/UIKit (= 6.18.1)
+  - PromiseKit/CorePromise (6.18.1)
+  - PromiseKit/Foundation (6.18.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.18.1):
+    - PromiseKit/CorePromise
+
+DEPENDENCIES:
+  - CancellablePromiseKit
+  - PromiseKit (~> 6.0)
+
+SPEC REPOS:
+  trunk:
+    - CancellablePromiseKit
+    - PromiseKit
+
+SPEC CHECKSUMS:
+  CancellablePromiseKit: 2237205cbffb19a280b677ad4c791b436a543e6b
+  PromiseKit: 49d70c53d5d20e346beaea4b276b5dd2ab446bb4
+
+PODFILE CHECKSUM: a3b16690865859cd12b8e7d6374f52c4830c34dc
+
+COCOAPODS: 1.12.1
