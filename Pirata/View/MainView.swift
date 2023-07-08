@@ -82,15 +82,7 @@ struct MainView: View {
             .overlay(
                 Group {
                     if let pirate = viewModel.model.pirate, let rect = imageRect[pirate.index] {
-                        Image(uiImage: pirate.type.image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: rect.size.width/2, height: rect.size.height/2)
-                            .background(Color.yellow)
-                            .position(
-                                x: rect.minX+rect.size.width/2,
-                                y: rect.minY+rect.size.height/4
-                            )
+                        PirateView(rect: rect)
                     }
                 }
             )
