@@ -14,5 +14,6 @@ struct PirateView: View {
                 x: rect.minX+rect.size.width/2,
                 y: rect.minY+rect.size.height/4
             )
+            .animation(.easeInOut(duration: 1.0), value: rect)
     }
 }

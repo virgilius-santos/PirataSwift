@@ -58,7 +58,9 @@ extension MainView {
             await set(pirate: pirate)
         }
         
-        func execute() {}
+        func execute() {
+            model.pirate?.index = .init(col: 5, row: 5)
+        }
     }
 }
 
@@ -113,7 +115,9 @@ struct MainView: View {
                 Spacer(minLength: 50)
                 
                 Button("Executar") {
-                    viewModel.execute()
+                    withAnimation {
+                        viewModel.execute()
+                    }
                 }
                 
                 Spacer(minLength: 50)
