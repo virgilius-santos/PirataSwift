@@ -2,7 +2,7 @@ import SwiftUI
 
 extension MainView {
     struct Model {
-        var data: [DataType] = (0..<100).map { _ in DataType() }
+        var data: [DataType] = []
         var pirate: Slot?
         var bauStatus: String = "0 bau(s)"
         var doorStatus: String = "não"
@@ -18,7 +18,7 @@ extension MainView {
     struct DataType: Hashable {
         var id = UUID()
         var imageType: ImageType = .empty
-        var slot: Slot?
+        var slot: Slot
     }
 }
 
@@ -64,7 +64,7 @@ extension MainView {
 
 struct MainView: View {
     @ObservedObject var viewModel: ViewModel
-    @State private var imageSize: CGRect = .zero
+    @State private var imageRect: [Index: CGRect] = [:]
     
     var body: some View {
         VStack(spacing: 0) {
@@ -75,23 +75,21 @@ struct MainView: View {
                 PeaceView(model: PeaceView.Model(imageType: data.imageType))
                     .aspectRatio(1, contentMode: .fill)
                     .readRect { size in
-                        if viewModel.model.pirate?.index == data.slot?.index {
-                            imageSize = size
-                        }
+                        imageRect[data.slot.index] = size
                     }
                     
             }
             .overlay(
                 Group {
-                    if let pirate = viewModel.model.pirate {
+                    if let pirate = viewModel.model.pirate, let rect = imageRect[pirate.index] {
                         Image(uiImage: pirate.type.image)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: imageSize.size.width/2, height: imageSize.size.height/2)
+                            .frame(width: rect.size.width/2, height: rect.size.height/2)
                             .background(Color.yellow)
                             .position(
-                                x: imageSize.minX+imageSize.size.width/2,
-                                y: imageSize.minY+imageSize.size.height/4
+                                x: rect.minX+rect.size.width/2,
+                                y: rect.minY+rect.size.height/4
                             )
                     }
                 }
