@@ -54,6 +54,8 @@
 		18D3A4B62142854B004A1BB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4B42142854B004A1BB0 /* LaunchScreen.storyboard */; };
 		18E83CEF21A9E8590036B5ED /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E83CEE21A9E8590036B5ED /* ViewController.xib */; };
 		3B4001DC2A5878A4001AD0C7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DB2A5878A4001AD0C7 /* MainView.swift */; };
+		3B4001DE2A599CDA001AD0C7 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DD2A599CDA001AD0C7 /* GridView.swift */; };
+		3B4001E02A599CFF001AD0C7 /* PeaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */; };
 		46D1264F317A464941CF7AF6 /* Pods_Pirata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +110,8 @@
 		18E83CEE21A9E8590036B5ED /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		1D6F06D336E9F1A84FA19B23 /* Pods-Pirata.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.release.xcconfig"; sourceTree = "<group>"; };
 		3B4001DB2A5878A4001AD0C7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3B4001DD2A599CDA001AD0C7 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeaceView.swift; sourceTree = "<group>"; };
 		546C229865B0836466606D94 /* Pods-Pirata.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pirata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -180,6 +184,8 @@
 				18A8806021429D8500B2E027 /* SlotView.xib */,
 				18A8806321429E2200B2E027 /* SlotView.swift */,
 				3B4001DB2A5878A4001AD0C7 /* MainView.swift */,
+				3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */,
+				3B4001DD2A599CDA001AD0C7 /* GridView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 				1832E6F421A0DCDB00746AF2 /* UIViewExtension.swift in Sources */,
 				18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */,
 				18CF72EE21445309002A1340 /* Direction.swift in Sources */,
+				3B4001E02A599CFF001AD0C7 /* PeaceView.swift in Sources */,
 				1899A18221A999C9001C2277 /* Point.swift in Sources */,
 				1832E70321A17F0300746AF2 /* IntExtension.swift in Sources */,
 				18CF72FF2146098F002A1340 /* AgentDelegateInfo.swift in Sources */,
@@ -459,6 +466,7 @@
 				18CF72D921433367002A1340 /* Bag.swift in Sources */,
 				1832E71721A235B700746AF2 /* DoubleExtension.swift in Sources */,
 				1899A17821A8DAF7001C2277 /* MapData.swift in Sources */,
+				3B4001DE2A599CDA001AD0C7 /* GridView.swift in Sources */,
 				18CF72F5214455B3002A1340 /* Agent.swift in Sources */,
 				18CF72E221433FE2002A1340 /* Index.swift in Sources */,
 				1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */,

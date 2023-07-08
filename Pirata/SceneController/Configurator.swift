@@ -1,6 +1,14 @@
 import UIKit
 import SwiftUI
 
+extension MainService {
+    static func live(mapVC: MapViewController, agentVC: AgentViewController) -> MainService {
+        MainService(
+            loadMap: { mapVC.loadData() },
+            loadPirate: { agentVC.agentSlot }
+        )
+    }
+}
 final class Configurator {
 
     var window: UIWindow?
@@ -21,21 +29,39 @@ final class Configurator {
 
     var animations: Animations
 
-    init(window: UIWindow?) {
+    init(window: UIWindow? = nil) {
         self.window = window
 
         startLocation = Slot(index: Index(col: 1, row: 1))
-        startLocation.set(type: .pirate)
+        startLocation.type = .pirate
 
         map = Map(square: 10)
 
         brain = NeuralNet()
-        
+
         genetic = NeuralGenetic()
         genetic.popular(weight: brain.qtdWeights)
 
         animations = Animations(filter: genetic)
 
+    }
+    
+    func createViewModel() -> MainView.ViewModel {
+        mapVC = MapViewController(map: map)
+//        mapVC.animations = animations
+
+        agentVC = AgentViewController(agentDS: mapVC, agentSlot: startLocation)
+//        agentVC.animations = animations
+
+//        rootViewController?.removeFromParent()
+//        rootViewController = ViewController(nibName: viewControllerIdentifier, bundle: nil)
+//
+//        rootViewController.mapVC = mapVC
+//        rootViewController.agentVC = agentVC
+//        rootViewController.configurator = self
+//        rootViewController.animations = animations
+        let viewModel = MainView.ViewModel(service: .live(mapVC: mapVC, agentVC: agentVC) )
+        return viewModel
     }
 
     func configure() {
@@ -55,7 +81,8 @@ final class Configurator {
 //        rootViewController.animations = animations
 //
 //        window?.rootViewController = rootViewController
-        let rootView = MainView()
+        let viewModel = createViewModel()
+        let rootView = MainView(viewModel: viewModel)
         window?.rootViewController = UIHostingController(rootView: rootView)
     }
 

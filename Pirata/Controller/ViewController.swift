@@ -47,13 +47,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        rootStackView.spacing = 5
-        mapVC.loadData { [weak self] in
-            guard let self = self else { return }
-            self.mapVC.addStackViews(rootStackView: self.rootStackView)
-            self.view.layoutIfNeeded()
-            self.agentVC.insertAgent(inView: self.view)
-        }
+//        rootStackView.spacing = 5
+//        mapVC.loadData()
+//        mapVC.addStackViews(rootStackView: rootStackView)
+//        view.layoutIfNeeded()
+        agentVC.insertAgent(inView: view)
     }
 
 }

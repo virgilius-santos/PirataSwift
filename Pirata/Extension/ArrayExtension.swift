@@ -147,7 +147,7 @@ extension Array where Array == Map.Region {
     /// seta um tipo em um slot espeficico
     mutating func setSlot(_ index: Pirata.Index?, type: ImageType) {
         guard let index = index else { return }
-        self[index.col][index.row].set(type: type)
+        self[index.col][index.row].type = type
         self[index.col][index.row].setBusy()
     }
 

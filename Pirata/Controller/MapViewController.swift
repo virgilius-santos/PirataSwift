@@ -16,28 +16,21 @@ final class MapViewController {
         _mapModel = map
     }
 
-    /// le todas as imagens que foram setadas no modelo
-    func loadData(completion: @escaping() -> Void) {
-        _mapModel.completeMatriz()
-        _mapModel.loadData { matriz in
-            self.completeMatriz(region: matriz)
-            completion()
-        }
+    func loadData() -> Map.Region {
+        _mapModel.fillMatriz()
+        return _mapModel.loadData()
     }
 
     func reloadData() {
-        _mapModel.loadData { matriz in
-            matriz
-                .lazy
-                .flatMap({$0})
-                .forEach { slot in
-                    let index = slot.index
-                    let imgView = self._matrizSlotView[index.col][index.row].imageView
-                    imgView?.image = slot.type.image
-                    imgView?.alpha = 1.0
+        _mapModel.loadData()
+            .lazy
+            .flatMap({$0})
+            .forEach { slot in
+                let index = slot.index
+                let imgView = self._matrizSlotView[index.col][index.row].imageView
+                imgView?.image = slot.type.image
+                imgView?.alpha = 1.0
             }
-        }
-
     }
 
     func restoreData() {
@@ -55,18 +48,16 @@ final class MapViewController {
         return slotView.imageView.fadeIn()
     }
 
-    /// converte os modelos de slot presentes no _mapModel
-    /// em slotView que serão add na tela
-    private func completeMatriz(region: Map.Region) {
-
-        _matrizSlotView = region
-            .lazy
-            .map { (slots) -> [SlotView] in
-
-                return slots.map({$0.slotView()})
-        }
-
-    }
+//    /// converte os modelos de slot presentes no _mapModel
+//    /// em slotView que serão add na tela
+//    private func completeMatriz(region: Map.Region) {
+//        _matrizSlotView = region
+//            .lazy
+//            .map { (slots) -> [SlotView] in
+//                slots.map({$0.slotView()})
+//            }
+//
+//    }
 
     /// converte os slotViews em Stacks que serão vinculadas
     /// ao rootStack

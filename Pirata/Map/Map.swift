@@ -46,20 +46,20 @@ final class Map {
         return matriz
     }
 
-    func completeMatriz() {
+    func fillMatriz() {
         matriz = generateMatriz(
             nCols: mapSettings.columns,
             nRows: mapSettings.rows
         )
     }
     
-    func loadData(completion: @escaping(Region) -> Void) {
+    func loadData() -> Region {
         makeSideWall()
         makeDoor()
         makeCheast()
         makeInternalWall()
         makeHole()
         makeBags()
-        completion(matriz)
+        return matriz
     }
 }

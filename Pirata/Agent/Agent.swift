@@ -32,7 +32,7 @@ final class Agent {
 
         agentData = AgentData(genesis: genesis)
         agentData.location = location
-        agentData.location.set(type: .pirate)
+        agentData.location.type = .pirate
         agentData.defaultLocation = agentData.location
     }
 

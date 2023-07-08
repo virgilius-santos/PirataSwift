@@ -11,10 +11,10 @@ import Foundation
 extension Slot {
     func slotView() -> SlotView {
         let slotView = SlotView()
-        slotView.row = self.index.row
-        slotView.col = self.index.col
-        slotView.imageView.image = self.type.image
-        slotView.imageType = self.type
+        slotView.row = index.row
+        slotView.col = index.col
+        slotView.imageView.image = type.image
+        slotView.imageType = type
         return slotView
     }
 
