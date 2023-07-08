@@ -3,6 +3,7 @@ import SwiftUI
 extension MainView {
     struct Model {
         var data: [DataType] = (0..<100).map { _ in DataType() }
+        var pirate: Slot?
         var bauStatus: String = "0 bau(s)"
         var doorStatus: String = "não"
         var coins: String = "0"
@@ -17,7 +18,7 @@ extension MainView {
     struct DataType: Hashable {
         var id = UUID()
         var imageType: ImageType = .empty
-        var pirate: ImageType?
+        var slot: Slot?
     }
 }
 
@@ -36,20 +37,25 @@ extension MainView {
         }
         
         @MainActor
+        func set(pirate: Slot) {
+            model.pirate = pirate
+        }
+        @MainActor
         func set(modelData: [MainView.DataType]) {
             model.data = modelData
         }
         
         func loadData() async {
             let data = await service.loadMap()
-            let pirate = await service.loadPirate()
             let modelData = data
                 .flatMap({ rows in
                     rows.map({ slot in
-                        DataType(imageType: slot.type, pirate: slot.index == pirate.index ? pirate.type : nil)
+                        DataType(imageType: slot.type, slot: slot)
                     })
                 })
             await set(modelData: modelData)
+            let pirate = await service.loadPirate()
+            await set(pirate: pirate)
         }
         
         func execute() {}
@@ -58,6 +64,7 @@ extension MainView {
 
 struct MainView: View {
     @ObservedObject var viewModel: ViewModel
+    @State private var imageSize: CGRect = .zero
     
     var body: some View {
         VStack(spacing: 0) {
@@ -65,9 +72,30 @@ struct MainView: View {
                 numberOfColumns: viewModel.model.numberOfColumns,
                 data: viewModel.model.data
             ) { data in
-                PeaceView(model: PeaceView.Model.init(imageType: data.imageType, pirate: data.pirate))
+                PeaceView(model: PeaceView.Model(imageType: data.imageType))
                     .aspectRatio(1, contentMode: .fill)
+                    .readRect { size in
+                        if viewModel.model.pirate?.index == data.slot?.index {
+                            imageSize = size
+                        }
+                    }
+                    
             }
+            .overlay(
+                Group {
+                    if let pirate = viewModel.model.pirate {
+                        Image(uiImage: pirate.type.image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: imageSize.size.width/2, height: imageSize.size.height/2)
+                            .background(Color.yellow)
+                            .position(
+                                x: imageSize.minX+imageSize.size.width/2,
+                                y: imageSize.minY+imageSize.size.height/4
+                            )
+                    }
+                }
+            )
             
             Spacer()
             

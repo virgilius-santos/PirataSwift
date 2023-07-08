@@ -56,6 +56,7 @@
 		3B4001DC2A5878A4001AD0C7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DB2A5878A4001AD0C7 /* MainView.swift */; };
 		3B4001DE2A599CDA001AD0C7 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DD2A599CDA001AD0C7 /* GridView.swift */; };
 		3B4001E02A599CFF001AD0C7 /* PeaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */; };
+		3B4001E22A59E968001AD0C7 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001E12A59E968001AD0C7 /* ViewExtensions.swift */; };
 		46D1264F317A464941CF7AF6 /* Pods_Pirata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		3B4001DB2A5878A4001AD0C7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3B4001DD2A599CDA001AD0C7 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeaceView.swift; sourceTree = "<group>"; };
+		3B4001E12A59E968001AD0C7 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		546C229865B0836466606D94 /* Pods-Pirata.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pirata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 				1832E6F721A0E07800746AF2 /* SlotExtension.swift */,
 				1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */,
 				1832E71621A235B700746AF2 /* DoubleExtension.swift */,
+				3B4001E12A59E968001AD0C7 /* ViewExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				1832E71721A235B700746AF2 /* DoubleExtension.swift in Sources */,
 				1899A17821A8DAF7001C2277 /* MapData.swift in Sources */,
 				3B4001DE2A599CDA001AD0C7 /* GridView.swift in Sources */,
+				3B4001E22A59E968001AD0C7 /* ViewExtensions.swift in Sources */,
 				18CF72F5214455B3002A1340 /* Agent.swift in Sources */,
 				18CF72E221433FE2002A1340 /* Index.swift in Sources */,
 				1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */,

@@ -3,7 +3,6 @@ import SwiftUI
 struct PeaceView: View {
     struct Model {
         let imageType: ImageType
-        let pirate: ImageType?
     }
     
     let model: Model
@@ -16,13 +15,11 @@ struct PeaceView: View {
             Image(uiImage: model.imageType.image)
                 .resizable()
                 .padding(10)
-            
-            if let pirate = model.pirate {
-                Image(uiImage: pirate.image)
-                    .resizable()
-                    .padding(20)
-            }
-            
+//            if let pirate = model.pirate {
+//                Image(uiImage: pirate.image)
+//                    .resizable()
+//                    .padding(20)
+//            }
         }
     }
 }
