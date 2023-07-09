@@ -36,5 +36,4 @@ extension Map: AgentMap {
     func getBag(slot: Slot) -> Bag {
         mapData.getBag(fromIndex: slot.index)
     }
-
 }

@@ -1,35 +1,6 @@
-//
-//  MapRegion.swift
-//  Pirata
-//
-//  Created by Virgilius Santos on 08/09/2018.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
 import Foundation
 
 extension Map {
-
-//    func getRegion(fromLocation slot: Slot) -> RegionList {
-//
-//        let index = slot.index
-//        var region = RegionList()
-//
-//        if let slot = self.matriz.downSlot(fromIndex: index) {
-//            region.append(slot)
-//        }
-//
-//        if let slot = self.matriz.leftSlot(fromIndex: index) {
-//            region.append(slot)
-//        }
-//
-//        if let slot = self.matriz.rightSlot(fromIndex: index) {
-//            region.append(slot)
-//        }
-//
-//        return region
-//    }
-
     func getRegion(fromLocation slot: Slot, offset: Int) -> RegionList {
 
         if offset < 0 {

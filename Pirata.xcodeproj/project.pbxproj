@@ -3,16 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1832E6F121A0D8F900746AF2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F021A0D8F900746AF2 /* MapViewController.swift */; };
-		1832E6F421A0DCDB00746AF2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */; };
 		1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F721A0E07800746AF2 /* SlotExtension.swift */; };
 		1832E6FA21A0E0B700746AF2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */; };
 		1832E6FC21A0E2C200746AF2 /* IndexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */; };
-		1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6FD21A0F67200746AF2 /* AgentViewController.swift */; };
 		1832E70021A172C500746AF2 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E6FF21A172C500746AF2 /* Configurator.swift */; };
 		1832E70321A17F0300746AF2 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70221A17F0300746AF2 /* IntExtension.swift */; };
 		1832E70821A1E18A00746AF2 /* AgentAccessMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */; };
@@ -24,14 +21,10 @@
 		1832E71521A234BC00746AF2 /* NeuralGenetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71421A234BC00746AF2 /* NeuralGenetic.swift */; };
 		1832E71721A235B700746AF2 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71621A235B700746AF2 /* DoubleExtension.swift */; };
 		1832E71921A2B01C00746AF2 /* MockScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71821A2B01C00746AF2 /* MockScene.swift */; };
-		1832E71B21A3266A00746AF2 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E71A21A3266A00746AF2 /* Animations.swift */; };
 		1899A17821A8DAF7001C2277 /* MapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899A17721A8DAF7001C2277 /* MapData.swift */; };
 		1899A17A21A8E035001C2277 /* Map+AgentMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899A17921A8E035001C2277 /* Map+AgentMap.swift */; };
-		1899A17C21A8E680001C2277 /* AgentAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899A17B21A8E680001C2277 /* AgentAnimations.swift */; };
 		1899A18021A8FEC2001C2277 /* AgentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899A17F21A8FEC2001C2277 /* AgentData.swift */; };
 		1899A18221A999C9001C2277 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899A18121A999C9001C2277 /* Point.swift */; };
-		18A8806121429D8500B2E027 /* SlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8806021429D8500B2E027 /* SlotView.xib */; };
-		18A8806421429E2200B2E027 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8806321429E2200B2E027 /* SlotView.swift */; };
 		18CF72D32142B312002A1340 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72D22142B312002A1340 /* Map.swift */; };
 		18CF72D921433367002A1340 /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72D821433367002A1340 /* Bag.swift */; };
 		18CF72DB21433E49002A1340 /* MapConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72DA21433E49002A1340 /* MapConstructor.swift */; };
@@ -46,13 +39,10 @@
 		18CF72F721455856002A1340 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72F621455856002A1340 /* EventType.swift */; };
 		18CF72F92145A77E002A1340 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72F82145A77E002A1340 /* Slot.swift */; };
 		18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72FA2145A796002A1340 /* MapSettings.swift */; };
-		18CF72FF2146098F002A1340 /* AgentDelegateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF72FE2146098F002A1340 /* AgentDelegateInfo.swift */; };
 		18CF7307214694CF002A1340 /* Cheast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF7306214694CF002A1340 /* Cheast.swift */; };
 		18D3A4AC2142854A004A1BB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3A4AB2142854A004A1BB0 /* AppDelegate.swift */; };
-		18D3A4AE2142854A004A1BB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3A4AD2142854A004A1BB0 /* ViewController.swift */; };
 		18D3A4B32142854B004A1BB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4B22142854B004A1BB0 /* Assets.xcassets */; };
 		18D3A4B62142854B004A1BB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D3A4B42142854B004A1BB0 /* LaunchScreen.storyboard */; };
-		18E83CEF21A9E8590036B5ED /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E83CEE21A9E8590036B5ED /* ViewController.xib */; };
 		3B4001DC2A5878A4001AD0C7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DB2A5878A4001AD0C7 /* MainView.swift */; };
 		3B4001DE2A599CDA001AD0C7 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DD2A599CDA001AD0C7 /* GridView.swift */; };
 		3B4001E02A599CFF001AD0C7 /* PeaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */; };
@@ -62,12 +52,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1832E6F021A0D8F900746AF2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		1832E6F721A0E07800746AF2 /* SlotExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotExtension.swift; sourceTree = "<group>"; };
 		1832E6F921A0E0B700746AF2 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexExtension.swift; sourceTree = "<group>"; };
-		1832E6FD21A0F67200746AF2 /* AgentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentViewController.swift; sourceTree = "<group>"; };
 		1832E6FF21A172C500746AF2 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		1832E70221A17F0300746AF2 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentAccessMap.swift; sourceTree = "<group>"; };
@@ -79,14 +66,10 @@
 		1832E71421A234BC00746AF2 /* NeuralGenetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralGenetic.swift; sourceTree = "<group>"; };
 		1832E71621A235B700746AF2 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		1832E71821A2B01C00746AF2 /* MockScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockScene.swift; sourceTree = "<group>"; };
-		1832E71A21A3266A00746AF2 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		1899A17721A8DAF7001C2277 /* MapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapData.swift; sourceTree = "<group>"; };
 		1899A17921A8E035001C2277 /* Map+AgentMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Map+AgentMap.swift"; sourceTree = "<group>"; };
-		1899A17B21A8E680001C2277 /* AgentAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentAnimations.swift; sourceTree = "<group>"; };
 		1899A17F21A8FEC2001C2277 /* AgentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentData.swift; sourceTree = "<group>"; };
 		1899A18121A999C9001C2277 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
-		18A8806021429D8500B2E027 /* SlotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlotView.xib; sourceTree = "<group>"; };
-		18A8806321429E2200B2E027 /* SlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
 		18CF72D22142B312002A1340 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		18CF72D821433367002A1340 /* Bag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		18CF72DA21433E49002A1340 /* MapConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConstructor.swift; sourceTree = "<group>"; };
@@ -101,15 +84,12 @@
 		18CF72F621455856002A1340 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		18CF72F82145A77E002A1340 /* Slot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		18CF72FA2145A796002A1340 /* MapSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettings.swift; sourceTree = "<group>"; };
-		18CF72FE2146098F002A1340 /* AgentDelegateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentDelegateInfo.swift; sourceTree = "<group>"; };
 		18CF7306214694CF002A1340 /* Cheast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cheast.swift; sourceTree = "<group>"; };
 		18D3A4A82142854A004A1BB0 /* Pirata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pirata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D3A4AB2142854A004A1BB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18D3A4AD2142854A004A1BB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		18D3A4B22142854B004A1BB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D3A4B52142854B004A1BB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18D3A4B72142854B004A1BB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18E83CEE21A9E8590036B5ED /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		1D6F06D336E9F1A84FA19B23 /* Pods-Pirata.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.release.xcconfig"; sourceTree = "<group>"; };
 		3B4001DB2A5878A4001AD0C7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3B4001DD2A599CDA001AD0C7 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
@@ -139,7 +119,6 @@
 				1832E6FB21A0E2C200746AF2 /* IndexExtension.swift */,
 				1832E70221A17F0300746AF2 /* IntExtension.swift */,
 				1832E6F721A0E07800746AF2 /* SlotExtension.swift */,
-				1832E6F321A0DCDB00746AF2 /* UIViewExtension.swift */,
 				1832E71621A235B700746AF2 /* DoubleExtension.swift */,
 				3B4001E12A59E968001AD0C7 /* ViewExtensions.swift */,
 			);
@@ -185,9 +164,6 @@
 		1855626021ABCCBF0002A833 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18E83CEE21A9E8590036B5ED /* ViewController.xib */,
-				18A8806021429D8500B2E027 /* SlotView.xib */,
-				18A8806321429E2200B2E027 /* SlotView.swift */,
 				3B4001DB2A5878A4001AD0C7 /* MainView.swift */,
 				3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */,
 				3B4001DD2A599CDA001AD0C7 /* GridView.swift */,
@@ -196,22 +172,9 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1855626121ABCD100002A833 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1832E71A21A3266A00746AF2 /* Animations.swift */,
-				18D3A4AD2142854A004A1BB0 /* ViewController.swift */,
-				1832E6F021A0D8F900746AF2 /* MapViewController.swift */,
-				1832E6FD21A0F67200746AF2 /* AgentViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		18819F3121AA24960077A2F9 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				18CF72FE2146098F002A1340 /* AgentDelegateInfo.swift */,
-				1899A17B21A8E680001C2277 /* AgentAnimations.swift */,
 				1832E70721A1E18A00746AF2 /* AgentAccessMap.swift */,
 			);
 			path = Delegates;
@@ -300,7 +263,6 @@
 				1832E70421A19F9500746AF2 /* Agent */,
 				18CF72DE21433F5C002A1340 /* Model */,
 				1855626021ABCCBF0002A833 /* View */,
-				1855626121ABCD100002A833 /* Controller */,
 			);
 			path = Pirata;
 			sourceTree = "<group>";
@@ -333,7 +295,6 @@
 				18D3A4A42142854A004A1BB0 /* Sources */,
 				18D3A4A52142854A004A1BB0 /* Frameworks */,
 				18D3A4A62142854A004A1BB0 /* Resources */,
-				907FCF4C2406DB0D8C422C0C /* [CP] Embed Pods Frameworks */,
 				18819F3221AA31860077A2F9 /* ShellScript */,
 			);
 			buildRules = (
@@ -384,10 +345,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18E83CEF21A9E8590036B5ED /* ViewController.xib in Resources */,
 				18D3A4B62142854B004A1BB0 /* LaunchScreen.storyboard in Resources */,
 				18D3A4B32142854B004A1BB0 /* Assets.xcassets in Resources */,
-				18A8806121429D8500B2E027 /* SlotView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,23 +392,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		907FCF4C2406DB0D8C422C0C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Pirata/Pods-Pirata-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Pirata/Pods-Pirata-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pirata/Pods-Pirata-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -457,19 +399,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1832E6F421A0DCDB00746AF2 /* UIViewExtension.swift in Sources */,
 				18CF72FB2145A796002A1340 /* MapSettings.swift in Sources */,
 				18CF72EE21445309002A1340 /* Direction.swift in Sources */,
 				3B4001E02A599CFF001AD0C7 /* PeaceView.swift in Sources */,
 				3B4001E42A59F5F0001AD0C7 /* PirateView.swift in Sources */,
 				1899A18221A999C9001C2277 /* Point.swift in Sources */,
 				1832E70321A17F0300746AF2 /* IntExtension.swift in Sources */,
-				18CF72FF2146098F002A1340 /* AgentDelegateInfo.swift in Sources */,
 				18CF72F92145A77E002A1340 /* Slot.swift in Sources */,
 				18CF72EC21444364002A1340 /* MapRegion.swift in Sources */,
-				18A8806421429E2200B2E027 /* SlotView.swift in Sources */,
 				1899A17A21A8E035001C2277 /* Map+AgentMap.swift in Sources */,
-				18D3A4AE2142854A004A1BB0 /* ViewController.swift in Sources */,
 				18CF72D921433367002A1340 /* Bag.swift in Sources */,
 				1832E71721A235B700746AF2 /* DoubleExtension.swift in Sources */,
 				1899A17821A8DAF7001C2277 /* MapData.swift in Sources */,
@@ -479,8 +417,6 @@
 				18CF72E221433FE2002A1340 /* Index.swift in Sources */,
 				1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */,
 				18CF72E621434E20002A1340 /* DataNode.swift in Sources */,
-				1899A17C21A8E680001C2277 /* AgentAnimations.swift in Sources */,
-				1832E6F121A0D8F900746AF2 /* MapViewController.swift in Sources */,
 				1832E70021A172C500746AF2 /* Configurator.swift in Sources */,
 				18CF72DB21433E49002A1340 /* MapConstructor.swift in Sources */,
 				1832E70D21A1FE3C00746AF2 /* NeuralNet.swift in Sources */,
@@ -491,7 +427,6 @@
 				1832E6FC21A0E2C200746AF2 /* IndexExtension.swift in Sources */,
 				18CF72D32142B312002A1340 /* Map.swift in Sources */,
 				1832E70F21A20E8C00746AF2 /* Acao.swift in Sources */,
-				1832E6FE21A0F67200746AF2 /* AgentViewController.swift in Sources */,
 				1832E70B21A1FC7C00746AF2 /* Neuron.swift in Sources */,
 				1832E71921A2B01C00746AF2 /* MockScene.swift in Sources */,
 				1832E71321A218FC00746AF2 /* Agent+ProcRedNeural.swift in Sources */,
@@ -502,7 +437,6 @@
 				3B4001DC2A5878A4001AD0C7 /* MainView.swift in Sources */,
 				18D3A4AC2142854A004A1BB0 /* AppDelegate.swift in Sources */,
 				1899A18021A8FEC2001C2277 /* AgentData.swift in Sources */,
-				1832E71B21A3266A00746AF2 /* Animations.swift in Sources */,
 				1832E71121A20ECD00746AF2 /* Orientation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

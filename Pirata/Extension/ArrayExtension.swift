@@ -1,17 +1,5 @@
 import UIKit
 
-extension Array where Array == [SlotView] {
-    func stackView() -> UIStackView {
-        let stack = UIStackView(arrangedSubviews: self)
-        stack.axis = .vertical
-        stack.distribution = .fillEqually
-        stack.alignment = .fill
-        stack.spacing = 5
-        stack.clipsToBounds = false
-        return stack
-    }
-}
-
 extension Array where Array == [Slot] {
 
     /// verifica se os slots estao conectados

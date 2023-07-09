@@ -9,9 +9,9 @@
 import Foundation
 
 extension Index {
-    func slotView(fromMatriz matriz: [[SlotView]]) -> SlotView {
-        return matriz[col][row]
-    }
+//    func slotView(fromMatriz matriz: [[SlotView]]) -> SlotView {
+//        return matriz[col][row]
+//    }
 
     /// calcula a distancia entre dois quadrados
     func calcDistance(from: Index) -> Int {

@@ -25,10 +25,11 @@ extension MainView {
 struct MainService {    
     let loadMap: () async -> Map.Region
     let loadPirate: () async -> Slot
+    let start: () -> Void
 }
 
 extension MainView {
-    final class ViewModel: ObservableObject {
+    final class ViewModel: ObservableObject, AgentDelegateInfo {
         @Published var model = Model()
         let service: MainService
         
@@ -40,6 +41,7 @@ extension MainView {
         func set(pirate: Slot) {
             model.pirate = pirate
         }
+        
         @MainActor
         func set(modelData: [MainView.DataType]) {
             model.data = modelData
@@ -59,7 +61,22 @@ extension MainView {
         }
         
         func execute() {
-            model.pirate?.index = .init(col: 5, row: 5)
+            service.start()
+        }
+        
+        func update(coins: Int, general: Int, genesis: Int) {
+            model.coins = "\(coins)"
+            model.total = "\(general)"
+            model.generationsNumber = "\(genesis)"
+            
+        }
+        
+        func locateCheast(qtd: Int) {
+            model.bauStatus = "\(qtd) bau(s)"
+        }
+        
+        func locateDoor(_ status: Bool) {
+            model.doorStatus = status ? "Sim" : "Não"
         }
     }
 }

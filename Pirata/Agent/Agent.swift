@@ -1,5 +1,21 @@
 import Foundation
 
+protocol AgentMovementAnimations: AnyObject {
+    func move(to: Slot, speed: Double)
+    func goOut(direction: Orientation, value: Float, speed: Double)
+}
+
+protocol AgentMapAnimations: AnyObject {
+    func growUp(slot: Slot, speed: Double)
+    func getBag(slot: Slot, speed: Double)
+}
+
+protocol AgentDelegateInfo: AnyObject {
+    func update(coins: Int, general: Int, genesis: Int)
+    func locateCheast(qtd: Int)
+    func locateDoor(_ status: Bool)
+}
+
 final class Agent {
     public typealias Movement = (action: Action, direction: Direction)
 
@@ -18,7 +34,7 @@ final class Agent {
     }
 
     var eventoAtual: EventNeuralType {
-        get { return _eventoAtual }
+        get { _eventoAtual }
         set { _eventoAtual = newValue }
     }
     
@@ -52,5 +68,49 @@ final class Agent {
 
     func moveToDefaultLocation() {
         moveView(to: agentData.defaultLocation)
+    }
+}
+
+extension Agent {
+    func moveView(to: Slot) {
+        movementAnimations?.move(to: to, speed: agentData.speed)
+    }
+
+    func jumpView(to: Slot) {
+        movementAnimations?.move(to: to, speed: agentData.speed/2)
+    }
+
+    func goOut(direction: Orientation, value: Float) {
+        movementAnimations?.goOut(direction: direction, value: value, speed: agentData.speed)
+    }
+    
+}
+
+extension Agent {
+    func growUp(_ slot: Slot) {
+        mapAnimations?.growUp(slot: slot, speed: agentData.speed)
+    }
+
+    func colectBag(slot: Slot) {
+        let bag = agentMap.getBag(slot: slot)
+        agentData.bags.append(bag)
+        mapAnimations?.getBag(slot: slot, speed: agentData.speed*2)
+    }
+}
+
+extension Agent {
+    func updateValues() {
+        let coins = agentData.totalCoins
+        let general = agentData.totalPoints
+        let genesis = agentData.genesis
+        delegate?.update(coins: coins, general: general, genesis: genesis)
+    }
+    
+    func locateCheast() {
+        delegate?.locateCheast(qtd: agentData.cheasts.count)
+    }
+    
+    func locateDoor() {
+        delegate?.locateDoor(true)
     }
 }

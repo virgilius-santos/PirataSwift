@@ -8,8 +8,7 @@ protocol AgentMap: AnyObject {
 
     func getRegion(fromLocation location: Slot) -> Map.RegionList
 
-    func getRoute(from: Slot, to: Slot, excludeRole: Bool,
-                  completion: @escaping (Map.Route) -> Void)
+    func getRoute(from: Slot, to: Slot, excludeRole: Bool) -> Map.Route
 
     func getBag(slot: Slot) -> Bag
 

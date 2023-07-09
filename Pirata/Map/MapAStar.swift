@@ -1,93 +1,80 @@
-//
-//  MapAStar.swift
-//  Pirata
-//
-//  Created by Virgilius Santos on 07/09/2018.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
 import Foundation
 
 extension Map {
-
     /// metodo que calcula e retorna a roda entre dois quadrados
     /// usando o Algoritmo A*
-    func getRoute(from: Slot, to: Slot, excludeRole: Bool = true, completion: @escaping (Route) -> Void) {
+    func getRoute(from: Slot, to: Slot, excludeRole: Bool = true) -> Route {
         
         /// verifica se a distancia entre os dois slots é 1
         /// se sim, retorna apenas os dois slots
         let distance = from.index.calcDistance(to: to.index)
         if distance == 1 {
-            completion([from, to])
-            return
+            return [from, to]
         }
         
-        DispatchQueue(label: "calculate").async {
+        var route = [DataNode]()
+        var open: [DataNode] = []
+        var close: [Slot] = []
+        
+        let first = DataNode(slot: from)
+        open.append(first)
+        
+        /// enquanto a lista aberta tiver um DataNode
+        while !open.isEmpty {
             
-            var route = [DataNode]()
-            var open: [DataNode] = []
-            var close: [Slot] = []
+            /// pega o primeiro data node mais proximo
+            let current = open.removeFirst()
             
-            let first = DataNode(slot: from)
-            open.append(first)
+            /// adiciona o slot a lista fechada
+            close.append(current.slot)
             
-            /// enquanto a lista aberta tiver um DataNode
-            while !open.isEmpty {
+            /// pega o primeiro vizinho,
+            /// sem considerar buracos se excludeRole == true
+            let vizinhos = self.getVizinhos(current.slot.index, excludeRole: excludeRole)
+            
+            vizinhos.forEach { (slot) in
                 
-                /// pega o primeiro data node mais proximo
-                let current = open.removeFirst()
+                /// se o slot ja esta na lista fechada
+                /// ele nao é incluido novamente a lista aberta
+                let valid = close.contains(slot)
+                if valid { return }
                 
-                /// adiciona o slot a lista fechada
-                close.append(current.slot)
+                var distance = slot.index.calcDistance(from: from.index)
+                distance += slot.index.calcDistance(to: to.index)
                 
-                /// pega o primeiro vizinho,
-                /// sem considerar buracos se excludeRole == true
-                let vizinhos = self.getVizinhos(current.slot.index, excludeRole: excludeRole)
+                let data = DataNode(slot: slot, distance: distance, parent: current)
                 
-                vizinhos.forEach { (slot) in
-                    
-                    /// se o slot ja esta na lista fechada
-                    /// ele nao é incluido novamente a lista aberta
-                    let valid = close.contains(slot)
-                    if valid { return }
-                    
-                    var distance = slot.index.calcDistance(from: from.index)
-                    distance += slot.index.calcDistance(to: to.index)
-                    
-                    let data = DataNode(slot: slot, distance: distance, parent: current)
-                    
-                    /// transforma cada vizinho em um DataNode
-                    /// este DataNode possui a informacao do slot
-                    /// da distancia e do slot de origem
-                    open.append(data)
-                    
-                }
-                
-                /// ordena a lista aberta pela menor distancia
-                open.sort(by: { (dt1, dt2) -> Bool in
-                    return dt1.distance < dt2.distance
-                })
-                
-                /// se o DataNode Current é o destino
-                /// o loop é interrompido
-                route.append(current)
-                if current.slot == to {
-                    break
-                }
+                /// transforma cada vizinho em um DataNode
+                /// este DataNode possui a informacao do slot
+                /// da distancia e do slot de origem
+                open.append(data)
                 
             }
             
-            /// o caminho é reconstruido a partir do destino
-            /// usando os parents do DataNode
-            var way = Route()
-            var current: DataNode? = route.first(where: {$0.slot == to})
-            while current != nil {
-                way.insert(current!.slot, at: 0)
-                current = current?.parent
+            /// ordena a lista aberta pela menor distancia
+            open.sort(by: { (dt1, dt2) -> Bool in
+                return dt1.distance < dt2.distance
+            })
+            
+            /// se o DataNode Current é o destino
+            /// o loop é interrompido
+            route.append(current)
+            if current.slot == to {
+                break
             }
-         
-            completion(way)
+            
         }
+        
+        /// o caminho é reconstruido a partir do destino
+        /// usando os parents do DataNode
+        var way = Route()
+        var current: DataNode? = route.first(where: {$0.slot == to})
+        while current != nil {
+            way.insert(current!.slot, at: 0)
+            current = current?.parent
+        }
+        
+        return way
     }
     
     /// verifica e adiciona os vizinhos nas quatro direcoes
