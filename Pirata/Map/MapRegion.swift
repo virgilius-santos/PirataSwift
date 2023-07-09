@@ -11,18 +11,23 @@ extension Map {
         var region = RegionList()
         var aux: Index
 
+        aux = Index(col: index.col, row: index.row-offset)
+        if let slot = matriz.upSlot(fromIndex: aux) {
+            region.append(slot)
+        }
+        
         aux = Index(col: index.col, row: index.row+offset)
-        if let slot = self.matriz.downSlot(fromIndex: aux) {
+        if let slot = matriz.downSlot(fromIndex: aux) {
             region.append(slot)
         }
 
         aux = Index(col: index.col-offset, row: index.row)
-        if let slot = self.matriz.leftSlot(fromIndex: aux) {
+        if let slot = matriz.leftSlot(fromIndex: aux) {
             region.append(slot)
         }
 
         aux = Index(col: index.col+offset, row: index.row)
-        if let slot = self.matriz.rightSlot(fromIndex: aux) {
+        if let slot = matriz.rightSlot(fromIndex: aux) {
             region.append(slot)
         }
 

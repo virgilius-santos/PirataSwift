@@ -17,7 +17,7 @@ extension Agent {
                 checkMovement(slot: slot, movement: movement)
                 
             case let .goToSlot(movement):
-                move(movement: movement)
+//                move(movement: movement)
                 eventoAtual = .checkCurrentPosition
                 
             case .complete:
@@ -61,7 +61,11 @@ private extension Agent {
     func generateNextMovement() {
         let regionList = agentMap.getRegion(fromLocation: location)
         let movement = neuralNet.getMovement(fromSlots: regionList)
-        let slot = getSlot(fromRegion: regionList, fromMovement: movement)
+        guard let slot = getSlot(fromRegion: regionList, fromMovement: movement) else {
+            assertionFailure("impossible movement")
+            eventoAtual = .checkRegion
+            return
+        }
 
         eventoAtual = .checkMovement(slot, movement)
     }
@@ -69,12 +73,12 @@ private extension Agent {
     func checkMovement(slot: Slot, movement: Movement) {
         switch slot.type {
         case .wall:
-            move(movement: movement)
-            agentData.points += Point.hole
+            move(movement: movement, newSlot: slot)
+            agentData.points += Point.wall
             eventoAtual = .finish
 
         case .hole where movement.action == .walk:
-            move(movement: movement)
+            move(movement: movement, newSlot: slot)
             agentData.points += Point.hole
             eventoAtual = .finish
 
@@ -88,12 +92,8 @@ private extension Agent {
         }
     }
 
-    func move(movement: Movement) {
-        guard let newSlot = agentMap.getSlot(fromIndex: location.index, withMovement: movement) else {
-            return
-        }
+    func move(movement: Movement, newSlot: Slot) {
         location = newSlot
-
         switch movement.action {
         case .walk:
             moveView(to: newSlot)
@@ -107,7 +107,7 @@ private extension Agent {
     func getSlot(
         fromRegion regionList: Map.RegionList,
         fromMovement movement: Movement
-    ) -> Slot {
+    ) -> Slot? {
 
         var rowOffset = 0
         var cowOffset = 0
@@ -120,14 +120,12 @@ private extension Agent {
         case .none: break
         }
 
-        let checkIndex = Index(col: location.index.col + cowOffset,
-                               row: location.index.row + rowOffset)
-
-        let slot = regionList.first(where: {
-            $0.index == checkIndex
-        })
-
-        return slot!
+        let checkIndex = Index(
+            col: location.index.col + cowOffset,
+            row: location.index.row + rowOffset
+        )
+        let slot = regionList.first(where: { $0.index == checkIndex })
+        return slot
     }
 
 }

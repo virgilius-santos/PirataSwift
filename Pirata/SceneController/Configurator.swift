@@ -4,20 +4,17 @@ import SwiftUI
 final class Configurator {
     var window: UIWindow?
     var map: Map
-//    var mapVC: MapViewController!
-
     var agent: Agent!
     var startLocation: Slot
-//    var agentVC: AgentViewController!
 
     var brain: NeuralNet
     var genetic: NeuralGenetic
-
-//    var animations: Animations
     
     var playing = false
     
     weak var agentDelegateInfo: AgentDelegateInfo?
+    weak var agentMapAnimations: AgentMapAnimations?
+    weak var agentMovementAnimations: AgentMovementAnimations?
 
     init(window: UIWindow? = nil) {
         self.window = window
@@ -30,19 +27,9 @@ final class Configurator {
 
         genetic = NeuralGenetic()
         genetic.popular(weight: brain.qtdWeights)
-
-//        animations = Animations(filter: genetic)
     }
     
     func createViewModel() -> MainView.ViewModel {
-//        let mapVC = MapViewController(map: map)
-//        mapVC.animations = animations
-//        self.mapVC = mapVC
-        
-//        let agentVC = AgentViewController(agentDS: mapVC, agentSlot: startLocation)
-//        agentVC.animations = animations
-//        self.agentVC = agentVC
-        
         let service = MainService(
             loadMap: { [unowned map] in
                 map.fillMatriz()
@@ -59,26 +46,15 @@ final class Configurator {
             }
         )
         let viewModel = MainView.ViewModel(service: service)
-        agentDelegateInfo = viewModel
         return viewModel
     }
 
     func configure() {
         let viewModel = createViewModel()
+        agentDelegateInfo = viewModel
         let rootView = MainView(viewModel: viewModel)
         window?.rootViewController = UIHostingController(rootView: rootView)
     }
-
-//    func next() {
-//        let total = agent.agentData.totalPoints
-//        genetic.setarAptidoes(apt: Double(total))
-//
-//        agent.reset()
-//        agent.moveToDefaultLocation()
-//        mapVC.restoreData()
-//
-//        start()
-//    }
 
     func start() {
         let weights = genetic.nextWeights
@@ -91,23 +67,30 @@ final class Configurator {
             genesis: genesis
         )
         
-        setDelegates()
+        agent.delegate = agentDelegateInfo
+        agent.mapAnimations = agentMapAnimations
+        agent.movementAnimations = agentMovementAnimations
         
         let evt = agent.start()
-        if case .finish = evt {
+//        if case .finish = evt {
 //            self.next()
-        }
-
-        if case .complete = evt, !genetic.canShow {
+//        }
+//
+//        if case .complete = evt, !genetic.canShow {
 //            self.next()
-        }
+//        }
     }
-
-    func setDelegates() {
-        agent.delegate = agentDelegateInfo
-//        agent.mapAnimations = mapVC
-//        agent.movementAnimations = agentVC
-    }
+    
+//    func next() {
+//        let total = agent.agentData.totalPoints
+//        genetic.setarAptidoes(apt: Double(total))
+//
+//        agent.reset()
+//        agent.moveToDefaultLocation()
+//        mapVC.restoreData()
+//
+//        start()
+//    }
 
 //    func reset() {
 //        animations.reset()

@@ -48,6 +48,8 @@
 		3B4001E02A599CFF001AD0C7 /* PeaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */; };
 		3B4001E22A59E968001AD0C7 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001E12A59E968001AD0C7 /* ViewExtensions.swift */; };
 		3B4001E42A59F5F0001AD0C7 /* PirateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001E32A59F5F0001AD0C7 /* PirateView.swift */; };
+		3B4003E32A5AFDC3001AD0C7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4003E22A5AFDC3001AD0C7 /* MainViewModel.swift */; };
+		3B4003E62A5AFE36001AD0C7 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4003E52A5AFE36001AD0C7 /* MainModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +96,8 @@
 		3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeaceView.swift; sourceTree = "<group>"; };
 		3B4001E12A59E968001AD0C7 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		3B4001E32A59F5F0001AD0C7 /* PirateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PirateView.swift; sourceTree = "<group>"; };
+		3B4003E22A5AFDC3001AD0C7 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		3B4003E52A5AFE36001AD0C7 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pirata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -161,9 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				3B4001DB2A5878A4001AD0C7 /* MainView.swift */,
-				3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */,
-				3B4001DD2A599CDA001AD0C7 /* GridView.swift */,
-				3B4001E32A59F5F0001AD0C7 /* PirateView.swift */,
+				3B4003E42A5AFE21001AD0C7 /* Components */,
+				3B4003E22A5AFDC3001AD0C7 /* MainViewModel.swift */,
+				3B4003E52A5AFE36001AD0C7 /* MainModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,6 +264,16 @@
 				1855626021ABCCBF0002A833 /* View */,
 			);
 			path = Pirata;
+			sourceTree = "<group>";
+		};
+		3B4003E42A5AFE21001AD0C7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */,
+				3B4001DD2A599CDA001AD0C7 /* GridView.swift */,
+				3B4001E32A59F5F0001AD0C7 /* PirateView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		7B6F3FE2FB85139D7F4CDE8B /* Frameworks */ = {
@@ -376,8 +390,10 @@
 				1832E71721A235B700746AF2 /* DoubleExtension.swift in Sources */,
 				1899A17821A8DAF7001C2277 /* MapData.swift in Sources */,
 				3B4001DE2A599CDA001AD0C7 /* GridView.swift in Sources */,
+				3B4003E62A5AFE36001AD0C7 /* MainModel.swift in Sources */,
 				3B4001E22A59E968001AD0C7 /* ViewExtensions.swift in Sources */,
 				18CF72F5214455B3002A1340 /* Agent.swift in Sources */,
+				3B4003E32A5AFDC3001AD0C7 /* MainViewModel.swift in Sources */,
 				18CF72E221433FE2002A1340 /* Index.swift in Sources */,
 				1832E6F821A0E07800746AF2 /* SlotExtension.swift in Sources */,
 				18CF72E621434E20002A1340 /* DataNode.swift in Sources */,

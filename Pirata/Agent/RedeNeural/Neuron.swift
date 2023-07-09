@@ -25,7 +25,7 @@ class Neuron {
         _weightZero = NeuralNet.Weight.randomDouble
         _weights.removeAll()
         // 3 pesos (dir, esq, baixo)
-        for _ in 0..<3 {
+        for _ in 0..<4 {
             _weights.append(NeuralNet.Weight.randomDouble)
         }
     }
