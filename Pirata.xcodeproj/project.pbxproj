@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,7 +48,6 @@
 		3B4001E02A599CFF001AD0C7 /* PeaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */; };
 		3B4001E22A59E968001AD0C7 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001E12A59E968001AD0C7 /* ViewExtensions.swift */; };
 		3B4001E42A59F5F0001AD0C7 /* PirateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4001E32A59F5F0001AD0C7 /* PirateView.swift */; };
-		46D1264F317A464941CF7AF6 /* Pods_Pirata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,13 +89,11 @@
 		18D3A4B22142854B004A1BB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D3A4B52142854B004A1BB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18D3A4B72142854B004A1BB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D6F06D336E9F1A84FA19B23 /* Pods-Pirata.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.release.xcconfig"; sourceTree = "<group>"; };
 		3B4001DB2A5878A4001AD0C7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3B4001DD2A599CDA001AD0C7 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		3B4001DF2A599CFF001AD0C7 /* PeaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeaceView.swift; sourceTree = "<group>"; };
 		3B4001E12A59E968001AD0C7 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		3B4001E32A59F5F0001AD0C7 /* PirateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PirateView.swift; sourceTree = "<group>"; };
-		546C229865B0836466606D94 /* Pods-Pirata.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pirata.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pirata/Pods-Pirata.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA7B22BBBBCF45EA96F977F /* Pods_Pirata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pirata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -105,7 +102,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D1264F317A464941CF7AF6 /* Pods_Pirata.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +236,6 @@
 			children = (
 				18D3A4AA2142854A004A1BB0 /* Pirata */,
 				18D3A4A92142854A004A1BB0 /* Products */,
-				1EA0CF6E9AA3C85675BBDF9E /* Pods */,
 				7B6F3FE2FB85139D7F4CDE8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -267,15 +262,6 @@
 			path = Pirata;
 			sourceTree = "<group>";
 		};
-		1EA0CF6E9AA3C85675BBDF9E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				546C229865B0836466606D94 /* Pods-Pirata.debug.xcconfig */,
-				1D6F06D336E9F1A84FA19B23 /* Pods-Pirata.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		7B6F3FE2FB85139D7F4CDE8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +277,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18D3A4BA2142854B004A1BB0 /* Build configuration list for PBXNativeTarget "Pirata" */;
 			buildPhases = (
-				2EC34CBC0967DB807EBC4E64 /* [CP] Check Pods Manifest.lock */,
 				18D3A4A42142854A004A1BB0 /* Sources */,
 				18D3A4A52142854A004A1BB0 /* Frameworks */,
 				18D3A4A62142854A004A1BB0 /* Resources */,
@@ -355,6 +340,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		18819F3221AA31860077A2F9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -369,28 +355,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		2EC34CBC0967DB807EBC4E64 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Pirata-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -573,7 +537,6 @@
 		};
 		18D3A4BB2142854B004A1BB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 546C229865B0836466606D94 /* Pods-Pirata.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -595,7 +558,6 @@
 		};
 		18D3A4BC2142854B004A1BB0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D6F06D336E9F1A84FA19B23 /* Pods-Pirata.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
