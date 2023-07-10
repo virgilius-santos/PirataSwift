@@ -18,7 +18,7 @@ enum EventNeuralType {
     case checkCurrentPosition
     case checkRegion
     case checkMovement(Slot, Agent.Movement)
-    case goToSlot(Agent.Movement)
+    case goToSlot(Agent.Movement, Slot)
     case finish
     case complete
 }

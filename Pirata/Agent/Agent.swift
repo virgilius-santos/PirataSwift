@@ -54,11 +54,6 @@ final class Agent {
 
     func start() -> EventNeuralType {
         switchEvent()
-        return finished()
-    }
-
-    func finished() -> EventNeuralType {
-        eventoAtual
     }
 
     func reset() {

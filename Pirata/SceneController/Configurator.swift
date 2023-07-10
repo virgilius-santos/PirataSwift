@@ -52,6 +52,7 @@ final class Configurator {
     func configure() {
         let viewModel = createViewModel()
         agentDelegateInfo = viewModel
+        agentMovementAnimations = viewModel
         let rootView = MainView(viewModel: viewModel)
         window?.rootViewController = UIHostingController(rootView: rootView)
     }
@@ -72,25 +73,25 @@ final class Configurator {
         agent.movementAnimations = agentMovementAnimations
         
         let evt = agent.start()
-//        if case .finish = evt {
-//            self.next()
-//        }
-//
-//        if case .complete = evt, !genetic.canShow {
-//            self.next()
-//        }
+        if case .finish = evt {
+            self.next()
+        }
+
+        if case .complete = evt, !genetic.canShow {
+            self.next()
+        }
     }
     
-//    func next() {
-//        let total = agent.agentData.totalPoints
-//        genetic.setarAptidoes(apt: Double(total))
-//
-//        agent.reset()
-//        agent.moveToDefaultLocation()
+    func next() {
+        let total = agent.agentData.totalPoints
+        genetic.setarAptidoes(apt: Double(total))
+
+        agent.reset()
+        agent.moveToDefaultLocation()
 //        mapVC.restoreData()
-//
-//        start()
-//    }
+
+        start()
+    }
 
 //    func reset() {
 //        animations.reset()

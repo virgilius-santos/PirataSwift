@@ -1,7 +1,7 @@
 import Foundation
 
 extension Agent {
-    func switchEvent() {
+    func switchEvent() -> EventNeuralType {
         mainLoop: while true {
             switch eventoAtual {
             case .start:
@@ -16,8 +16,8 @@ extension Agent {
             case let .checkMovement(slot, movement):
                 checkMovement(slot: slot, movement: movement)
                 
-            case let .goToSlot(movement):
-//                move(movement: movement)
+            case let .goToSlot(movement, newSlot):
+                move(movement: movement, newSlot: newSlot)
                 eventoAtual = .checkCurrentPosition
                 
             case .complete:
@@ -27,7 +27,9 @@ extension Agent {
             case .finish:
                 break mainLoop
             }
+            usleep(500_000)
         }
+        return eventoAtual
     }
 }
 
@@ -84,15 +86,19 @@ private extension Agent {
 
         case .hole where movement.action == .jump:
             agentData.points += Point.jumpHole
-            eventoAtual = .goToSlot(movement)
+            eventoAtual = .goToSlot(movement, slot)
 
         default:
-            eventoAtual = .goToSlot(movement)
+            eventoAtual = .goToSlot(movement, slot)
 
         }
     }
 
     func move(movement: Movement, newSlot: Slot) {
+        guard let newSlot = agentMap.getSlot(fromIndex: location.index, withMovement: movement) else {
+            return
+        }
+
         location = newSlot
         switch movement.action {
         case .walk:

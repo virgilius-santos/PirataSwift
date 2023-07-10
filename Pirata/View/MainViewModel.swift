@@ -3,7 +3,7 @@ import Foundation
 struct MainService {
     let loadMap: () async -> Map.Region
     let loadPirate: () async -> Slot
-    let start: () -> Void
+    let start: () async -> Void
 }
 
 final class MainViewModel: ObservableObject {
@@ -38,11 +38,14 @@ final class MainViewModel: ObservableObject {
     }
     
     func execute() {
-        service.start()
+        Task {
+            await service.start()
+        }
     }
 }
 
 extension MainViewModel: AgentDelegateInfo {
+    @MainActor
     func update(coins: Int, general: Int, genesis: Int) {
         model.coins = "\(coins)"
         model.total = "\(general)"
@@ -50,11 +53,24 @@ extension MainViewModel: AgentDelegateInfo {
         
     }
     
+    @MainActor
     func locateCheast(qtd: Int) {
         model.bauStatus = "\(qtd) bau(s)"
     }
     
+    @MainActor
     func locateDoor(_ status: Bool) {
         model.doorStatus = status ? "Sim" : "Não"
+    }
+}
+
+extension MainViewModel: AgentMovementAnimations {
+    func move(to slot: Slot, speed: Double) {
+        DispatchQueue.main.async {
+            self.model.pirate?.index = slot.index
+        }
+    }
+    
+    func goOut(direction: Orientation, value: Float, speed: Double) {
     }
 }
